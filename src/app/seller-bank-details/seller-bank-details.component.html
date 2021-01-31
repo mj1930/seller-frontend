@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-5 col-lg-4 col-sm-8">
+            <div class="d-flex justify-content-center">
+                <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" alt="Logo" class="my-3 mx-auto">
+            </div>
+
+            <!-- Stroe Details -->
+            <div class="card">
+                <div class="card-body">
+
+                    <!-- Title -->
+                    <h4 class="card-title">
+                        <b>Enter your bank details</b>
+                        <p class="m-0 small">Update your bank details to receive payments.</p>
+                    </h4>
+                    
+                    <!-- Text -->
+                    <form class="text-left" action="#!">
+
+                        <!-- Account Holder Name -->
+                        <label for="" class="m-0 small">Account Holder Name</label>
+                        <input type="text" id="nameonBank" class="form-control mb-3" placeholder="Name as on bank documents">                        
+
+                        <!-- Account Number -->
+                        <label for="" class="m-0 small">Account Number</label>
+                        <input type="text" id="accountNumber" class="form-control mb-3" maxlength="34" placeholder="Upto 34 Characters">
+
+                        <!-- IFSC Code -->
+                        <label for="" class="m-0 small">IFSC Code</label>
+                        <input type="text" id="ifscCode" class="form-control mb-3" maxlength="34" placeholder="Example: ABCD0123456">
+
+                        <label for="" class="small">Upload Cancel Cheque Image</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="cancelCheque">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="cancelCheque" aria-describedby="inputGroupFileAddon01" accept="image/jpeg">
+                                <label class="custom-file-label" for="cancelCheque">Choose file</label>
+                            </div>
+                        </div>
+                        <p class="small">(Only JPG, JPEG Files Supported)</p>
+
+                        <!-- Submit -->
+                        <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Save Bank Details</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
