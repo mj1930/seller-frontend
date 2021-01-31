@@ -1,29 +1,42 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
+        
         <div class="col-md-5 col-lg-4 col-sm-8">
+            <div class="d-flex justify-content-center">
+                <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" alt="Logo" class="my-3 mx-auto">
+            </div>
             <!-- Phone Number -->
-            <div class="card">
+            <div class="card my-3">
                 <div class="card-body">
 
                     <!-- Title -->
                     <h4 class="card-title"><b>Verify Mobile Number</b></h4>
                     <!-- Text -->
                     <form class="text-left" action="#!">
-
-                        <!-- Name -->
+                        <!-- Mobile Number -->
                         <label for="" class="m-0 small">Enter mobile number below</label>
-                        <input type="number" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="">
+                        <input type="text" id="defaultSignupFormEmail" class="form-control" placeholder="" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" autocomplete="off">
                         <p class="m-0 small">We'll send you verification code on this number</p>
 
-                        <!-- Verify Number -->
-                        <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Verify Number</button>
+                        <!-- Generate OTP -->
+                        <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Generate OTP</button>
+
+                    </form>
+
+                    <form class="text-left" action="#!">
+                        <!-- OTP Number -->
+                        <label for="" class="m-0 small">Enter OTP below</label>
+                        <input type="text" id="defaultSignupFormEmail" class="form-control" placeholder="" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="6" autocomplete="off">
+
+                        <!-- Generate OTP -->
+                        <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Verify OTP</button>
 
                     </form>
                 </div>
             </div>
 
             <!-- Signup Form -->
-            <div class="card">
+            <div class="card my-3">
                 <div class="card-body">
 
                     <!-- Title -->
@@ -60,6 +73,8 @@
             <div class="d-flex justify-content-center">
                 <p class="mx-auto bg-white small d-inline-block px-2 text-black-50" style="margin-top: -36px;">Already a Member ?</p>
             </div>
+            <!-- Create Account Button -->
+            <a href="" role="button" class="btn-block unique-color text-white btn btn-sm rounded my-3">Signin your account</a>
             
             <!-- Phone Number -->
             <div class="card">
@@ -82,8 +97,7 @@
                 </div>
             </div>
 
-            <!-- Create Account Button -->
-            <a href="" role="button" class="btn-block unique-color text-white btn btn-sm rounded">Signin your account</a>
+            
         </div>
     </div>
     
