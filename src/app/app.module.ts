@@ -14,6 +14,7 @@ import { AuthService } from './services/auth/auth.service';
 import { HttpClientModule } from "@angular/common/http";
 import { SellerService } from './services/seller/seller.service';
 import { httpInterceptorProviders } from './http-interceptor';
+import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { httpInterceptorProviders } from './http-interceptor';
     RegisterComponent,
     SellerWelcomePageComponent,
     SellerGstinDetailsComponent,
-    SellerBankDetailsComponent
+    SellerBankDetailsComponent,
+    SellerDashboardComponent
   ],
   imports: [
     BrowserModule,
