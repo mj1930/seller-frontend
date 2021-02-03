@@ -1,0 +1,106 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+        
+        <div class="col-md-5 col-lg-4 col-sm-8">
+            <div class="d-flex justify-content-center">
+                <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" alt="Logo" class="my-3 mx-auto">
+            </div>
+            <!-- Phone Number -->
+            <div class="card my-3" *ngIf="registerSteps.step1">
+                <div class="card-body">
+
+                    <!-- Title -->
+                    <h4 class="card-title"><b>Verify Mobile Number</b></h4>
+                    <!-- Text -->
+                    <form #verifyMobileNumberForm="ngForm" class="text-left" (ngSubmit)="generateOtp(verifyMobileNumberForm.valid)">
+                        <!-- Mobile Number -->
+                        <label for="" class="m-0 small">Enter mobile number below</label>
+                        <input name="mobile" type="text" id="defaultSignupFormEmail" [(ngModel)]="mobile" class="form-control" placeholder="Enter 10 digit mobile number" maxlength="10" autocomplete="off" required>
+                        <span *ngIf="verifyMobileNumberForm.submitted && !mobile">
+                            Please provide a mobile number!
+                        </span>
+                        <!-- <p class="m-0 small">We'll send you verification code on this number</p> -->
+
+                        <!-- Generate OTP -->
+                        <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Generate OTP</button>
+
+                    </form>
+
+                    <form class="text-left" action="#!" *ngIf="registerSteps.step2">
+                        <!-- OTP Number -->
+                        <label for="" class="m-0 small">Enter OTP below</label>
+                        <input type="text" id="defaultSignupFormEmail" class="form-control" placeholder="" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="6" autocomplete="off">
+
+                        <!-- Generate OTP -->
+                        <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Verify OTP</button>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="card my-3" *ngIf="registerSteps.step3">
+                <div class="card-body">
+
+                    <!-- Title -->
+                    <h4 class="card-title"><b>Create Account</b></h4>
+                    <!-- Text -->
+                    <form class="text-left" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm(registerForm.valid)">
+
+                        <!-- Name -->
+                        <label for="" class="m-0 small">Name</label>
+                        <input type="email" formControlName="name" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="Your Name">
+                        <span *ngIf="!registerForm.get('name').valid && submitFormAttempt && registerForm.get('name').hasError('required')">
+                            Please provide a name!
+                        </span>
+
+                        <!-- Email -->
+                        <label for="" class="m-0 small">Email</label>
+                        <input type="email" formControlName="email" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="E-mail">
+                        <span *ngIf="!registerForm.get('email').valid && submitFormAttempt && registerForm.get('email').hasError('required')">
+                            Please provide a email!
+                        </span>
+                        <div *ngIf="registerForm.get('email').hasError('email')">
+                            Please provide a valid email!
+                        </div>
+                        <!-- Password -->
+                        <label for="" class="m-0 small">Password</label>
+                        <input type="password" formControlName="password" id="defaultSignupFormPassword" class="form-control mb-3" placeholder="Password">
+                        <span *ngIf="!registerForm.get('password').valid && submitFormAttempt && registerForm.get('password').hasError('required')">
+                            Please provide a password!
+                        </span>
+                        <span *ngIf="!registerForm.get('password').valid && submitFormAttempt && registerForm.get('password').hasError('minLength')">
+                            Please provide a password with atleast 6 characters!
+                        </span>
+                        <!-- Repeat Password -->
+                        <label for="" class="m-0 small">Repeat Password</label>
+                        <input type="password" formControlName="confirmPassword" id="defaultSignupFormPassword" class="form-control" placeholder="Repeat Password">
+                        <p class="m-0 small">Passwords must be at least 6 characters.</p>
+                        <span *ngIf="!registerForm.get('confirmPassword').valid && submitFormAttempt && registerForm.get('confirmPassword').hasError('required')">
+                            Please provide a confirm password!
+                        </span>
+                        <span *ngIf="!registerForm.get('confirmPassword').valid && submitFormAttempt && registerForm.get('confirmPassword').hasError('minLength')">
+                            Please provide a confirm password with atleast 6 characters!
+                        </span>
+                        <span *ngIf="registerForm.get('confirmPassword').dirty && registerForm.get('confirmPassword').value !== registerForm.get('password').value">
+                            Password does not match!
+                        </span>
+                        <!-- Sign in button -->
+                        <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Create Account</button>
+                        <p class="small">By continuing, you agree to our <a href="">Terms of Use</a> and <a href="">Privacy Policy</a>.</p>
+
+                    </form>
+                </div>
+            </div>
+<!-- <ng-container *ngIf="registerSteps.step3"> -->
+            <hr class="my-4">
+            <div class="d-flex justify-content-center">
+                <p class="mx-auto bg-white small d-inline-block px-2 text-black-50" style="margin-top: -36px;">Already a Member ?</p>
+            </div>
+            <!-- Create Account Button -->
+            <a routerLink="/login" role="button" class="btn-block unique-color text-white btn btn-sm rounded my-3">Login your account</a>  
+        <!-- </ng-container>           -->
+        </div>
+    </div>
+    
+</div>

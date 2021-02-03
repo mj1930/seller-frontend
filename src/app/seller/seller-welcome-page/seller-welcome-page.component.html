@@ -12,39 +12,43 @@
                     <!-- Title -->
                     <h4 class="card-title"><b>Tell us about your business</b></h4>
                     <!-- Text -->
-                    <form class="text-left" action="#!">
+                    <form class="text-left" [formGroup]="sellerForm" (ngSubmit)="addSeller(sellerForm.valid)">
 
                         <!-- Store Name -->
                         <label for="" class="m-0 small">Store Name</label>
-                        <input type="text" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="Store Name">
-
+                        <input formControlName="name" type="text" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="Store Name">
+                        <span *ngIf="!sellerForm.get('name').valid && sellerFormAttempt && sellerForm.get('name').hasError('required')">
+                            Please provide a store name!
+                        </span>
 
                         <hr class="my-4">
 
                         <!-- Title -->
                         <h4 class="card-title"><b>Enter your address</b></h4>
-                        <form class="text-left" action="#!">
+                        <div class="text-left" formGroupName="address" >
                             <!-- Pincode -->
                             <label for="" class="m-0 small">Pincode</label>
-                            <input type="text" id="defaultSignupFormEmail" class="form-control" placeholder="" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="6" autocomplete="off">
+                            <input type="text" formControlName="pincode" id="defaultSignupFormEmail" class="form-control" placeholder="" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="6" autocomplete="off">
                             
 
                             <!-- Address Line 1 -->
                             <label for="" class="m-0 small">Address Line 1 (Required)</label>
-                            <input type="text" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="">
-    
+                            <input formControlName="address1" type="text" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="">
+                            <span *ngIf="!sellerForm.get('address.address1').valid && sellerFormAttempt && sellerForm.get('address.address1').hasError('required')">
+                                Please provide a address!
+                            </span>
 
                             <!-- Address Line 2 -->
                             <label for="" class="m-0 small">Address Line 2</label>
-                            <input type="text" id="defaultSignupFormEmail" class="form-control mb-3">
+                            <input formControlName="address2" type="text" id="defaultSignupFormEmail" class="form-control mb-3">
     
                             <!-- City -->
                             <label for="" class="m-0 small">City</label>
-                            <input type="text" id="defaultSignupFormEmail" class="form-control mb-3">
+                            <input formControlName="city" type="text" id="defaultSignupFormEmail" class="form-control mb-3">
     
                             <!-- State -->
                             <label for="" class="m-0 small">State</label>
-                            <select class="browser-default custom-select mb-3">
+                            <select class="browser-default custom-select mb-3" formControlName="state">
                                 <option selected>Select State</option>
                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                 <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
@@ -86,12 +90,12 @@
     
                             <!-- Address Line 2 -->
                             <label for="" class="m-0 small">Country</label>
-                            <input type="text" id="defaultSignupFormEmail" class="form-control" value="India" disabled readonly>
+                            <input formControlName="country" type="text" id="defaultSignupFormEmail" class="form-control" value="India" disabled readonly>
     
                             <!-- Generate OTP -->
                             <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Save Store Details</button>
     
-                        </form>
+                        </div>
                     </form>
                 </div>
             </div>
