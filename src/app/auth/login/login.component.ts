@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(reqData).subscribe(data => {
       console.log(data);
       sessionStorage.setItem('token', data['accessToken']);
+      localStorage.setItem('user', JSON.stringify(data['data']));
       if(this.loginForm.controls['rememberMe'].value) {
         localStorage.setItem('remember', JSON.stringify(true));
         localStorage.setItem('email', this.loginForm.controls['email'].value);

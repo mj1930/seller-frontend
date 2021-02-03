@@ -17,7 +17,7 @@ export class SellerWelcomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.sellerForm = this.fb.group({
-      name: ['', [Validators.required]],
+      storeName: ['', [Validators.required]],
       address: this.fb.group({
         pincode: [''],
         address1: ['', [Validators.required]],
@@ -27,6 +27,10 @@ export class SellerWelcomePageComponent implements OnInit {
         country: ['India']
       })
     });
+if(localStorage.getItem('seller-welcome-details')) {
+this.sellerForm.setValue(JSON.parse(localStorage.getItem('seller-welcome-details')));
+}
+   // localStorage.setItem('seller-welcome-details', JSON.stringify(this.sellerForm.value));
   }
 
   addSeller(valid) {
@@ -36,13 +40,14 @@ export class SellerWelcomePageComponent implements OnInit {
     }
 
     console.log('adsasdsa', this.sellerForm.value)
-
-    this.sellerService.addSeller(this.sellerForm.value).subscribe(data => {
-      console.log(data);
-      this.router.navigateByUrl('/seller-gst');
-    }, error => {
-      console.log(error);
-    })
+    localStorage.setItem('seller-welcome-details', JSON.stringify(this.sellerForm.value))
+    this.router.navigateByUrl('/seller-gst');
+    // this.sellerService.addSeller(this.sellerForm.value).subscribe(data => {
+    //   console.log(data);
+    //   this.router.navigateByUrl('/seller-gst');
+    // }, error => {
+    //   console.log(error);
+    // })
   }
 
 }

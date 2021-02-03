@@ -16,21 +16,21 @@
                     </h4>
                     
                     <!-- Text -->
-                    <form class="text-left" action="#!">
+                    <form class="text-left" [formGroup]="sellerBankDetailsForm" (ngSubmit)="submitSellerBankDetailsForm(sellerBankDetailsForm.valid)">
 
                         <!-- Account Holder Name -->
                         <label for="" class="m-0 small">Account Holder Name</label>
-                        <input type="text" id="nameonBank" class="form-control mb-3" placeholder="Name as on bank documents">                        
+                        <input formControlName="accountName" type="text" id="nameonBank" class="form-control mb-3" placeholder="Name as on bank documents">                        
 
                         <!-- Account Number -->
                         <label for="" class="m-0 small">Account Number</label>
-                        <input type="text" id="accountNumber" class="form-control mb-3" maxlength="34" placeholder="Upto 34 Characters">
+                        <input formControlName="accountNumber" type="text" id="accountNumber" class="form-control mb-3" maxlength="34" placeholder="Upto 34 Characters">
 
                         <!-- IFSC Code -->
                         <label for="" class="m-0 small">IFSC Code</label>
-                        <input type="text" id="ifscCode" class="form-control mb-3" maxlength="34" placeholder="Example: ABCD0123456">
+                        <input formControlName="ifscCode" type="text" id="ifscCode" class="form-control mb-3" maxlength="34" placeholder="Example: ABCD0123456">
 
-                        <label for="" class="small">Upload Cancel Cheque Image</label>
+                        <!-- <label for="" class="small">Upload Cancel Cheque Image</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="cancelCheque">Upload</span>
@@ -40,7 +40,7 @@
                                 <label class="custom-file-label" for="cancelCheque">Choose file</label>
                             </div>
                         </div>
-                        <p class="small">(Only JPG, JPEG Files Supported)</p>
+                        <p class="small">(Only JPG, JPEG Files Supported)</p> -->
 
                         <!-- Submit -->
                         <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Save Bank Details</button>
