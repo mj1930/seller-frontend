@@ -12,25 +12,25 @@
                     <!-- Title -->
                     <h4 class="card-title"><b>Update your tax details</b></h4>
                     <!-- Text -->
-                    <form class="text-left" action="#!">
+                    <form class="text-left" [formGroup]="sellerGstForm" (ngSubmit)="submitSellerGstForm(sellerGstForm.valid)">
 
                         <!-- GST is there -->
                         <p>Do you have a GST Number?</p>
 
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" checked>
+                            <input formControlName="hasGST" type="radio" class="custom-control-input" id="defaultUnchecked" name="hasGST" value="true" checked>
                             <label class="custom-control-label" for="defaultUnchecked">Yes</label>
                         </div>
                         
                         
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios">
+                            <input formControlName="hasGST" type="radio" class="custom-control-input" id="defaultChecked" name="hasGST" value="false">
                             <label class="custom-control-label" for="defaultChecked">No</label>
                         </div>
 
 
                         <label for="" class="m-0 mt-3 small">Enter your tax details</label>
-                        <select class="browser-default custom-select mb-3">
+                        <select formControlName="taxState" class="browser-default custom-select mb-3">
                             <option selected>Select State</option>
                             <option value="Andhra Pradesh">Andhra Pradesh</option>
                             <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
@@ -72,9 +72,9 @@
 
                         <!-- Provisional GSTIN -->
                         <label for="" class="m-0 small">Provisional GSTIN</label>
-                        <input type="text" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="">
+                        <input formControlName="gstin" type="text" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="">
 
-                        <label for="" class="small">Upload GST Document</label>
+                        <!-- <label for="" class="small">Upload GST Document</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="GSTDoc">Upload</span>
@@ -84,15 +84,15 @@
                                 <label class="custom-file-label" for="GSTDoc">Choose file</label>
                             </div>
                         </div>
-                        <p class="small">(Only PDF Files Supported)</p>
+                        <p class="small">(Only PDF Files Supported)</p> -->
 
                         
 
                         <!-- PAN Number -->
                         <label for="" class="m-0 small">PAN Number</label>
-                        <input type="text" id="defaultSignupFormEmail" class="form-control mb-3" maxlength="10">
+                        <input formControlName="pan" type="text" id="defaultSignupFormEmail" class="form-control mb-3" maxlength="10">
 
-                        <label for="" class="small">Upload PAN Card</label>
+                        <!-- <label for="" class="small">Upload PAN Card</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="PANCard">Upload</span>
@@ -102,7 +102,7 @@
                                 <label class="custom-file-label" for="PANCard">Choose file</label>
                             </div>
                         </div>
-                        <p class="small">(Only JPG, JPEG Files Supported)</p>
+                        <p class="small">(Only JPG, JPEG Files Supported)</p> -->
 
 
 

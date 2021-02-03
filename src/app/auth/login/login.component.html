@@ -8,20 +8,27 @@
                     <!-- Title -->
                     <h4 class="card-title"><b>Sign In</b></h4>
                     <!-- Text -->
-                    <form class="text-left" action="#!">
+                    <form class="text-left" [formGroup]="loginForm" (ngSubmit)="login(loginForm.valid)">
 
                         <!-- Email -->
                         <label for="" class="m-0 small">Email</label>
-                        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
-
+                        <input formControlName="email" type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+                        <span *ngIf="!loginForm.get('email').valid && loginAttempt && loginForm.get('email').hasError('required')">
+                            Please provide a email!
+                        </span>
+                        <div *ngIf="loginForm.get('email').hasError('email')">
+                            Please provide a valid email!
+                        </div>
                         <!-- Password -->
                         <label for="" class="m-0 small">Password</label>
-                        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
-
+                        <input formControlName="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+                        <span *ngIf="!loginForm.get('password').valid && loginAttempt && loginForm.get('password').hasError('required')">
+                            Please provide a password!
+                        </span>
                         <div class="d-md-flex d-block justify-content-between">
                             <div>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                                    <input name="rememberMe" formControlName="rememberMe" type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
                                     <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
                                 </div>
                             </div>
