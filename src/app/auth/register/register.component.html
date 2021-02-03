@@ -14,12 +14,12 @@
                     <!-- Text -->
                     <form #verifyMobileNumberForm="ngForm" class="text-left" (ngSubmit)="generateOtp(verifyMobileNumberForm.valid)">
                         <!-- Mobile Number -->
-                        <label for="" class="m-0 small">Enter mobile number below</label>
-                        <input name="mobile" type="text" id="defaultSignupFormEmail" [(ngModel)]="mobile" class="form-control" placeholder="Enter 10 digit mobile number" maxlength="10" autocomplete="off" required>
-                        <span *ngIf="verifyMobileNumberForm.submitted && !mobile">
+                        <label for="" class="m-0 small mt-3">Enter mobile number below</label>
+                        <input name="mobile" type="text" id="defaultSignupFormEmail" [(ngModel)]="mobile" class="form-control" placeholder="Enter 10 digit mobile number" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" autocomplete="off" required>
+                        <p *ngIf="verifyMobileNumberForm.submitted && !mobile" class="deep-orange-text small m-0">
                             Please provide a mobile number!
-                        </span>
-                        <!-- <p class="m-0 small">We'll send you verification code on this number</p> -->
+                        </p>
+                        <!-- <p class="m-0 small mt-3">We'll send you verification code on this number</p> -->
 
                         <!-- Generate OTP -->
                         <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Generate OTP</button>
@@ -28,7 +28,7 @@
 
                     <form class="text-left" action="#!" *ngIf="registerSteps.step2">
                         <!-- OTP Number -->
-                        <label for="" class="m-0 small">Enter OTP below</label>
+                        <label for="" class="m-0 small mt-3">Enter OTP below</label>
                         <input type="text" id="defaultSignupFormEmail" class="form-control" placeholder="" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="6" autocomplete="off">
 
                         <!-- Generate OTP -->
@@ -48,43 +48,43 @@
                     <form class="text-left" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm(registerForm.valid)">
 
                         <!-- Name -->
-                        <label for="" class="m-0 small">Name</label>
-                        <input type="email" formControlName="name" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="Your Name">
-                        <span *ngIf="!registerForm.get('name').valid && submitFormAttempt && registerForm.get('name').hasError('required')">
+                        <label for="" class="m-0 small mt-3">Name</label>
+                        <input type="email" formControlName="name" id="defaultSignupFormEmail" class="form-control" placeholder="Your Name">
+                        <p *ngIf="!registerForm.get('name').valid && submitFormAttempt && registerForm.get('name').hasError('required')" class="deep-orange-text small m-0">
                             Please provide a name!
-                        </span>
+                        </p>
 
                         <!-- Email -->
-                        <label for="" class="m-0 small">Email</label>
-                        <input type="email" formControlName="email" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="E-mail">
-                        <span *ngIf="!registerForm.get('email').valid && submitFormAttempt && registerForm.get('email').hasError('required')">
+                        <label for="" class="m-0 small mt-3">Email</label>
+                        <input type="email" formControlName="email" id="defaultSignupFormEmail" class="form-control" placeholder="E-mail">
+                        <p *ngIf="!registerForm.get('email').valid && submitFormAttempt && registerForm.get('email').hasError('required')" class="deep-orange-text small m-0">
                             Please provide a email!
-                        </span>
-                        <div *ngIf="registerForm.get('email').hasError('email')">
+                        </p>
+                        <p *ngIf="registerForm.get('email').hasError('email')" class="deep-orange-text small m-0">
                             Please provide a valid email!
-                        </div>
+                        </p>
                         <!-- Password -->
-                        <label for="" class="m-0 small">Password</label>
-                        <input type="password" formControlName="password" id="defaultSignupFormPassword" class="form-control mb-3" placeholder="Password">
-                        <span *ngIf="!registerForm.get('password').valid && submitFormAttempt && registerForm.get('password').hasError('required')">
+                        <label for="" class="m-0 small mt-3">Password</label>
+                        <input type="password" formControlName="password" id="defaultSignupFormPassword" class="form-control" placeholder="Password">
+                        <p *ngIf="!registerForm.get('password').valid && submitFormAttempt && registerForm.get('password').hasError('required')" class="deep-orange-text small m-0">
                             Please provide a password!
-                        </span>
-                        <span *ngIf="!registerForm.get('password').valid && submitFormAttempt && registerForm.get('password').hasError('minLength')">
+                        </p>
+                        <p *ngIf="!registerForm.get('password').valid && submitFormAttempt && registerForm.get('password').hasError('minLength')" class="deep-orange-text small m-0">
                             Please provide a password with atleast 6 characters!
-                        </span>
+                        </p>
                         <!-- Repeat Password -->
-                        <label for="" class="m-0 small">Repeat Password</label>
+                        <label for="" class="m-0 small mt-3">Repeat Password</label>
                         <input type="password" formControlName="confirmPassword" id="defaultSignupFormPassword" class="form-control" placeholder="Repeat Password">
                         <p class="m-0 small">Passwords must be at least 6 characters.</p>
-                        <span *ngIf="!registerForm.get('confirmPassword').valid && submitFormAttempt && registerForm.get('confirmPassword').hasError('required')">
+                        <p *ngIf="!registerForm.get('confirmPassword').valid && submitFormAttempt && registerForm.get('confirmPassword').hasError('required')" class="deep-orange-text small m-0">
                             Please provide a confirm password!
-                        </span>
-                        <span *ngIf="!registerForm.get('confirmPassword').valid && submitFormAttempt && registerForm.get('confirmPassword').hasError('minLength')">
+                        </p>
+                        <p *ngIf="!registerForm.get('confirmPassword').valid && submitFormAttempt && registerForm.get('confirmPassword').hasError('minLength')" class="deep-orange-text small m-0">
                             Please provide a confirm password with atleast 6 characters!
-                        </span>
-                        <span *ngIf="registerForm.get('confirmPassword').dirty && registerForm.get('confirmPassword').value !== registerForm.get('password').value">
+                        </p>
+                        <p *ngIf="registerForm.get('confirmPassword').dirty && registerForm.get('confirmPassword').value !== registerForm.get('password').value" class="deep-orange-text small m-0">
                             Password does not match!
-                        </span>
+                        </p>
                         <!-- Sign in button -->
                         <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Create Account</button>
                         <p class="small">By continuing, you agree to our <a href="">Terms of Use</a> and <a href="">Privacy Policy</a>.</p>
