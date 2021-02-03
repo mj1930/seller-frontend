@@ -11,21 +11,21 @@
                     <form class="text-left" [formGroup]="loginForm" (ngSubmit)="login(loginForm.valid)">
 
                         <!-- Email -->
-                        <label for="" class="m-0 small">Email</label>
-                        <input formControlName="email" type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
-                        <span *ngIf="!loginForm.get('email').valid && loginAttempt && loginForm.get('email').hasError('required')">
+                        <label for="" class="m-0 small mt-4">Email</label>
+                        <input formControlName="email" type="email" id="defaultLoginFormEmail" class="form-control" placeholder="E-mail">
+                        <p *ngIf="!loginForm.get('email').valid && loginAttempt && loginForm.get('email').hasError('required')" class="deep-orange-text small m-0">
                             Please provide a email!
-                        </span>
-                        <div *ngIf="loginForm.get('email').hasError('email')">
+                        </p>
+                        <p *ngIf="loginForm.get('email').hasError('email')" class="deep-orange-text small m-0">
                             Please provide a valid email!
-                        </div>
+                        </p>
                         <!-- Password -->
-                        <label for="" class="m-0 small">Password</label>
-                        <input formControlName="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
-                        <span *ngIf="!loginForm.get('password').valid && loginAttempt && loginForm.get('password').hasError('required')">
+                        <label for="" class="m-0 small mt-4">Password</label>
+                        <input formControlName="password" type="password" id="defaultLoginFormPassword" class="form-control" placeholder="Password">
+                        <p *ngIf="!loginForm.get('password').valid && loginAttempt && loginForm.get('password').hasError('required')" class="deep-orange-text small m-0">
                             Please provide a password!
-                        </span>
-                        <div class="d-md-flex d-block justify-content-between">
+                        </p>
+                        <div class="d-md-flex d-block mt-3 justify-content-between">
                             <div>
                                 <div class="custom-control custom-checkbox">
                                     <input name="rememberMe" formControlName="rememberMe" type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
