@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller-active-dashboard.component';
 import { SellerBankDetailsComponent } from './seller/seller-bank-details/seller-bank-details.component';
 import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashboard.component';
 import { SellerGstinDetailsComponent } from './seller/seller-gstin-details/seller-gstin-details.component';
@@ -15,6 +16,10 @@ const routes: Routes = [
   {path: 'seller-gst', component: SellerGstinDetailsComponent},
   {path: 'seller-bank-details', component: SellerBankDetailsComponent},
   {path: 'seller-dashboard', component: SellerDashboardComponent},
+
+
+
+  {path: 'seller-active-dashboard', component: SellerActiveDashboardComponent},
   {path: '**', component: RegisterComponent}
 ];
 
