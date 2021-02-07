@@ -16,6 +16,7 @@ import { SellerService } from './services/seller/seller.service';
 import { httpInterceptorProviders } from './http-interceptor';
 import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashboard.component';
 import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller-active-dashboard.component';
+import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller
     SellerGstinDetailsComponent,
     SellerBankDetailsComponent,
     SellerDashboardComponent,
-    SellerActiveDashboardComponent
+    SellerActiveDashboardComponent,
+    ManageInventoryComponent
   ],
   imports: [
     BrowserModule,

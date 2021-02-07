@@ -23,13 +23,12 @@ export class SellerActiveDashboardComponent implements OnInit {
   submenuToggle(){
     // console.log($(this));
     if($(this).parent().hasClass("active")){ 
-      alert('hello');
+      // alert('hello');
       // $(".sidebar-dropdown").removeClass("active");
       // $(this).parent().removeClass("active");
     }else{
       $('this').parent().addClass("active");
       $(this).next(".sidebar-submenu").slideDown(200);
-      alert('cvd');
       // $(".sidebar-dropdown").removeClass("active");
       // $(".sidebar-dropdown > a").next(".sidebar-submenu").slideUp(200);
       
