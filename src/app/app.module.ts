@@ -17,6 +17,7 @@ import { httpInterceptorProviders } from './http-interceptor';
 import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashboard.component';
 import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller-active-dashboard.component';
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
+import { AddProductsComponent } from './add-products/add-products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { ManageInventoryComponent } from './manage-inventory/manage-inventory.co
     SellerBankDetailsComponent,
     SellerDashboardComponent,
     SellerActiveDashboardComponent,
-    ManageInventoryComponent
+    ManageInventoryComponent,
+    AddProductsComponent
   ],
   imports: [
     BrowserModule,

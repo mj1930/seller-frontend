@@ -11,11 +11,4 @@ export class ManageInventoryComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  closeSidebar() {
-    $(".page-wrapper").removeClass("toggled");
-    $("#show-sidebar").click(function () {
-      $(".page-wrapper").addClass("toggled");
-    });
-  }
 }
