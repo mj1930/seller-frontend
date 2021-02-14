@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AddProductsComponent } from './add-products/add-products.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'seller-bank-details', component: SellerBankDetailsComponent},
   {path: 'seller-dashboard', component: SellerDashboardComponent},
   {path: 'manage-inventory', component: ManageInventoryComponent},
+  {path: 'add-products', component: AddProductsComponent},
 
 
 
