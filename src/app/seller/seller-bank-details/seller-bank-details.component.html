@@ -36,13 +36,14 @@
                                 <span class="input-group-text" id="cancelCheque">Upload</span>
                             </div>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="cancelCheque" aria-describedby="inputGroupFileAddon01" accept="image/jpeg">
+                                <input type="file" (change)="fileUpload($event)" class="custom-file-input" id="cancelCheque" aria-describedby="inputGroupFileAddon01" accept="image/jpeg">
                                 <label class="custom-file-label" for="cancelCheque">Choose file</label>
                             </div>
                         </div>
                         <p class="small m-0 text-success">abc.jpg File Uploaded</p>
                         <p class="small">(Only JPG, JPEG Files Supported)</p>
 
+                        <p class="small">(Only JPG, JPEG Files Supported)</p>
                         <!-- Submit -->
                         <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Save Bank Details</button>
                     </form>

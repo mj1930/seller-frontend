@@ -19,6 +19,8 @@ import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { SellerEmailVerifiedComponent } from './seller-email-verified/seller-email-verified.component';
+import { ProductService } from './services/product/product.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,7 @@ import { SellerEmailVerifiedComponent } from './seller-email-verified/seller-ema
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, SellerService, httpInterceptorProviders],
+  providers: [AuthService, SellerService, ProductService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
