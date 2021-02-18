@@ -34,9 +34,19 @@ export class RegisterComponent implements OnInit {
     if (!valid) {
       return;
     }
+    // this.authService.generateOtp({mobileNum:this.mobile}).subscribe(data => {
+    //   console.log('dataaaa',data);
+    //   this.registerSteps.step1 = false;
+    //   this.registerSteps.step3 = true;
+    // }, error => {
+    //   console.log(error);
+    // })
+
     this.registerSteps.step1 = false;
-    this.registerSteps.step3 = true;
-    console.log('12121', this.mobile)
+      this.registerSteps.step3 = true;
+
+
+    //console.log('12121', this.mobile)
   }
 
   submitRegisterForm(valid) {

@@ -19,7 +19,7 @@
             />
           </div>
           <div class="user-info">
-            <span class="user-name"> Chandan Kanyal </span>
+            <span class="user-name"> {{userName}} </span>
             <span class="user-role">Seller</span>
           </div>
         </div>
@@ -29,11 +29,24 @@
           <ul>
             <li class="header-menu"><span>General</span></li>
             <li class="sidebar-dropdown">
-              <a>
+              <a (click)="showSubMenu=!showSubMenu">
                 <i class="fa fa-tachometer" aria-hidden="true"></i>
                 <span>Inventory</span>
               </a>
-              <div class="sidebar-submenu">
+              <div *ngIf="showSubMenu" class="">
+                <ul>
+                  <li routerLinkActive="active">
+                    <a routerLink="/manage-inventory">Manage Inventory</a>
+                  </li>
+                  <li routerLinkActive="active">
+                    <a routerLink="/add-products">Add Products</a>
+                  </li>
+                  <li routerLinkActive="active">
+                    <a>Add Inventory</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- <div class="sidebar-submenu">
                 <ul>
                   <li>
                     <a>Manage Inventory</a>
@@ -45,7 +58,7 @@
                     <a>Add Inventory</a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
             </li>
             <li class="sidebar-dropdown">
               <a>
@@ -122,60 +135,57 @@
         <hr />
         
         <!-- Default form subscription -->
-        <form class="border rounded border-light p-5" action="#!">
+        <form [formGroup]="addProductForm" class="border rounded border-light p-5" (ngSubmit)="addProduct(addProductForm.valid)">
 
             <label for="" class="small">Product ID</label>
-            <input type="text" class="form-control mb-4" placeholder="Product ID">
+            <input type="text" class="form-control mb-4" placeholder="Product ID" formControlName="productId">
             
             <label for="" class="small">Item Name (AKA Title)</label>
-            <input type="text" class="form-control mb-4" placeholder="Item Name">
+            <input type="text" class="form-control mb-4" placeholder="Item Name" formControlName="itemName">
             
             <label for="" class="small">Country Of Origin</label>
-            <input type="text" class="form-control mb-4" placeholder="India">
+            <input type="text" class="form-control mb-4" placeholder="India" formControlName="countryOfOrigin">
             
             <label for="" class="small">Manufacturer</label>
-            <input type="text" class="form-control mb-4" placeholder="Manufacturer">
+            <input type="text" class="form-control mb-4" placeholder="Manufacturer" formControlName="manufacturer">
             
             <label for="" class="small">Number of Items</label>
-            <input type="text" class="form-control mb-4" placeholder="Number of Items">
+            <input type="number" class="form-control mb-4" placeholder="Number of Items" formControlName="itemsNum">
             
             <label for="" class="small">Color Name</label>
-            <input type="text" class="form-control mb-4" placeholder="Color Name">
+            <input type="text" class="form-control mb-4" placeholder="Color Name" formControlName="colorName">
 
             <label for="" class="small">Included Components</label>
-            <input type="text" class="form-control mb-4" placeholder="Included Components">
+            <input type="text" class="form-control mb-4" placeholder="Included Components" formControlName="includedComponents">
             
             <label for="" class="small">Exclosure Material</label>
-            <input type="text" class="form-control mb-4" placeholder="Exclosure Material">
+            <input type="text" class="form-control mb-4" placeholder="Exclosure Material" formControlName="exclosureMaterial">
             
             <label for="" class="small">Item type Name</label>
-            <input type="text" class="form-control mb-4" placeholder="Item type Name">
+            <input type="text" class="form-control mb-4" placeholder="Item type Name" formControlName="itemTypeName">
             
             <label for="" class="small">Size Map</label>
-            <input type="text" class="form-control mb-4" placeholder="Size Map">
+            <input type="text" class="form-control mb-4" placeholder="Size Map" formControlName="sizeMap">
 
             <label for="" class="small">Manufacturer Contact</label>
-            <input type="text" class="form-control mb-4" placeholder="Address Here...">
+            <input type="text" class="form-control mb-4" placeholder="Address Here..." formControlName="manufacturerContact">
 
             <label for="" class="small">Product Dimensions</label>
-            <div class="row d-flex justify-content-between col-12">
-                <input type="text" class="form-control mb-4 col-md-4" placeholder="Length">
-                <input type="text" class="form-control mb-4 col-md-4" placeholder="Width">
-                <input type="text" class="form-control mb-4 col-md-4" placeholder="Height">
-            </div>
-            
-
-            
+            <div class="row d-flex justify-content-between col-12" formGroupName="productDimensions">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="Length" formControlName="length">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="Width" formControlName="width">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="Height" formControlName="height">
+            </div>            
             <label for="" class="small">Unit Count</label>
-            <input type="text" class="form-control mb-4" placeholder="18">
+            <input type="number" class="form-control mb-4" placeholder="18" formControlName="unitCount">
 
             <label for="" class="small">Unit Count Type</label>
-            <input type="text" class="form-control mb-4" placeholder="Set Unit Count">
+            <input type="number" class="form-control mb-4" placeholder="Set Unit Count" formControlName="unitCountType">
 
             
 
             <div class="">
-                <button class="btn btn-info mr-2" type="submit">Cancel</button>
+                <button class="btn btn-info mr-2" (click)="resetForm()" type="button">Cancel</button>
                 <button class="btn btn-dark" type="submit">Save</button>
             </div>
             

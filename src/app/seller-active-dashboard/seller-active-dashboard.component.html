@@ -19,7 +19,7 @@
           />
         </div>
         <div class="user-info">
-          <span class="user-name"> Chandan Kanyal </span>
+          <span class="user-name"> {{userName}} </span>
           <span class="user-role">Seller</span>
         </div>
       </div>
@@ -29,23 +29,24 @@
         <ul>
           <li class="header-menu"><span>General</span></li>
           <li class="sidebar-dropdown">
-            <a (click)="submenuToggle()">
+            <a (click)="showSubMenu=!showSubMenu">
               <i class="fa fa-tachometer" aria-hidden="true"></i>
               <span>Inventory</span>
             </a>
-            <div class="sidebar-submenu">
+            <div *ngIf="showSubMenu" class="">
               <ul>
-                <li>
-                  <a>Manage Inventory</a>
+                <li routerLinkActive="active">
+                  <a routerLink="/manage-inventory">Manage Inventory</a>
                 </li>
-                <li>
-                  <a>Add Products</a>
+                <li routerLinkActive="active">
+                  <a routerLink="/add-products">Add Products</a>
                 </li>
-                <li>
+                <li routerLinkActive="active">
                   <a>Add Inventory</a>
                 </li>
               </ul>
             </div>
+            
           </li>
           <li class="sidebar-dropdown">
             <a (click)="submenuToggle()">
@@ -126,7 +127,7 @@
             Email Verification Pending.
           </span>
           
-          <button class="btn btn-dark btn-sm my-2">Verify Now</button>
+          <button class="btn btn-dark btn-sm my-2" (click)="sendVerificationEmail()">Verify Now</button>
         </p>
       </div>
       <div class="row">

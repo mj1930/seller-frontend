@@ -15,4 +15,8 @@ export class AuthService {
   login(req) {
     return this.http.post('users/login', req);
   }
+
+  generateOtp(req) {
+    return this.http.post('verify/generate-otp', req);
+  }
 }

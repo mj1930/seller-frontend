@@ -18,6 +18,8 @@ import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashb
 import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller-active-dashboard.component';
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
 import { AddProductsComponent } from './add-products/add-products.component';
+import { ProductService } from './services/product/product.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,7 @@ import { AddProductsComponent } from './add-products/add-products.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, SellerService, httpInterceptorProviders],
+  providers: [AuthService, SellerService, ProductService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
