@@ -18,6 +18,7 @@ import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashb
 import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller-active-dashboard.component';
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
 import { AddProductsComponent } from './add-products/add-products.component';
+import { SellerEmailVerifiedComponent } from './seller-email-verified/seller-email-verified.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { AddProductsComponent } from './add-products/add-products.component';
     SellerDashboardComponent,
     SellerActiveDashboardComponent,
     ManageInventoryComponent,
-    AddProductsComponent
+    AddProductsComponent,
+    SellerEmailVerifiedComponent
   ],
   imports: [
     BrowserModule,
