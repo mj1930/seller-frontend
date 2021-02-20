@@ -6,6 +6,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
 import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller-active-dashboard.component';
 import { SellerEmailVerifiedComponent } from './seller-email-verified/seller-email-verified.component';
+import { SellerListingComponent } from './seller-listing/seller-listing.component';
+import { SellerProductListingComponent } from './seller-product-listing/seller-product-listing.component';
 import { SellerBankDetailsComponent } from './seller/seller-bank-details/seller-bank-details.component';
 import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashboard.component';
 import { SellerGstinDetailsComponent } from './seller/seller-gstin-details/seller-gstin-details.component';
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path: 'manage-inventory', component: ManageInventoryComponent},
   {path: 'add-products', component: AddProductsComponent},
   {path: 'verify-email', component: SellerEmailVerifiedComponent},
+  {path: 'seller-listing', component: SellerListingComponent},
+  {path: 'seller-product-listing', component: SellerProductListingComponent},
 
 
 
