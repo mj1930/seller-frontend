@@ -21,6 +21,7 @@ import { AddProductsComponent } from './add-products/add-products.component';
 import { SellerEmailVerifiedComponent } from './seller-email-verified/seller-email-verified.component';
 import { SellerListingComponent } from './seller-listing/seller-listing.component';
 import { SellerProductListingComponent } from './seller-product-listing/seller-product-listing.component';
+import { SellerProfilePageComponent } from './seller-profile-page/seller-profile-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { SellerProductListingComponent } from './seller-product-listing/seller-p
     AddProductsComponent,
     SellerEmailVerifiedComponent,
     SellerListingComponent,
-    SellerProductListingComponent
+    SellerProductListingComponent,
+    SellerProfilePageComponent
   ],
   imports: [
     BrowserModule,

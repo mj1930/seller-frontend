@@ -8,6 +8,7 @@ import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller
 import { SellerEmailVerifiedComponent } from './seller-email-verified/seller-email-verified.component';
 import { SellerListingComponent } from './seller-listing/seller-listing.component';
 import { SellerProductListingComponent } from './seller-product-listing/seller-product-listing.component';
+import { SellerProfilePageComponent } from './seller-profile-page/seller-profile-page.component';
 import { SellerBankDetailsComponent } from './seller/seller-bank-details/seller-bank-details.component';
 import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashboard.component';
 import { SellerGstinDetailsComponent } from './seller/seller-gstin-details/seller-gstin-details.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'verify-email', component: SellerEmailVerifiedComponent},
   {path: 'seller-listing', component: SellerListingComponent},
   {path: 'seller-product-listing', component: SellerProductListingComponent},
+  {path: 'seller-profile', component: SellerProfilePageComponent},
 
 
 
