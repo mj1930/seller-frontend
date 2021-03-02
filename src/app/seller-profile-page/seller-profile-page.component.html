@@ -6,7 +6,7 @@
       <div class="sidebar-content">
         <div class="sidebar-brand">
           <a>Seller Account</a>
-          <div id="close-sidebar" (click)="closeSidebar()">
+          <div id="close-sidebar">
             <i class="fa fa-times" aria-hidden="true"></i>
           </div>
         </div>
@@ -29,7 +29,7 @@
           <ul>
             <li class="header-menu"><span>General</span></li>
             <li class="sidebar-dropdown">
-              <a (click)="submenuToggle()">
+              <a>
                 <i class="fa fa-tachometer" aria-hidden="true"></i>
                 <span>Inventory</span>
               </a>
@@ -48,7 +48,7 @@
               </div>
             </li>
             <li class="sidebar-dropdown">
-              <a (click)="submenuToggle()">
+              <a>
                 <i class="fa fa-shopping-cart"></i>
                 <span>Orders</span>
                 <span class="badge badge-pill badge-danger">3</span>
@@ -181,10 +181,148 @@
                     </div>                  
                 </div>
             </div>
+
+          <div class="col">
+              <div class="card">
+                  <div class="card-body p-0">
+                      <h6 class="card-title unique-color-dark p-2 text-white">Account Management</h6>
+                      <p class="d-flex justify-content-between px-2">
+                        <a href="#" class="text-primary">Login Setting</a>
+                        <a href="#" class="text-primary">Close Account</a>
+                      </p>
+                  </div>                  
+              </div>
+          </div>
             
           
         </div>
+        <div class="mt-4">
+          <div class=" d-flex justify-content-around row">
+            <div class="col-4">
+              <div class="card">
+                <div class="card-header">
+                  Marketplace
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="" width="40px" class="mr-2">
+                    Amazon.in
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="card">
+                <div class="card-header">
+                  Store Details
+                </div>
+                <div class="card-body">
+                  <p class="card-text">DISPLAY NAME</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="card">
+                <div class="card-header">
+                  Customer service details
+                </div>
+                <div class="card-body">
+                  <p class="card-text">EMAIL</p>
+                  <p class="card-text">PHONE</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <div class="card">
+            <div class="card-header">
+              Manage Tax Details
+            </div>
+            <div class="card-body">
+              <h6 class="card-title" style="font-weight: 600;">Confirm your ship from address and update the GSTIN and PAN details associated with the address. Not this address will be used as the primary billing addess.</h6>
+              <form action="#!">
+            
+                <label class="m-0">Seller Legal Name</label>
+                <input type="text" id="name" class="form-control mb-4" value="Seller Name">
+            
+                <label class="m-0">GST Number</label>
+                <input type="text" id="GST" class="form-control mb-4" value="GST Number">
+            
+                <label class="m-0">PAN</label>
+                <input type="text" id="PAN" class="form-control mb-4" value="PAN">
+
+                <button class="btn btn-info my-4 btn-block" type="submit">Edit</button>
+            
+            </form>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-4">
+          <div class="card">
+            <div class="card-header">
+              Digital Image Signature
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-2">
+                  <img src="https://daily.jstor.org/wp-content/uploads/2014/11/NapoleonSignature2_1050x700.jpg" alt="" width="100px">
+                </div>
   
+                <div class="col-10">
+                  <p>To create a digital signature, sign on a white paper, scan the signature and upload it. This signature will be printed on the Customer Tax Invoice (Packing Slip).</p>
+
+                  <p>Upload JPEG, JPG Image only, Image size should not exceed 2MB and should be 350 by 70 pixels</p>
+                </div>
+              </div>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Signature</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01">
+                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+              </div>
+              <button class="btn btn-info my-4 btn-block" type="submit">Upload Signature</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <div class="card">
+            <div class="card-header"> Deposit Method </div>
+            <div class="row card-body px-0">
+              <div class="col-6">
+                <h5 class="px-3">Bank Account</h5>
+                <div class="card-body py-0">
+                  <p class="card-text">
+                    Ending in <kbd>867</kbd>
+                  </p>
+                </div>
+              </div>
+
+            <div class="col-6">
+              <div class="card-body py-0">
+                <p class="card-text"> Bank Location Country </p>
+                <p class="card-text"> Account Holder Name </p>
+              </div>
+            </div>
+              
+            </div>
+            
+            <div class="mx-3">
+            <button class="btn btn-danger my-4" type="submit">Delete Deposit Method</button>
+            <button class="btn btn-info my-4 ml-2" type="submit">Edit Deposit Method</button>
+          </div>
+          </div>
+        </div>
         <hr />
   
         <footer class="text-center">
