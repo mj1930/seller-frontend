@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { SellerService } from '../../services/seller/seller.service';
+import { SellerService } from '../seller.service';
 import { Router } from "@angular/router";
 @Component({
   selector: 'app-seller-gstin-details',
@@ -16,6 +16,7 @@ export class SellerGstinDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.sellerGstForm = this.fb.group({
+      name: JSON.parse(localStorage.getItem('user')).name,
       hasGST: [null, [Validators.required]],
         taxState: ['', [Validators.required]],
         gstin: ['', [Validators.required]],
@@ -38,8 +39,14 @@ this.sellerGstForm.setValue(JSON.parse(localStorage.getItem('seller-gst-details'
 console.log('fielssss', files)
     localStorage.setItem('seller-gst-details', JSON.stringify(this.sellerGstForm.value));
     localStorage.setItem('seller-uploaded-file', JSON.stringify(files));
+    this.sellerService.addSellerGstDetails(this.sellerGstForm.value).subscribe(data => {
+      console.log(data);
+      this.router.navigateByUrl('/seller/bank-details');
+    }, error => {
+      console.log(error);
+    })
 
-    this.router.navigateByUrl('/seller-bank-details');
+   // this.router.navigateByUrl('/seller/bank-details');
   }
 
   gstFile;
@@ -95,5 +102,13 @@ console.log('gstFile', this.gstFile)
     // getBase64(file).then(
     //   data => console.log(data)
     // );
+
+    ngDoCheck() {
+      if(this.sellerGstForm.controls['hasGST'].value == 'true') {
+        this.sellerGstForm.controls['gstin'].enable()
+      } else {
+        this.sellerGstForm.controls['gstin'].disable()
+      }
+    }
 
 }

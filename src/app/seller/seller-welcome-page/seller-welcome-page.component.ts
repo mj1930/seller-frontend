@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { SellerService } from '../../services/seller/seller.service';
+import { SellerService } from '../seller.service';
 import { Router } from "@angular/router";
 
 @Component({
@@ -17,7 +17,7 @@ export class SellerWelcomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.sellerForm = this.fb.group({
-      storeName: ['', [Validators.required]],
+      storename: ['', [Validators.required]],
       address: this.fb.group({
         pincode: [''],
         address1: ['', [Validators.required]],
@@ -41,7 +41,13 @@ this.sellerForm.setValue(JSON.parse(localStorage.getItem('seller-welcome-details
 
     console.log('adsasdsa', this.sellerForm.value)
     localStorage.setItem('seller-welcome-details', JSON.stringify(this.sellerForm.value))
-    this.router.navigateByUrl('/seller-gst');
+    this.sellerService.addSellerAddressDetails(this.sellerForm.value).subscribe(data => {
+      console.log(data);
+      this.router.navigateByUrl('/seller/gst');
+    }, error => {
+      console.log(error);
+    })
+    //this.router.navigateByUrl('/seller/gst');
     // this.sellerService.addSeller(this.sellerForm.value).subscribe(data => {
     //   console.log(data);
     //   this.router.navigateByUrl('/seller-gst');

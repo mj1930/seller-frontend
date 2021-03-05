@@ -40,10 +40,9 @@
                                 <label class="custom-file-label" for="cancelCheque">Choose file</label>
                             </div>
                         </div>
-                        <p class="small m-0 text-success">abc.jpg File Uploaded</p>
+                        <p *ngIf="bankFile" class="small m-0 text-success">File Uploaded Successfully</p>
                         <p class="small">(Only JPG, JPEG Files Supported)</p>
-
-                        <p class="small">(Only JPG, JPEG Files Supported)</p>
+                        
                         <!-- Submit -->
                         <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Save Bank Details</button>
                     </form>

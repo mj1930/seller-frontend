@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
-import { VerificationService } from "../services/verification/verification.service";
+import { VerificationService } from "../verification.service";
 @Component({
   selector: 'app-seller-active-dashboard',
   templateUrl: './seller-active-dashboard.component.html',
@@ -10,19 +10,28 @@ export class SellerActiveDashboardComponent implements OnInit {
 
   showSubMenu = false;
   userName = '';
+  mailVerified = false;
 
   constructor(private verificationService: VerificationService) { }
 
   ngOnInit(): void {
+    this.mailVerified = localStorage.getItem('verified') ? Boolean(localStorage.getItem('verified')): false;
+  //  this.verificationService.mailVerified.subscribe(data => {
+  //    console.log('asdasdasda', data)
+  //   this.mailVerified = data;
+  //   });
 this.userName = JSON.parse(localStorage.getItem('user')).name;
 
   }
 
+  sentMail = false;
   sendVerificationEmail() {
     let reqBody = {
       email: JSON.parse(localStorage.getItem('user')).email
-    } 
+    } ;
+    this.sentMail = true;
     this.verificationService.sendVerificationEmail(reqBody).subscribe(data => {
+
       console.log(data);
     }, error => {
       console.log(error);
