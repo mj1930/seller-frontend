@@ -80,11 +80,11 @@
                                 <span class="input-group-text" id="GSTDoc">Upload</span>
                             </div>
                             <div class="custom-file">
-                                <input type="file" (change)="gstFileUpload($event)" class="custom-file-input" id="GSTDoc" aria-describedby="inputGroupFileAddon01" accept="application/pdf">
+                                <input [disabled]="sellerGstForm.controls['hasGST'].value != 'true'" type="file" (change)="gstFileUpload($event)" class="custom-file-input" id="GSTDoc" aria-describedby="inputGroupFileAddon01" accept="application/pdf">
                                 <label class="custom-file-label" for="GSTDoc">Choose file</label>
                             </div>
                         </div>
-                        <p class="small m-0 text-success">abc.jpg File Uploaded</p>
+                        <p *ngIf="gstFile" class="small m-0 text-success">File Uploaded Successfully</p>
                         <p class="small">(Only PDF Files Supported)</p>
 
                         
@@ -103,15 +103,15 @@
                                 <label class="custom-file-label" for="PANCard">Choose file</label>
                             </div>
                         </div>
-                        <p class="small m-0 text-success">abc.jpg File Uploaded</p>
+                        <p *ngIf="panFile" class="small m-0 text-success">File Uploaded Successfully</p>
                         <p class="small">(Only JPG, JPEG Files Supported)</p>
 
 
 
-                        <div class="custom-control custom-checkbox">
+                        <!-- <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="updateLater">
                             <label class="custom-control-label small pt-1" for="updateLater">I'll Update Later</label>
-                        </div>
+                        </div> -->
 
                         <!-- Generate OTP -->
                         <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Save Tax Details</button>

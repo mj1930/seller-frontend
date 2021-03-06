@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { SellerService } from '../../services/seller/seller.service';
+import { SellerService } from '../seller.service';
 import { Router } from "@angular/router";
 @Component({
   selector: 'app-seller-bank-details',
@@ -56,28 +56,29 @@ this.sellerBankDetailsForm.setValue(JSON.parse(localStorage.getItem('seller-bank
       })
 
     let reqData = {
-      name: JSON.parse(localStorage.getItem('user')).name,
-      address: welcomeDetails.address,
-      hasGST: gstDetails.hasGST	,
-      taxState: gstDetails.taxState,	
-      gstin: gstDetails.gstin	,
-      pan: gstDetails.pan	,
+      // name: JSON.parse(localStorage.getItem('user')).name,
+      // address: welcomeDetails.address,
+      // hasGST: gstDetails.hasGST	,
+      // taxState: gstDetails.taxState,	
+      // gstin: gstDetails.gstin	,
+      // pan: gstDetails.pan	,
       accountNumber: this.sellerBankDetailsForm.controls['accountNumber'].value,	
       accountName: this.sellerBankDetailsForm.controls['accountName'].value	,
       ifscCode: this.sellerBankDetailsForm.controls['ifscCode'].value,	
-      storename: welcomeDetails.storeName	
+      //storename: welcomeDetails.storename	
     }
-    this.sellerService.addSeller(reqData).subscribe(data => {
+    this.sellerService.addSellerBankDetails(reqData).subscribe(data => {
       console.log(data);
-      this.router.navigateByUrl('/seller-active-dashboard');
+      this.router.navigateByUrl('/seller/active-dashboard');
     }, error => {
       console.log(error);
     })
    // this.router.navigateByUrl('/seller-bank-details');
   }
 
+  bankFile;
   fileUpload(event) {
-console.log('sfsfsdf', event.target.files)
+this.bankFile = event.target.files[0];
   }
 
   

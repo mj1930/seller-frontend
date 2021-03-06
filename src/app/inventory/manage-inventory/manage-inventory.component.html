@@ -5,7 +5,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a>Seller Account</a>
+        <a routerLink="/seller-active-dashboard">Seller Account</a>
         <div id="close-sidebar">
           <i class="fa fa-times" aria-hidden="true"></i>
         </div>
@@ -35,11 +35,11 @@
             </a>
             <div *ngIf="showSubMenu" class="">
               <ul>
-                <li>
-                  <a routerLink="/manage-inventory">Manage Inventory</a>
+                <li routerLinkActive="active">
+                  <a routerLink="/inventory">Manage Inventory</a>
                 </li>
-                <li>
-                  <a routerLink="/add-products">Add Products</a>
+                <li routerLinkActive="active">
+                  <a routerLink="/product/add-products">Add Products</a>
                 </li>
                 <li>
                   <a>Add Inventory</a>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../auth.service';
 import { Router } from "@angular/router";
 @Component({
   selector: 'app-login',
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', "");
         localStorage.setItem('password', "");
       }
-      this.router.navigateByUrl('/seller-welcome');
+      this.router.navigateByUrl('/seller');
     }, error => {
       console.log(error);
     })

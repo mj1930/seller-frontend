@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Router } from '@angular/router';
-import { ProductService } from '../services/product/product.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-add-products',
@@ -49,7 +49,7 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
     }
     this.productService.addProduct(this.addProductForm.value).subscribe(data => {
       console.log(data);
-      this.router.navigateByUrl('/seller-active-dashboard');
+      this.router.navigateByUrl('/inventory');
     }, error => {
       console.log(error);
     })
@@ -57,7 +57,7 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
 
   resetForm() {
     this.addProductForm.reset();
-    this.router.navigateByUrl('/seller-active-dashboard');
+    this.router.navigateByUrl('/seller/active-dashboard');
   }
 
 }

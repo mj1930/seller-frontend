@@ -5,7 +5,7 @@
     <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
         <div class="sidebar-brand">
-          <a>Seller Account</a>
+          <a routerLink="/seller-active-dashboard">Seller Account</a>
           <div id="close-sidebar">
             <i class="fa fa-times" aria-hidden="true"></i>
           </div>
@@ -36,10 +36,10 @@
               <div *ngIf="showSubMenu" class="">
                 <ul>
                   <li routerLinkActive="active">
-                    <a routerLink="/manage-inventory">Manage Inventory</a>
+                    <a routerLink="/inventory">Manage Inventory</a>
                   </li>
                   <li routerLinkActive="active">
-                    <a routerLink="/add-products">Add Products</a>
+                    <a routerLink="/product/add-products">Add Products</a>
                   </li>
                   <li routerLinkActive="active">
                     <a>Add Inventory</a>
@@ -185,8 +185,8 @@
             
 
             <div class="">
-                <button class="btn btn-info mr-2" (click)="resetForm()" type="button">Cancel</button>
-                <button class="btn btn-dark" type="submit">Save</button>
+                <button class="btn btn-dark mr-2" (click)="resetForm()" type="button">Cancel</button>
+                <button class="btn btn-info" type="submit">Save</button>
             </div>
             
 
