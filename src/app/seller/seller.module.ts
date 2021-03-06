@@ -13,6 +13,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from '../http-interceptor';
+import { SellerListingComponent } from './seller-listing/seller-listing.component';
+import { SellerProductListingComponent } from './seller-product-listing/seller-product-listing.component';
+import { SellerProfilePageComponent } from './seller-profile-page/seller-profile-page.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { httpInterceptorProviders } from '../http-interceptor';
     SellerDashboardComponent,
     SellerEmailVerifiedComponent,
     SellerGstinDetailsComponent,
-    SellerWelcomePageComponent
+    SellerWelcomePageComponent, 
+    SellerListingComponent,
+    SellerProductListingComponent,
+    SellerProfilePageComponent
   ],
   imports: [
     CommonModule,
