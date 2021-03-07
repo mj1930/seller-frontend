@@ -18,4 +18,8 @@ export class SellerService {
     return this.http.post('store/add-seller-gst-details', req);
   }
 
+  getUserDetails() {
+    return this.http.get('users/get-user-details');
+  }
+
 }

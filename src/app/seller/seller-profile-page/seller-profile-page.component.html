@@ -35,13 +35,13 @@
               </a>
               <div class="sidebar-submenu">
                 <ul>
-                  <li>
-                    <a>Manage Inventory</a>
+                  <li routerLinkActive="active">
+                    <a routerLink="/inventory">Manage Inventory</a>
                   </li>
-                  <li>
-                    <a>Add Products</a>
+                  <li routerLinkActive="active">
+                    <a routerLink="/product/add-products">Add Products</a>
                   </li>
-                  <li>
+                  <li routerLinkActive="active">
                     <a>Add Inventory</a>
                   </li>
                 </ul>
@@ -218,7 +218,7 @@
                   Store Details
                 </div>
                 <div class="card-body">
-                  <p class="card-text">DISPLAY NAME</p>
+                  <p class="card-text">{{user?.name}}</p>
                 </div>
               </div>
             </div>
@@ -229,8 +229,8 @@
                   Customer service details
                 </div>
                 <div class="card-body">
-                  <p class="card-text">EMAIL</p>
-                  <p class="card-text">PHONE</p>
+                  <p class="card-text">EMAIL: {{user?.email}}</p>
+                  <p class="card-text">PHONE: {{user?.mobile}}</p>
                 </div>
               </div>
             </div>
@@ -245,16 +245,16 @@
             </div>
             <div class="card-body">
               <h6 class="card-title" style="font-weight: 600;">Confirm your ship from address and update the GSTIN and PAN details associated with the address. Not this address will be used as the primary billing addess.</h6>
-              <form action="#!">
+              <form>
             
                 <label class="m-0">Seller Legal Name</label>
-                <input type="text" id="name" class="form-control mb-4" value="Seller Name">
+                <input type="text" id="name" class="form-control mb-4" placeholder="Seller Name" [(ngModel)]="user.name">
             
                 <label class="m-0">GST Number</label>
-                <input type="text" id="GST" class="form-control mb-4" value="GST Number">
+                <input type="text" id="GST" class="form-control mb-4" placeholder="GST Number" [(ngModel)]="user.gstin">
             
                 <label class="m-0">PAN</label>
-                <input type="text" id="PAN" class="form-control mb-4" value="PAN">
+                <input type="text" id="PAN" class="form-control mb-4" placeholder="PAN" [(ngModel)]="user.pan">
 
                 <button class="btn btn-primary my-4 btn-block" type="submit">Edit</button>
             
@@ -303,15 +303,16 @@
                 <h5 class="px-3">Bank Account</h5>
                 <div class="card-body py-0">
                   <p class="card-text">
-                    Ending in <kbd>867</kbd>
+                    {{user?.accountNumber}}
+                    <!-- Ending in <kbd>867</kbd> -->
                   </p>
                 </div>
               </div>
 
             <div class="col-6">
               <div class="card-body py-0">
-                <p class="card-text"> Bank Location Country </p>
-                <p class="card-text"> Account Holder Name </p>
+                <p class="card-text"> Bank Location Country: India </p>
+                <p class="card-text"> Account Holder Name: {{user?.accountName}} </p>
               </div>
             </div>
               

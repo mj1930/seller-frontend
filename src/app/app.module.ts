@@ -12,9 +12,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { httpInterceptorProviders } from './http-interceptor';
 // import { ProductService } from './product/product.service';
 
-import { SellerListingComponent } from './seller-listing/seller-listing.component';
-import { SellerProductListingComponent } from './seller-product-listing/seller-product-listing.component';
-import { SellerProfilePageComponent } from './seller-profile-page/seller-profile-page.component';
+import { SellerListingComponent } from './seller/seller-listing/seller-listing.component';
+import { SellerProductListingComponent } from './seller/seller-product-listing/seller-product-listing.component';
+import { SellerProfilePageComponent } from './seller/seller-profile-page/seller-profile-page.component';
 @NgModule({
   declarations: [
     AppComponent,
