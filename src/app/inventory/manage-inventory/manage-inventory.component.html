@@ -218,7 +218,7 @@
                 <th scope="col">Unit Count</th>
                 <th scope="col">Unit Count Type</th>
                 <th scope="col">Status</th>
-                <th scope="col">Feedback</th>
+                <!-- <th scope="col" *ngIf="!product?.isApproved">Feedback</th> -->
                 <!-- <th scope="col">Status</th>
                 <th scope="col">Image</th>
                 <th scope="col">SKU</th>
@@ -254,7 +254,7 @@
                 <td>{{product?.unitCount}}</td>
                 <td>{{product?.unitCountType}}</td>
                 <td>{{product?.isApproved ? 'Approved' : 'Disapproved'}}</td>
-                <td *ngIf="!product?.isApproved">{{product?.feedback ? product?.feedback : 'No feedback'}}</td>
+                <!-- <td *ngIf="!product?.isApproved">{{product?.feedback ? product?.feedback : 'No feedback'}}</td> -->
 
                 <!-- <td>
                   <p class="text-left small m-0">Inactive</p>
