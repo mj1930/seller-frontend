@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { VerificationService } from "../verification.service";
+import { SellerService } from '../seller.service';
+
 @Component({
   selector: 'app-seller-active-dashboard',
   templateUrl: './seller-active-dashboard.component.html',
@@ -12,15 +14,18 @@ export class SellerActiveDashboardComponent implements OnInit {
   userName = '';
   mailVerified = false;
 
-  constructor(private verificationService: VerificationService) { }
+  constructor(
+    private verificationService: VerificationService,
+    private sellerService: SellerService
+    ) { }
 
   ngOnInit(): void {
     this.mailVerified = localStorage.getItem('verified') ? Boolean(localStorage.getItem('verified')): false;
-  //  this.verificationService.mailVerified.subscribe(data => {
-  //    console.log('asdasdasda', data)
-  //   this.mailVerified = data;
-  //   });
-this.userName = JSON.parse(localStorage.getItem('user')).name;
+    this.sellerService.getUserDetails().subscribe((data: any) => {
+      console.log('asdasdasda', data)
+      this.mailVerified = data['data'].isEmailVerified;
+      this.userName = data['data'].name;
+    });
 
   }
 
