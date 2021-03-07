@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.controls['password'].value
     }
 
-    this.authService.login(reqData).subscribe(data => {
+    this.authService.login(reqData).subscribe((data: any) => {
       console.log(data);
       sessionStorage.setItem('token', data['accessToken']);
       localStorage.setItem('user', JSON.stringify(data['data']));
@@ -50,7 +50,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', "");
         localStorage.setItem('password', "");
       }
-      this.router.navigateByUrl('/seller');
+      let userData = JSON.parse(localStorage.getItem('user'));
+      if (userData && userData.accountNumber)
+        this.router.navigateByUrl('/seller/active-dashboard');
+      else
+        this.router.navigateByUrl('/seller/active-dashboard');
     }, error => {
       console.log(error);
     })
