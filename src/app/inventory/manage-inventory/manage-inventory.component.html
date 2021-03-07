@@ -5,7 +5,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a routerLink="/seller-active-dashboard">Seller Account</a>
+        <a routerLink="/seller/active-dashboard">Seller Account</a>
         <div id="close-sidebar">
           <i class="fa fa-times" aria-hidden="true"></i>
         </div>
@@ -19,8 +19,8 @@
           />
         </div>
         <div class="user-info">
-          <span class="user-name"> {{userName}} </span>
-          <span class="user-role">Seller</span>
+          <a routerLink="/seller/profile"> {{userName}} </a>
+          <!-- <span class="user-role">Seller</span> -->
         </div>
       </div>
 
@@ -186,14 +186,14 @@
                 >
               </div>
             </div>
-            <div class="col-lg-3 my-2">
+            <!-- <div class="col-lg-3 my-2">
               <select class="browser-default custom-select">
                 <option selected>Select Action</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
+                <option value="1">All</option>
+                <option value="2">Active</option>
                 <option value="3">Three</option>
               </select>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="table-responsive rounded table-striped">
@@ -217,7 +217,8 @@
                 <th scope="col">Product Dimensions</th>
                 <th scope="col">Unit Count</th>
                 <th scope="col">Unit Count Type</th>
-
+                <th scope="col">Status</th>
+                <th scope="col">Feedback</th>
                 <!-- <th scope="col">Status</th>
                 <th scope="col">Image</th>
                 <th scope="col">SKU</th>
@@ -252,6 +253,8 @@
                 <td>Length: {{product?.productDimensions?.length || 'NA'}}, Width: {{product?.productDimensions?.width || 'NA'}}, Height: {{product?.productDimensions?.height || 'NA'}}</td>
                 <td>{{product?.unitCount}}</td>
                 <td>{{product?.unitCountType}}</td>
+                <td>{{product?.isApproved ? 'Approved' : 'Disapproved'}}</td>
+                <td *ngIf="!product?.isApproved">{{product?.feedback ? product?.feedback : 'No feedback'}}</td>
 
                 <!-- <td>
                   <p class="text-left small m-0">Inactive</p>

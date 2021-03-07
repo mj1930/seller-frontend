@@ -5,7 +5,7 @@
     <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
         <div class="sidebar-brand">
-          <a routerLink="/seller-active-dashboard">Seller Account</a>
+          <a routerLink="/seller/active-dashboard">Seller Account</a>
           <div id="close-sidebar">
             <i class="fa fa-times" aria-hidden="true"></i>
           </div>
@@ -19,8 +19,8 @@
             />
           </div>
           <div class="user-info">
-            <span class="user-name"> {{userName}} </span>
-            <span class="user-role">Seller</span>
+            <a routerLink="/seller/profile"> {{userName}} </a>
+            <!-- <span class="user-role">Seller</span> -->
           </div>
         </div>
   

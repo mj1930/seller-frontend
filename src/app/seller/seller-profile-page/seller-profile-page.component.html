@@ -5,7 +5,7 @@
     <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
         <div class="sidebar-brand">
-          <a>Seller Account</a>
+          <a routerLink="/seller/active-dashboard">Seller Account</a>
           <div id="close-sidebar">
             <i class="fa fa-times" aria-hidden="true"></i>
           </div>
@@ -19,8 +19,8 @@
             />
           </div>
           <div class="user-info">
-            <span class="user-name"> Chandan Kanyal </span>
-            <span class="user-role">Seller</span>
+            <a routerLink="/seller/profile"> {{userName}} </a>
+            <!-- <span class="user-role">Seller</span> -->
           </div>
         </div>
   
@@ -120,13 +120,23 @@
       <div class="container-fluid">
         <h2>Profile</h2>
         <hr />
-        <div class="bg-danger rounded">
+        <div [ngClass]="mailVerified ? 'bg-success' : sentMail ? 'bg-info' : 'bg-danger'" class="rounded">
           <p class="py-2 px-3 text-white d-flex align-items-center justify-content-between">
-            <span class="m-0 p-0">
-              Email Verification Pending.
+            <span class="m-0 p-0" *ngIf="!sentMail && !mailVerified">
+              Email verification pending.
+            </span>
+            <span class="m-0 p-0" *ngIf="sentMail && !mailVerified">
+              Verification email has been sent to you. Please check your mail.
+            </span>
+            <span class="m-0 p-0" *ngIf="mailVerified">
+              Email has been verified.
             </span>
             
-            <button class="btn btn-dark btn-sm my-2">Verify Now</button>
+            <button *ngIf="!mailVerified" class="btn btn-dark btn-sm my-2" (click)="sendVerificationEmail()">
+              <span *ngIf="!sentMail">Verify Now</span>
+              <span *ngIf="sentMail">Resend Email</span>
+  
+            </button>
           </p>
         </div>
         <div class="row d-flex justify-content-center">
@@ -218,7 +228,7 @@
                   Store Details
                 </div>
                 <div class="card-body">
-                  <p class="card-text">{{user?.name}}</p>
+                  <p class="card-text">{{user?.storeName}}</p>
                 </div>
               </div>
             </div>
@@ -245,7 +255,7 @@
             </div>
             <div class="card-body">
               <h6 class="card-title" style="font-weight: 600;">Confirm your ship from address and update the GSTIN and PAN details associated with the address. Not this address will be used as the primary billing addess.</h6>
-              <form>
+              <!-- <form> -->
             
                 <label class="m-0">Seller Legal Name</label>
                 <input type="text" id="name" class="form-control mb-4" placeholder="Seller Name" [(ngModel)]="user.name">
@@ -258,7 +268,7 @@
 
                 <button class="btn btn-primary my-4 btn-block" type="submit">Edit</button>
             
-            </form>
+            <!-- </form> -->
             </div>
           </div>
         </div>
@@ -303,8 +313,8 @@
                 <h5 class="px-3">Bank Account</h5>
                 <div class="card-body py-0">
                   <p class="card-text">
-                    {{user?.accountNumber}}
-                    <!-- Ending in <kbd>867</kbd> -->
+                    Ending in <kbd>
+                      {{user?.accountNumber | slice: (user?.accountNumber.length - 3): user?.accountNumber.length}}</kbd>
                   </p>
                 </div>
               </div>
