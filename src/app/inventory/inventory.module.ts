@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InventoryRoutingModule } from './inventory-routing.module';
 import { httpInterceptorProviders } from '../http-interceptor';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { httpInterceptorProviders } from '../http-interceptor';
     MDBBootstrapModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [httpInterceptorProviders]
 })
