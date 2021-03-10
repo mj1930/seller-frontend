@@ -8,6 +8,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  public isAuthenticated(): boolean {
+    const token = sessionStorage.getItem('token');
+    return token ? true : false;
+  }
+
   register(req) {
     return this.http.post('users/signup', req);
   }
