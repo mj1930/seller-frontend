@@ -1,1 +1,63 @@
-<p>product-variation works!</p>
+<div class="page-wrapper chiller-theme toggled">
+    <app-side-navigation></app-side-navigation>
+      <!-- sidebar-wrapper  -->
+  
+  
+      <main class="page-content">
+        <div class="container-fluid">
+          <h2>Product Variation</h2>
+          <hr />
+          <form class="border rounded border-light p-sm-5 p-3">
+            <label for="" class="small">Color</label>
+            <div class="row d-flex justify-content-between col-12" formGroupName="productColor">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="color 1" formControlName="color">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="color 2" formControlName="color">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="color 3" formControlName="color">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="color 4" formControlName="color">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="color 5" formControlName="color">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="color 6" formControlName="color">
+            </div> 
+            
+            <label for="" class="small">Size</label>
+            <div class="row d-flex justify-content-between col-12" formGroupName="productSize">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="Size 1" formControlName="size">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="Size 2" formControlName="size">
+                <input type="text" class="form-control mb-4 col-md-4" placeholder="Size 3" formControlName="size">
+            </div> 
+            
+  
+            <div class="">
+                <button class="btn btn-dark mr-2" (click)="resetForm()" type="button">Cancel</button>
+                <button class="btn btn-info" type="submit">Save and Finish</button>
+            </div>
+              
+  
+  
+          </form>
+  
+  
+          <footer class="text-center">
+            <div class="mb-2">
+              <small>
+                © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+                Rights Reserved
+              </small>
+            </div>
+          </footer>
+        </div>
+      </main>
+      <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    
