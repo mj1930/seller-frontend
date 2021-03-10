@@ -9,10 +9,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from '../http-interceptor';
 import { SharedModule } from '../shared/shared.module';
+import { ProductVariationComponent } from './product-variation/product-variation.component';
+import { ProductSellingInfoComponent } from './product-selling-info/product-selling-info.component';
+import { ProductImagesComponent } from './product-images/product-images.component';
+import { ProductDescriptionComponent } from './product-description/product-description.component';
 
 
 @NgModule({
-  declarations: [AddProductsComponent],
+  declarations: [AddProductsComponent, ProductVariationComponent, ProductSellingInfoComponent, ProductImagesComponent, ProductDescriptionComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,
