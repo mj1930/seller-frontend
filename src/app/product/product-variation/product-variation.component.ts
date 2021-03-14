@@ -12,4 +12,8 @@ export class ProductVariationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  resetForm() {
+    
+  }
+
 }
