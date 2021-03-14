@@ -7,6 +7,8 @@
         <div class="container-fluid">
           <h2>Product Variation</h2>
           <hr />
+          
+          <app-product-nav-tabs></app-product-nav-tabs>
           <form class="border rounded border-light p-sm-5 p-3">
             <label for="" class="small">Color</label>
             <div class="row d-flex justify-content-between col-12" formGroupName="productColor">
@@ -27,7 +29,7 @@
             
   
             <div class="">
-                <button class="btn btn-dark mr-2" (click)="resetForm()" type="button">Cancel</button>
+                <button class="btn btn-dark mr-2" type="button">Cancel</button>
                 <button class="btn btn-info" type="submit">Save and Finish</button>
             </div>
               
