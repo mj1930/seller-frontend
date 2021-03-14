@@ -5,6 +5,8 @@
       <div class="container-fluid">
         <h2>Find Your Products</h2>
         <hr />
+
+        
         <form class="border rounded border-light p-sm-5 p-3">
           <label for="" class="">Search Product</label>
           <div class="input-group">
@@ -141,7 +143,8 @@
       <div class="container-fluid">
         <h2>Add Products</h2>
         <hr />
-        <!-- Default form subscription -->
+        
+        <app-product-nav-tabs></app-product-nav-tabs>
         <form [formGroup]="addProductForm" class="border rounded border-light p-sm-5 p-3" (ngSubmit)="addProduct(addProductForm.valid)">
 
           <label for="" class="small">Item Name (AKA Title)</label>

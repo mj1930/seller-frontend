@@ -10,6 +10,7 @@ export class ProductNavTabsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  
   }
 
 }
