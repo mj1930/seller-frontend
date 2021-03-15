@@ -7,10 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { InventoryRoutingModule } from './inventory-routing.module';
 import { httpInterceptorProviders } from '../http-interceptor';
 import { SharedModule } from '../shared/shared.module';
+import { ProductDescriptionComponent } from './product-description/product-description.component';
 
 
 @NgModule({
-  declarations: [ManageInventoryComponent],
+  declarations: [ManageInventoryComponent, ProductDescriptionComponent],
   imports: [
     CommonModule,
     InventoryRoutingModule,
