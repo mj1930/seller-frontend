@@ -15,43 +15,13 @@
                         <label for="file-input1">
                             <img src="https://toppng.com/uploads/preview/file-upload-image-icon-115632290507ftgixivqp.png" style="width: 100%; cursor: pointer;"/>
                         </label>            
-                        <input id="file-input1" type="file" class="d-none"/>
+                        <input id="file-input1" type="file" class="d-none"  (change)="uploadFiles($event)"/>
                     </div> 
-
-                    <div class="col-lg-2 col-md-3 col-sm-6 my-2">
-                        <label for="file-input2">
-                            <img src="https://toppng.com/uploads/preview/file-upload-image-icon-115632290507ftgixivqp.png" style="width: 100%; cursor: pointer;"/>
-                        </label>            
-                        <input id="file-input2" type="file" class="d-none"/>
-                    </div> 
-
-                    <div class="col-lg-2 col-md-3 col-sm-6 my-2">
-                        <label for="file-input3">
-                            <img src="https://toppng.com/uploads/preview/file-upload-image-icon-115632290507ftgixivqp.png" style="width: 100%; cursor: pointer;"/>
-                        </label>            
-                        <input id="file-input3" type="file" class="d-none"/>
-                    </div> 
-
-                    <div class="col-lg-2 col-md-3 col-sm-6 my-2">
-                        <label for="file-input4">
-                            <img src="https://toppng.com/uploads/preview/file-upload-image-icon-115632290507ftgixivqp.png" style="width: 100%; cursor: pointer;"/>
-                        </label>            
-                        <input id="file-input4" type="file" class="d-none"/>
-                    </div> 
-
-                    <div class="col-lg-2 col-md-3 col-sm-6 my-2">
-                        <label for="file-input5">
-                            <img src="https://toppng.com/uploads/preview/file-upload-image-icon-115632290507ftgixivqp.png" style="width: 100%; cursor: pointer;"/>
-                        </label>            
-                        <input id="file-input5" type="file" class="d-none"/>
-                    </div> 
-
-                    <div class="col-lg-2 col-md-3 col-sm-6 my-2">
-                        <label for="file-input6">
-                            <img src="https://toppng.com/uploads/preview/file-upload-image-icon-115632290507ftgixivqp.png" style="width: 100%; cursor: pointer;"/>
-                        </label>            
-                        <input id="file-input6" type="file" class="d-none"/>
-                    </div> 
+                </div>
+                
+                <div class="mt-4">
+                    <button class="btn btn-dark mr-2" (click)="resetForm()" type="button">Cancel</button>
+                    <button class="btn btn-info" type="submit" (click)="addProductImages()">Save and Finish</button>
                 </div>
           </form>
   

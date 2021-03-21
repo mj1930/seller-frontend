@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from '../shared/services/auth-guard/auth-guard.service';
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
 import { ProductDescriptionComponent } from './product-description/product-description.component';
 
 const routes: Routes = [
-  {path: '', component: ManageInventoryComponent},
-  {path: 'product-description', component: ProductDescriptionComponent},
+  {path: '', component: ManageInventoryComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({

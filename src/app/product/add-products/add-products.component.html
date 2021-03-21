@@ -10,137 +10,42 @@
         <form class="border rounded border-light p-sm-5 p-3">
           <label for="" class="">Search Product</label>
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Product Name, Barcode, Brand, CIN (Company Identification Number)">
+            <input type="text" name="search" (keyup)="searchProduct()" [(ngModel)]="searchText" class="form-control" placeholder="Product Name, Barcode, Brand, CIN (Company Identification Number)">
             <div class="input-group-append">
-              <button class="btn btn-secondary" type="button">
+              <button class="btn btn-secondary" (click)="searchProduct()"  type="button">
                 <i class="fa fa-search"></i>
               </button>
             </div>
           </div>
-          <a href="#" class="text-primary">I'm adding a product not sold here</a>
+        <!-- <button type="button" class="mt-2 btn mb-4 btn-sm btn-dark" (click)="showAddProductSection = !showAddProductSection">I'm adding a product not sold here</button> -->
+
+          <a class="text-primary" (click)="showAddProductSection = !showAddProductSection">I'm adding a product not sold here</a>
         </form>
       </div>
     </section>
 
-    <section class="page-content">
+    <section class="page-content" *ngIf="searchResult.length">
       <div class="container-fluid">
         <h2>Search Results</h2>
         <hr />
         <div class="row">
-          <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-            <div class="card px-2">
-              <img src="https://www.google.com/logos/doodles/2021/prof-udupi-ramachandra-raos-89th-birthday-6753651837108880.3-s.png" class="card-img-top" style="height: 150px;">
-              <div class="card-body px-0">
-                <h5 class="card-title">Product name</h5>
-                <p class="card-text">Description details goes here</p>
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
+            <div *ngFor="let product of searchResult" class="col-sm-4 col-md-3 col-lg-2 my-2">
+              <div class="card px-2">
+                <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
+                <div class="card-body px-0">
+                  <h5 class="card-title">{{product?.itemName}}</h5>
+                  <p class="card-text">{{product?.description}}</p>
+                  <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                  <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-            <div class="card px-2">
-              <img src="https://www.google.com/logos/doodles/2021/prof-udupi-ramachandra-raos-89th-birthday-6753651837108880.3-s.png" class="card-img-top" style="height: 150px;">
-              <div class="card-body px-0">
-                <h5 class="card-title">Product name</h5>
-                <p class="card-text">Description details goes here</p>
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-            <div class="card px-2">
-              <img src="https://www.google.com/logos/doodles/2021/prof-udupi-ramachandra-raos-89th-birthday-6753651837108880.3-s.png" class="card-img-top" style="height: 150px;">
-              <div class="card-body px-0">
-                <h5 class="card-title">Product name</h5>
-                <p class="card-text">Description details goes here</p>
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-            <div class="card px-2">
-              <img src="https://www.google.com/logos/doodles/2021/prof-udupi-ramachandra-raos-89th-birthday-6753651837108880.3-s.png" class="card-img-top" style="height: 150px;">
-              <div class="card-body px-0">
-                <h5 class="card-title">Product name</h5>
-                <p class="card-text">Description details goes here</p>
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-            <div class="card px-2">
-              <img src="https://www.google.com/logos/doodles/2021/prof-udupi-ramachandra-raos-89th-birthday-6753651837108880.3-s.png" class="card-img-top" style="height: 150px;">
-              <div class="card-body px-0">
-                <h5 class="card-title">Product name</h5>
-                <p class="card-text">Description details goes here</p>
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-            <div class="card px-2">
-              <img src="https://www.google.com/logos/doodles/2021/prof-udupi-ramachandra-raos-89th-birthday-6753651837108880.3-s.png" class="card-img-top" style="height: 150px;">
-              <div class="card-body px-0">
-                <h5 class="card-title">Product name</h5>
-                <p class="card-text">Description details goes here</p>
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-            <div class="card px-2">
-              <img src="https://www.google.com/logos/doodles/2021/prof-udupi-ramachandra-raos-89th-birthday-6753651837108880.3-s.png" class="card-img-top" style="height: 150px;">
-              <div class="card-body px-0">
-                <h5 class="card-title">Product name</h5>
-                <p class="card-text">Description details goes here</p>
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-            <div class="card px-2">
-              <img src="https://www.google.com/logos/doodles/2021/prof-udupi-ramachandra-raos-89th-birthday-6753651837108880.3-s.png" class="card-img-top" style="height: 150px;">
-              <div class="card-body px-0">
-                <h5 class="card-title">Product name</h5>
-                <p class="card-text">Description details goes here</p>
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 col-md-3 col-lg-2 my-2">
-            <div class="card px-2">
-              <img src="https://www.google.com/logos/doodles/2021/prof-udupi-ramachandra-raos-89th-birthday-6753651837108880.3-s.png" class="card-img-top" style="height: 150px;">
-              <div class="card-body px-0">
-                <h5 class="card-title">Product name</h5>
-                <p class="card-text">Description details goes here</p>
-                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-
-    <main class="page-content">
-      <div class="container-fluid">
+    <main class="page-content" >
+      <div class="container-fluid" *ngIf="showAddProductSection">
         <h2>Add Products</h2>
         <hr />
         
@@ -148,33 +53,43 @@
         <form [formGroup]="addProductForm" class="border rounded border-light p-sm-5 p-3" (ngSubmit)="addProduct(addProductForm.valid)">
 
           <label for="" class="small">Item Name (AKA Title)</label>
-          <input type="text" class="form-control mb-4" placeholder="Model Number" formControlName="modelNumber">
+          <input type="text" class="form-control mb-4" placeholder="Item Name" formControlName="itemName">
 
           <label for="" class="small">Barcode</label>
-          <input type="text" class="form-control mb-4" placeholder="Barcode" formControlName="barCode">
+          <input type="text" class="form-control mb-4" placeholder="Barcode" formControlName="barcode">
             
           <label for="" class="small">Country Of Origin</label>
           <input type="text" class="form-control mb-4" placeholder="India" formControlName="countryOfOrigin">
 
           <label for="" class="small">City</label>
-          <input type="text" class="form-control mb-4" placeholder="City" formControlName="deliveryCity">
+          <input type="text" class="form-control mb-4" placeholder="City" formControlName="city">
           
           <label for="" class="small">Manufacturer</label>
-          <input type="text" class="form-control mb-4" placeholder="Manufacturer" formControlName="manufacturer">
+          <input type="text" class="form-control mb-4" placeholder="Manufacturer" formControlName="brand">
           
           <label for="" class="small">Available Units</label>
-          <input type="number" class="form-control mb-4" placeholder="Available Units" formControlName="itemsNum">
+          <input type="" class="form-control mb-4" placeholder="Available Units" formControlName="availableUnits">
           
           
           <label for="" class="small">Product Dimensions</label>
-          <div class="row d-flex justify-content-between col-12" formGroupName="productDimensions">
+          <div class="row d-flex justify-content-between col-12" formGroupName="dimensions">
               <input type="text" class="form-control mb-4 col-md-4" placeholder="Length" formControlName="length">
               <input type="text" class="form-control mb-4 col-md-4" placeholder="Width" formControlName="width">
               <input type="text" class="form-control mb-4 col-md-4" placeholder="Height" formControlName="height">
           </div>            
           <label for="" class="small">Product Weight</label>
-          <input type="number" class="form-control mb-4" placeholder="180 gm" formControlName="productWeight">
+          <input type="text" class="form-control mb-4" placeholder="180 gm" formControlName="weight">
 
+          <label for="" class="small">Category</label>
+          <select name="" id="" class="form-control mb-4" formControlName="categoryId" (change)="getSubCategories()">
+              <option value="">Select Category</option>
+              <option *ngFor="let category of categories" value="{{category._id}}">{{category?.categoryName}}</option>
+          </select>
+          <label for="" class="small">Sub-Category</label>
+          <select name="" id="" class="form-control mb-4" formControlName="subCategoryId">
+              <option value="">Select Sub-Category</option>
+              <option *ngFor="let subCategory of subCategories" value="{{subCategory._id}}">{{subCategory?.subCategoryName}}</option>
+          </select>
           
 
           <div class="">

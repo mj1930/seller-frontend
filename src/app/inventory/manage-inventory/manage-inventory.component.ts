@@ -21,7 +21,11 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
   }
 
   getProducts() {
-    this.productService.getProducts().subscribe(data => {
+    let reqBody = {
+      skip: 0,
+      limit: 100
+    };
+    this.productService.getProducts(reqBody).subscribe(data => {
       this.products = data["data"];
       console.log(data);
     }, error => {

@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   loginAttempt: boolean;
+  loginError = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(reqData).subscribe((data: any) => {
+      if(data.code === 200) {
       console.log(data);
       sessionStorage.setItem('token', data['accessToken']);
       localStorage.setItem('user', JSON.stringify(data['data']));
@@ -55,6 +57,9 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/seller/active-dashboard');
       else
         this.router.navigateByUrl('/seller/active-dashboard');
+    } else {
+      this.loginError = data['messgae'];
+    }
     }, error => {
       console.log(error);
     })

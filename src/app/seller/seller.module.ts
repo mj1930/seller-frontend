@@ -17,6 +17,7 @@ import { SellerListingComponent } from './seller-listing/seller-listing.componen
 import { SellerProductListingComponent } from './seller-product-listing/seller-product-listing.component';
 import { SellerProfilePageComponent } from './seller-profile-page/seller-profile-page.component';
 import { SharedModule } from '../shared/shared.module';
+// import { AgmCoreModule }s from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,12 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    // AgmCoreModule.forRoot({
+    //   // please get your own API key here:
+    //   // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+    //   apiKey: 'AIzaSyCFPRapf51Ws6ELOHUpYPpvofDeen4EZsI'
+    // })
   ],
   providers: [SellerService, VerificationService, httpInterceptorProviders]
 })

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from '../shared/services/auth-guard/auth-guard.service';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { ProductDescriptionComponent } from './product-description/product-description.component';
 import { ProductImagesComponent } from './product-images/product-images.component';
@@ -9,10 +10,10 @@ import { ProductVariationComponent } from './product-variation/product-variation
 const routes: Routes = [
   {path: '', pathMatch:'full', redirectTo: '/add-products'},
   {path: 'add-products', component: AddProductsComponent},
-  {path: 'product-description', component: ProductDescriptionComponent},
-  {path: 'product-images', component: ProductImagesComponent},
-  {path: 'product-selling-info', component: ProductSellingInfoComponent},
-  {path: 'product-variation', component: ProductVariationComponent},
+  {path: 'product-description/:id', component: ProductDescriptionComponent},
+  {path: 'product-images/:id', component: ProductImagesComponent},
+  {path: 'product-selling-info/:id', component: ProductSellingInfoComponent},
+  {path: 'product-variation/:id', component: ProductVariationComponent},
 ];
 
 @NgModule({

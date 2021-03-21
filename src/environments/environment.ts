@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3003/',
+  adminApiUrl: 'http://localhost:3002/'
 };
+
+//AIzaSyCFPRapf51Ws6ELOHUpYPpvofDeen4EZsI
 
 /*
  * For easier debugging in development mode, you can import the following file

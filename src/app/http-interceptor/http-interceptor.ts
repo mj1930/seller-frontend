@@ -6,11 +6,20 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    baseUrl = environment.apiUrl;
+
+    baseUrl = "";
 
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler) {
+        if(request.url.includes('category')) {
+            this.baseUrl = environment.adminApiUrl;
+        }
+        else if(request.url.includes('maps')) {
+            this.baseUrl = '';
+        } else {
+            this.baseUrl = environment.apiUrl;
+        }
         let requestObject = {
             url: `${this.baseUrl}${request.url}`,
             setHeaders: {

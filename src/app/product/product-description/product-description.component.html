@@ -7,15 +7,20 @@
         <div class="container-fluid">
           <h2>Product Description</h2>
           <hr />
-          <app-product-nav-tabs></app-product-nav-tabs>
-          <form class="border rounded border-light p-sm-5 p-3">
+          <form class="border rounded border-light p-sm-5 p-3" [formGroup]="addProductDescriptionForm" (ngSubmit)="addProductDescription()">
   
             <label for="" class="small">Product Description</label>
-            <textarea class="form-control mb-4" placeholder="8-Peice luxury comforter set product includes 1 comforter, 1 bed skirt, 2 shams, 2 euro shams and 2 decorated pillows"></textarea>
+            <textarea class="form-control mb-4" placeholder="8-Peice luxury comforter set product includes 1 comforter, 1 bed skirt, 2 shams, 2 euro shams and 2 decorated pillows"
+            formControlName="description"></textarea>
   
             <label for="" class="small">Bullet Points</label>
-            <input type="text" class="form-control mb-4" placeholder="Embroidered design">
-            
+            <input type="text" class="form-control mb-4" placeholder="Embroidered design" formControlName="heading">
+  
+            <div class="">
+                <button class="btn btn-dark mr-2" (click)="resetForm()" type="button">Cancel</button>
+                <button class="btn btn-info" type="submit">Save and Finish</button>
+            </div>
+              
   
   
           </form>
