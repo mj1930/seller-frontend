@@ -1,0 +1,64 @@
+<div class="page-wrapper chiller-theme toggled">
+    <app-side-navigation></app-side-navigation>
+      
+      <main class="page-content">
+        <div class="container-fluid">
+          <h2>Products Selling Info</h2>
+          <hr />
+          <form class="border rounded border-light p-sm-5 p-3" [formGroup]="addProductSellingInfoForm" (ngSubmit)="addProductSellingInfo()">
+  
+            <label for="" class="small">Your Price</label>
+            <input type="text" class="form-control" placeholder="Ex. 50.00" formControlName="productPrice">
+            <p class="mb-4 text-success small">Note: Match the lowest price INR 2859</p>
+  
+            <!-- <label for="" class="small">Seller SKU</label>
+            <input type="text" class="form-control" placeholder="101myCollectible1" formControlName="sellerSKU">
+            <p class="mb-4 text-danger small">Note: Once submitted, this field cannot be changed</p> -->
+              
+            <!-- <label for="" class="small">Condition</label>
+            <select name="" id="" class="form-control mb-4">
+                <option value="">New</option>
+                <option value="">Refurbished</option>
+            </select> -->
+  
+            <!-- <label for="" class="small">HSN Code</label>
+            <input type="text" class="form-control mb-4" placeholder="HSN Code" formControlName="HSNCode"> -->
+            
+            <label for="" class="small">Maximum Retail Price</label>
+            <input type="text" class="form-control mb-4" placeholder="Ex. 50.00" formControlName="mrp">
+  
+            <div class="">
+                <button class="btn btn-dark mr-2" (click)="resetForm()" type="button">Cancel</button>
+                <button class="btn btn-info" type="submit">Save and Finish</button>
+            </div>
+              
+  
+  
+          </form>
+  
+  
+          <footer class="text-center">
+            <div class="mb-2">
+              <small>
+                © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+                Rights Reserved
+              </small>
+            </div>
+          </footer>
+        </div>
+      </main>
+      <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    

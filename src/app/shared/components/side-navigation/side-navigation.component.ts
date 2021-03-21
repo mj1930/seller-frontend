@@ -15,6 +15,7 @@ export class SideNavigationComponent implements OnInit {
 
   ngOnInit(): void {
     this.userName = JSON.parse(localStorage.getItem('user')).name;
+    
   }
 
   closeSidebar() {

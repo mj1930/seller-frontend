@@ -11,6 +11,8 @@
 
                     <!-- Title -->
                     <h4 class="card-title"><b>Tell us about your business</b></h4>
+                    <input [(ngModel)]="code" name="picncode"/>
+<button (click)="searchCode()">search</button>
                     <!-- Text -->
                     <form class="text-left" [formGroup]="sellerForm" (ngSubmit)="addSeller(sellerForm.valid)">
 
@@ -27,6 +29,8 @@
                         <h4 class="card-title"><b>Enter your address</b></h4>
                         <div class="text-left" formGroupName="address" >
                             <!-- Pincode -->
+                            
+
                             <label for="" class="m-0 small">Pincode</label>
                             <input type="text" formControlName="pincode" id="defaultSignupFormEmail" class="form-control" placeholder="" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="6" autocomplete="off">
                             
