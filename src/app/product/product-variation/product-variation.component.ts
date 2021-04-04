@@ -69,8 +69,4 @@ export class ProductVariationComponent implements OnInit {
     })
   }
 
-  resetForm() {
-    
-  }
-
 }

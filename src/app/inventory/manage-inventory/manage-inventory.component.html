@@ -85,20 +85,7 @@
                 <th scope="col">Available Units</th>
                 <th scope="col">Pricing</th>
                 <th scope="col">Status</th>
-                <!-- <th scope="col" *ngIf="!product?.isApproved">Feedback</th> -->
-                <!-- <th scope="col">Status</th>
-                <th scope="col">Image</th>
-                <th scope="col">SKU</th>
-                <th scope="col">Name</th>
-                <th scope="col">Date Created</th>
-                <th scope="col">Available</th>
-                <th scope="col">Unfullfilable</th>
-                <th scope="col">Reserved</th>
-                <th scope="col">Fee Preview</th>
-                <th scope="col">Price + Shipping</th>
-                <th scope="col">Business Price + Shipping</th>
-                <th scope="col">Lowest Price + Shipping</th>
-                <th scope="col">Fee Preview</th> -->
+                <th scope="col">Feedback</th>
               </tr>
             </thead>
             <tbody>
@@ -116,6 +103,7 @@
                 <td>{{product?.availableUnits}}</td>
                 <td>{{product?.productPrice}}</td>
                 <td>{{product?.isApproved ? 'Approved' : 'Disapproved'}}</td>
+                <td>{{product?.feedback}}</td>
                 <!-- <td *ngIf="!product?.isApproved">{{product?.feedback ? product?.feedback : 'No feedback'}}</td> -->
 
                 <!-- <td>
