@@ -36,7 +36,7 @@ export class ProductSellingInfoComponent implements OnInit {
   addProductSellingInfo() {
     this.productService.addProductSellingInfo(this.addProductSellingInfoForm.value).subscribe(data => {
       console.log(data);
-      this.router.navigate(['/product/product-description', data['data']['_id']]);
+      this.router.navigate(['/product/product-variation', data['data']['_id']]);
     }, error => {
       console.log(error);
     })

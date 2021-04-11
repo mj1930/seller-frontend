@@ -102,7 +102,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let product of products; let i=index;">
+              <tr style="cursor: pointer" (click)="goToProdDescPage(product._id)" *ngFor="let product of products; let i=index;">
                 <td scope="row">
                   <input type="checkbox" style="cursor: pointer" />
                 </td>

@@ -28,15 +28,18 @@
       <div class="container-fluid">
         <h2>Search Results</h2>
         <hr />
-        <div class="row">
+        <!-- <div class="mb-4" *ngIf="!searchResult.length">
+          No Product found
+        </div> -->
+        <div class="row" *ngIf="searchResult.length">
             <div *ngFor="let product of searchResult" class="col-sm-4 col-md-3 col-lg-2 my-2">
               <div class="card px-2">
                 <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
                 <div class="card-body px-0">
                   <h5 class="card-title">{{product?.itemName}}</h5>
                   <p class="card-text">{{product?.description}}</p>
-                  <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                  <button href="#" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
+                  <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
+                  <button type="button" (click)="setProductValues(product)" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
                 </div>
               </div>
           </div>
@@ -49,7 +52,7 @@
         <h2>Add Products</h2>
         <hr />
         
-        <app-product-nav-tabs></app-product-nav-tabs>
+        <app-product-nav-tabs [productId]="productId"></app-product-nav-tabs>
         <form [formGroup]="addProductForm" class="border rounded border-light p-sm-5 p-3" (ngSubmit)="addProduct(addProductForm.valid)">
 
           <label for="" class="small">Item Name (AKA Title)</label>

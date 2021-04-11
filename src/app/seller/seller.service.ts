@@ -22,4 +22,12 @@ export class SellerService {
     return this.http.get('users/get-user-details');
   }
 
+  getOrder(req) {
+    return this.http.post('orders/list-orders', req);
+  }
+
+  updateStatus(reqBody) {
+    return this.http.post('orders/update-order', reqBody);
+  }
+
 }

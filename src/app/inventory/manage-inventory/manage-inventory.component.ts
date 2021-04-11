@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { ProductService } from '../../product/product.service';
 @Component({
@@ -12,7 +13,7 @@ export class ManageInventoryComponent implements OnInit {
   showSubMenu = false;
   userName = '';
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -31,5 +32,9 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
     }, error => {
       console.log(error);
     })
+  }
+
+  goToProdDescPage(id) {
+    this.router.navigate(['/inventory/product-description', id])
   }
 }

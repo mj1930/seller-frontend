@@ -43,4 +43,8 @@ export class ProductService {
   searchProduct(term) {
     return this.http.get(`products/search-products?term=${term}`);
   }
+
+  getProductDetails(id) {
+    return this.http.get(`products/get-product-details/${id}`);
+  }
 }

@@ -34,7 +34,9 @@ export class ProductDescriptionComponent implements OnInit {
   addProductDescription() {
     this.productService.addProductDescription(this.addProductDescriptionForm.value).subscribe(data => {
       console.log(data);
-      this.router.navigateByUrl('/inventory');
+      // this.router.navigate(['/product/product-selling-info', data['data']['_id']]);
+      this.router.navigate(['/product/product-images', data['data']['_id']]);
+
     }, error => {
       console.log(error);
     })

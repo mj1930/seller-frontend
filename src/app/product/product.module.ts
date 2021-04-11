@@ -13,10 +13,11 @@ import { ProductVariationComponent } from './product-variation/product-variation
 import { ProductSellingInfoComponent } from './product-selling-info/product-selling-info.component';
 import { ProductImagesComponent } from './product-images/product-images.component';
 import { ProductDescriptionComponent } from './product-description/product-description.component';
+import { ProductNavTabsComponent } from '../product/product-nav-tabs/product-nav-tabs.component';
 
 
 @NgModule({
-  declarations: [AddProductsComponent, ProductVariationComponent, ProductSellingInfoComponent, ProductImagesComponent, ProductDescriptionComponent],
+  declarations: [AddProductsComponent, ProductNavTabsComponent, ProductVariationComponent, ProductSellingInfoComponent, ProductImagesComponent, ProductDescriptionComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,

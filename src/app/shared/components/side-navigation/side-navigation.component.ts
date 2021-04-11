@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as $ from 'jquery';
 
 @Component({
@@ -11,11 +12,10 @@ export class SideNavigationComponent implements OnInit {
   userName: string;
   showSubMenu = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.userName = JSON.parse(localStorage.getItem('user')).name;
-    
   }
 
   closeSidebar() {
@@ -23,6 +23,11 @@ export class SideNavigationComponent implements OnInit {
     $("#show-sidebar").click(function () {
       $(".page-wrapper").addClass("toggled");
     });
-  }  
+  }
+
+  logout() {
+    sessionStorage.setItem('token', '');
+    this.router.navigateByUrl('/auth/login');
+  }
 
 }

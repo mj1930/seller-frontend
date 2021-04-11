@@ -16,47 +16,47 @@
             <h4>Product Description</h4>
             <hr>
             <div>
-                <p class="font-weight-bold m-0">Item Name (AKA Title): <span class="font-weight-light text-dark">Name of the Product</span></p>
+                <p class="font-weight-bold m-0">Item Name (AKA Title): <span class="font-weight-light text-dark">{{product?.itemName}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Barcode: <span class="font-weight-light text-dark">9856874461220</span></p>
+                <p class="font-weight-bold m-0">Barcode: <span class="font-weight-light text-dark">{{product?.barcode}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Country Of Origin: <span class="font-weight-light text-dark">India</span></p>
+                <p class="font-weight-bold m-0">Country Of Origin: <span class="font-weight-light text-dark">{{product?.countryOfOrigin}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">City: <span class="font-weight-light text-dark">New Delhi</span></p>
+                <p class="font-weight-bold m-0">City: <span class="font-weight-light text-dark">{{product?.city}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Manufacturer: <span class="font-weight-light text-dark">Sunrise City Industries</span></p>
+                <p class="font-weight-bold m-0">Manufacturer: <span class="font-weight-light text-dark">{{product?.brand}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Available Units: <span class="font-weight-light text-dark">48</span></p>
+                <p class="font-weight-bold m-0">Available Units: <span class="font-weight-light text-dark">{{product?.availableUnits || 'NA'}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Product Dimensions: <span class="font-weight-light text-dark">48x62x13 CM</span></p>
+                <p class="font-weight-bold m-0">Product Dimensions: <span class="font-weight-light text-dark">{{product?.dimensions}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Bullet Points: <span class="font-weight-light text-dark">Point 1, Point 2</span></p>
+                <p class="font-weight-bold m-0">Bullet Points: <span class="font-weight-light text-dark">NA</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Product Description: <span class="font-weight-light text-dark">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>
+                <p class="font-weight-bold m-0">Product Description: <span class="font-weight-light text-dark">{{product?.description}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Product Weight: <span class="font-weight-light text-dark">410 gm</span></p>
+                <p class="font-weight-bold m-0">Product Weight: <span class="font-weight-light text-dark">{{product?.weight}}</span></p>
             </div>
         </div>
 
-        <div class="border rounded border-light p-3 my-2">
+        <!-- <div class="border rounded border-light p-3 my-2">
             <h4>Product Images</h4>
             <hr>
             <div class="row d-flex justify-content-around">
@@ -65,29 +65,29 @@
                 <div class="col-md-4 col-sm-6 my-2"><img class="img-fluid" src="http://th03.deviantart.net/fs70/200H/f/2010/256/0/9/painting_of_nature_by_dhikagraph-d2ynalq.jpg" /></div>
                 <div class="col-md-4 col-sm-6 my-2"><img class="img-fluid" src="http://2.bp.blogspot.com/-H6MAoWN-UIE/TuRwLbHRSWI/AAAAAAAABBk/89iiEulVsyg/s400/Free%2BNature%2BPhoto.jpg" /></div>
             </div>
-        </div>
+        </div> -->
 
         <div class="border rounded border-light p-3 my-2">
             <h4>Product Selling Information</h4>
             <hr>
             <div>
-                <p class="font-weight-bold m-0">Your Price: <span class="font-weight-light text-dark">INR 1200</span></p>
+                <p class="font-weight-bold m-0">Your Price: <span class="font-weight-light text-dark">INR {{product?.productPrice}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Seller SKU: <span class="font-weight-light text-dark">Seller-SKU</span></p>
+                <p class="font-weight-bold m-0">Seller SKU: <span class="font-weight-light text-dark">NA</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Condition: <span class="font-weight-light text-dark">New</span></p>
+                <p class="font-weight-bold m-0">Condition: <span class="font-weight-light text-dark">NA</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">HSN Code: <span class="font-weight-light text-dark">HSN Code</span></p>
+                <p class="font-weight-bold m-0">HSN Code: <span class="font-weight-light text-dark">NA</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">MRP: <span class="font-weight-light text-dark">INR 2199</span></p>
+                <p class="font-weight-bold m-0">MRP: <span class="font-weight-light text-dark">INR {{product?.mrp}}</span></p>
             </div>
         </div>
 
@@ -95,18 +95,17 @@
             <h4>Product Variations</h4>
             <hr>
             <div>
-                <p class="font-weight-bold m-0">Color: <span class="font-weight-light text-dark">Red, Green, Blue, Pink, White</span></p>
+                <p class="font-weight-bold m-0">Color: <span class="font-weight-light text-dark">{{product?.color.join(',')}}</span></p>
             </div>
 
             <div>
-                <p class="font-weight-bold m-0">Size: <span class="font-weight-light text-dark">XS, S, M, L, Xl, XXL</span></p>
+                <p class="font-weight-bold m-0">Size: <span class="font-weight-light text-dark">{{product?.size.join(',')}}</span></p>
             </div>
         </div>
 
-        <div class="border rounded border-light p-3 my-2 d-flex justify-content-between">
-            <button class="btn btn-sm btn-dark">Edit Product Details</button>
-            <button class="btn btn-sm btn-danger">Delete Product</button>
-        </div>
+        <!-- <div class="border rounded border-light p-3 my-2 d-flex justify-content-between"> -->
+            <button class="btn btn-sm btn-dark mt-3" (click)="goToProductListingPage()">Cancel</button>
+        <!-- </div> -->
   
   
           <footer class="text-center">

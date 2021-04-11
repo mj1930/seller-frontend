@@ -63,14 +63,10 @@ export class ProductVariationComponent implements OnInit {
     }
     this.productService.addProductVariation(reqBody).subscribe(data => {
       console.log(data);
-      this.router.navigate(['/product/product-selling-info', data['data']['_id']]);
+      this.router.navigateByUrl('/inventory');
     }, error => {
       console.log(error);
     })
-  }
-
-  resetForm() {
-    
   }
 
 }

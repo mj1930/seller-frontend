@@ -33,6 +33,11 @@ export class AuthInterceptor implements HttpInterceptor {
             requestObject['responseType'] = 'blob';
         }
 
+        if(request.url.includes('products/add-product-images')) {
+            delete requestObject['setHeaders']['Content-Type'];
+            delete requestObject['setHeaders']['Accept']; 
+        }
+
         const authReq = request.clone(requestObject);
         return next.handle(authReq).pipe(
             catchError(this.handleError)

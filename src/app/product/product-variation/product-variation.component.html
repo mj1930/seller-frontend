@@ -7,6 +7,7 @@
     <div class="container-fluid">
       <h2>Product Variation</h2>
       <hr />
+      <app-product-nav-tabs [productId]="id"></app-product-nav-tabs>
       <form class="border rounded border-light p-sm-5 p-3" [formGroup]="addProductVariationForm"
         (ngSubmit)="addProductVariation()">
         <label for="" class="">Color</label>
