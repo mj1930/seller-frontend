@@ -6,6 +6,7 @@ import { ProductDescriptionComponent } from './product-description/product-descr
 
 const routes: Routes = [
   {path: '', component: ManageInventoryComponent, canActivate: [AuthGuardService]},
+  {path: 'product-description/:id', component: ProductDescriptionComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({

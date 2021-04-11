@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from '../shared/services/auth-guard/auth-guard.service';
+import { OrderListingComponent } from './order-listing/order-listing.component';
 import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller-active-dashboard.component';
 import { SellerBankDetailsComponent } from './seller-bank-details/seller-bank-details.component';
 import { SellerDashboardComponent } from './seller-dashboard/seller-dashboard.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'listing', component: SellerListingComponent, canActivate: [AuthGuardService]},
   {path: 'profile', component: SellerProfilePageComponent, canActivate: [AuthGuardService]},
   {path: 'product-listing', component: SellerProductListingComponent, canActivate: [AuthGuardService]},
+  {path: 'order-listing', component: OrderListingComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({

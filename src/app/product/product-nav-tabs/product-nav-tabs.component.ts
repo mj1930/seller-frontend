@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-nav-tabs',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-nav-tabs.component.css']
 })
 export class ProductNavTabsComponent implements OnInit {
+
+  @Input() productId;
 
   constructor() { }
 

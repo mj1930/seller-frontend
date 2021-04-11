@@ -20,6 +20,7 @@ export class AddProductsComponent implements OnInit {
   searchResult = [];
   searchText = "";
   showAddProductSection = false;
+  productId = '';
 
   constructor(private fb: FormBuilder,
     private productService: ProductService,
@@ -50,7 +51,7 @@ export class AddProductsComponent implements OnInit {
   getCategories() {
     let reqBody = {
       skip: 0,
-      limit: 100
+      limit: 10000
     };
     this.productService.getCategories(reqBody).subscribe(data => {
       console.log(data);
@@ -63,7 +64,7 @@ export class AddProductsComponent implements OnInit {
   getSubCategories() {
     let reqBody = {
       skip: 0,
-      limit: 100,
+      limit: 10000,
       categoryId: this.addProductForm.controls['categoryId'].value
     };
     this.productService.getSubCategories(reqBody).subscribe(data => {
@@ -79,7 +80,8 @@ export class AddProductsComponent implements OnInit {
     }
     this.productService.addProduct(this.addProductForm.value).subscribe(data => {
       console.log(data);
-      this.router.navigate(['/product/product-variation', data['data']['_id']]);
+      this.productId = data['data']['_id'];
+      this.router.navigate(['/product/product-description', data['data']['_id']]);
     }, error => {
       console.log(error);
     })
@@ -104,6 +106,20 @@ export class AddProductsComponent implements OnInit {
       console.log(error);
     });
   }
+  }
+
+  setProductValues(product) {
+    // this.addProductForm['controls'].barcode.setValue(product.barcode);
+    // this.addProductForm['controls'].itemName.setValue(product.itemName);
+    // this.addProductForm['controls'].city.setValue(product.city);
+    // this.addProductForm['controls'].countryOfOrigin.setValue(product.countryOfOrigin);
+    // this.addProductForm['controls'].brand.setValue(product.brand);
+    // this.addProductForm['controls'].availableUnits.setValue(product.availableUnits)
+    // this.addProductForm['controls'].dimensions.setValue(product.dimensions);
+    // this.addProductForm['controls'].weight.setValue(product.weight);
+    // this.addProductForm['controls'].categoryId.setValue(product.categoryId);
+    // this.addProductForm['controls'].subCategoryId.setValue(product.subCategoryId);
+    // this.showAddProductSection = true;
   }
 
 }

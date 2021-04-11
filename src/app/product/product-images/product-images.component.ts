@@ -33,9 +33,14 @@ export class ProductImagesComponent implements OnInit {
   }
 
   addProductImages() {
-    this.productService.addProductImages(this.files).subscribe(data => {
+    let formData =  new FormData();
+    Array.from(this.files).forEach(item => {
+      formData.append('productImage', item);
+    });
+    formData.append('id', this.id);
+    this.productService.addProductImages(formData).subscribe(data => {
       console.log(data);
-      this.router.navigate(['/product/product-description', data['data']['_id']]);
+      this.router.navigate(['/product/product-selling-info', data['data']['_id']]);
     }, error => {
       console.log(error);
     })
