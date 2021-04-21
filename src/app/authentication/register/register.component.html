@@ -15,15 +15,19 @@
                     <form #verifyMobileNumberForm="ngForm" class="text-left" (ngSubmit)="generateOtp(verifyMobileNumberForm.valid)">
                         <!-- Mobile Number -->
                         <label for="" class="m-0 small mt-3">Enter mobile number below</label>
-                        <input name="mobile" type="text" id="defaultSignupFormEmail" [(ngModel)]="mobile" class="form-control" placeholder="Enter 10 digit mobile number" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="10" autocomplete="off" required>
+                        <input name="mobile" type="text" id="defaultSignupFormEmail" [(ngModel)]="mobile" class="form-control" placeholder="Enter 10 digit mobile number" oninput="this.value=this.value.replace(/[^\d]/,'')"
+                         maxlength="10" minlength="10" autocomplete="off" required>
                         <p *ngIf="verifyMobileNumberForm.submitted && !mobile" class="deep-orange-text small m-0">
                             Please provide a mobile number!
                         </p>
+                       <p *ngIf="verifyMobileNumberForm.submitted && verifyMobileNumberForm.invalid" class="deep-orange-text small m-0">
+                            Please enter upto                                                                                                                                                                                                                                                                                                                                                                                            10 digits
+                       </p>
+                        <!-- <p *ngIf="verifyMobileNumberForm.submitted && mobile.minLength">MINLENGTH</p> -->
                         <!-- <p class="m-0 small mt-3">We'll send you verification code on this number</p> -->
 
                         <!-- Generate OTP -->
                         <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Generate OTP</button>
-
                     </form>
 
                     <form class="text-left" action="#!" *ngIf="registerSteps.step2">

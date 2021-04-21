@@ -1,132 +1,229 @@
 <div class="page-wrapper chiller-theme toggled">
   <app-side-navigation></app-side-navigation>
-    <!-- sidebar-wrapper  -->
-    <section class="page-content">
-      <div class="container-fluid">
-        <h2>Find Your Products</h2>
-        <hr />
+  <!-- sidebar-wrapper  -->
+  <section class="page-content">
+    <div class="container-fluid">
+      <h2>Find Your Products</h2>
+      <hr />
 
-        
-        <form class="border rounded border-light p-sm-5 p-3">
-          <label for="" class="">Search Product</label>
-          <div class="input-group">
-            <input type="text" name="search" (keyup)="searchProduct()" [(ngModel)]="searchText" class="form-control" placeholder="Product Name, Barcode, Brand, CIN (Company Identification Number)">
-            <div class="input-group-append">
-              <button class="btn btn-secondary" (click)="searchProduct()"  type="button">
-                <i class="fa fa-search"></i>
+      <form class="border rounded border-light p-sm-5 p-3">
+        <label for="" class="">Search Product</label>
+        <div class="input-group">
+          <input
+            type="text"
+            name="search"
+            (keyup)="searchProduct()"
+            [(ngModel)]="searchText"
+            class="form-control"
+            placeholder="Product Name, Barcode, Brand, CIN (Company Identification Number)"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary"
+              (click)="searchProduct()"
+              type="button"
+            >
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <!-- <button type="button" class="mt-2 btn mb-4 btn-sm btn-dark" (click)="showAddProductSection = !showAddProductSection">I'm adding a product not sold here</button> -->
+
+        <a
+          class="text-primary"
+          (click)="showAddProductSection = !showAddProductSection"
+          >I'm adding a product not sold here</a
+        >
+      </form>
+    </div>
+  </section>
+
+  <section class="page-content" *ngIf="searchResult.length">
+    <div class="container-fluid">
+      <h2>Search Results</h2>
+      <hr />
+      <!-- <div class="mb-4" *ngIf="!searchResult.length">
+          No Product found
+        </div> -->
+      <div class="row" *ngIf="searchResult.length">
+        <div
+          *ngFor="let product of searchResult"
+          class="col-sm-4 col-md-3 col-lg-2 my-2"
+        >
+          <div class="card px-2">
+            <img
+              src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg"
+              class="card-img-top"
+              style="height: 150px;"
+            />
+            <div class="card-body px-0">
+              <h5 class="card-title">{{ product?.itemName }}</h5>
+              <p class="card-text">{{ product?.description }}</p>
+              <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
+              <button
+                type="button"
+                (click)="setProductValues(product)"
+                class="btn btn-success btn-sm mx-2"
+              >
+                <i class="fa fa-check" aria-hidden="true"></i>
               </button>
             </div>
           </div>
-        <!-- <button type="button" class="mt-2 btn mb-4 btn-sm btn-dark" (click)="showAddProductSection = !showAddProductSection">I'm adding a product not sold here</button> -->
-
-          <a class="text-primary" (click)="showAddProductSection = !showAddProductSection">I'm adding a product not sold here</a>
-        </form>
-      </div>
-    </section>
-
-    <section class="page-content" *ngIf="searchResult.length">
-      <div class="container-fluid">
-        <h2>Search Results</h2>
-        <hr />
-        <!-- <div class="mb-4" *ngIf="!searchResult.length">
-          No Product found
-        </div> -->
-        <div class="row" *ngIf="searchResult.length">
-            <div *ngFor="let product of searchResult" class="col-sm-4 col-md-3 col-lg-2 my-2">
-              <div class="card px-2">
-                <img src="https://rukminim1.flixcart.com/image/150/150/k0cqqvk0/bottle/4/v/c/1000-venice-fridge-water-bottles-120-cello-original-imafk5tysrejtyhj.jpeg" class="card-img-top" style="height: 150px;">
-                <div class="card-body px-0">
-                  <h5 class="card-title">{{product?.itemName}}</h5>
-                  <p class="card-text">{{product?.description}}</p>
-                  <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
-                  <button type="button" (click)="setProductValues(product)" class="btn btn-success btn-sm mx-2"><i class="fa fa-check" aria-hidden="true"></i></button>
-                </div>
-              </div>
-          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <main class="page-content" >
-      <div class="container-fluid" *ngIf="showAddProductSection">
-        <h2>Add Products</h2>
-        <hr />
-        
-        <app-product-nav-tabs [productId]="productId"></app-product-nav-tabs>
-        <form [formGroup]="addProductForm" class="border rounded border-light p-sm-5 p-3" (ngSubmit)="addProduct(addProductForm.valid)">
+  <main class="page-content">
+    <div class="container-fluid" *ngIf="showAddProductSection">
+      <h2>Add Products</h2>
+      <hr />
 
-          <label for="" class="small">Item Name (AKA Title)</label>
-          <input type="text" class="form-control mb-4" placeholder="Item Name" formControlName="itemName">
+      <app-product-nav-tabs [productId]="productId"></app-product-nav-tabs>
+      <form
+        [formGroup]="addProductForm"
+        class="border rounded border-light p-sm-5 p-3"
+        (ngSubmit)="addProduct(addProductForm.valid)"
+      >
+        <label for="" class="small">Item Name (AKA Title)</label>
+        <input
+          type="text"
+          class="form-control mb-4"
+          placeholder="Item Name"
+          formControlName="itemName"
+        />
 
-          <label for="" class="small">Barcode</label>
-          <input type="text" class="form-control mb-4" placeholder="Barcode" formControlName="barcode">
-            
-          <label for="" class="small">Country Of Origin</label>
-          <input type="text" class="form-control mb-4" placeholder="India" formControlName="countryOfOrigin">
+        <label for="" class="small">Barcode</label>
+        <input
+          type="text"
+          class="form-control mb-4"
+          placeholder="Barcode"
+          formControlName="barcode"
+        />
 
-          <label for="" class="small">City</label>
-          <input type="text" class="form-control mb-4" placeholder="City" formControlName="city">
-          
-          <label for="" class="small">Manufacturer</label>
-          <input type="text" class="form-control mb-4" placeholder="Manufacturer" formControlName="brand">
-          
-          <label for="" class="small">Available Units</label>
-          <input type="" class="form-control mb-4" placeholder="Available Units" formControlName="availableUnits">
-          
-          
-          <label for="" class="small">Product Dimensions</label>
-          <div class="row d-flex justify-content-between col-12" formGroupName="dimensions">
-              <input type="text" class="form-control mb-4 col-md-4" placeholder="Length" formControlName="length">
-              <input type="text" class="form-control mb-4 col-md-4" placeholder="Width" formControlName="width">
-              <input type="text" class="form-control mb-4 col-md-4" placeholder="Height" formControlName="height">
-          </div>            
-          <label for="" class="small">Product Weight</label>
-          <input type="text" class="form-control mb-4" placeholder="180 gm" formControlName="weight">
+        <label for="" class="small">Country Of Origin</label>
+        <input
+          type="text"
+          class="form-control mb-4"
+          placeholder="India"
+          formControlName="countryOfOrigin"
+        />
 
-          <label for="" class="small">Category</label>
-          <select name="" id="" class="form-control mb-4" formControlName="categoryId" (change)="getSubCategories()">
-              <option value="">Select Category</option>
-              <option *ngFor="let category of categories" value="{{category._id}}">{{category?.categoryName}}</option>
-          </select>
-          <label for="" class="small">Sub-Category</label>
-          <select name="" id="" class="form-control mb-4" formControlName="subCategoryId">
-              <option value="">Select Sub-Category</option>
-              <option *ngFor="let subCategory of subCategories" value="{{subCategory._id}}">{{subCategory?.subCategoryName}}</option>
-          </select>
-          
+        <label for="" class="small">City</label>
+        <input
+          type="text"
+          class="form-control mb-4"
+          placeholder="City"
+          formControlName="city"
+        />
 
-          <div class="">
-              <button class="btn btn-dark mr-2" (click)="resetForm()" type="button">Cancel</button>
-              <button class="btn btn-info" type="submit">Save and Finish</button>
-          </div>
-            
+        <label for="" class="small">Manufacturer</label>
+        <input
+          type="text"
+          class="form-control mb-4"
+          placeholder="Manufacturer"
+          formControlName="brand"
+        />
 
+        <label for="" class="small">Available Units</label>
+        <input
+          type=""
+          class="form-control mb-4"
+          placeholder="Available Units"
+          formControlName="availableUnits"
+        />
 
-        </form>
+        <label for="" class="small">Product Dimensions</label>
+        <div
+          class="row d-flex justify-content-between col-12"
+          formGroupName="dimensions"
+        >
+          <input
+            type="text"
+            class="form-control mb-4 col-md-4"
+            placeholder="Length"
+            formControlName="length"
+          />
+          <input
+            type="text"
+            class="form-control mb-4 col-md-4"
+            placeholder="Width"
+            formControlName="width"
+          />
+          <input
+            type="text"
+            class="form-control mb-4 col-md-4"
+            placeholder="Height"
+            formControlName="height"
+          />
+        </div>
+        <label for="" class="small">Product Weight</label>
+        <input
+          type="text"
+          class="form-control mb-4"
+          placeholder="180 gm"
+          formControlName="weight"
+        />
 
+        <label for="" class="small">Category</label>
+        <select
+          name=""
+          id=""
+          class="form-control mb-4"
+          formControlName="categoryId"
+          (change)="getSubCategories()"
+        >
+          <option value="">Select Category</option>
+          <option
+            *ngFor="let category of categories"
+            value="{{ category._id }}"
+            >{{ category?.categoryName }}</option
+          >
+        </select>
+        <label for="" class="small">Sub-Category</label>
+        <select
+          name=""
+          id=""
+          class="form-control mb-4"
+          formControlName="subCategoryId"
+        >
+          <option value="">Select Sub-Category</option>
+          <option
+            *ngFor="let subCategory of subCategories"
+            value="{{ subCategory._id }}"
+            >{{ subCategory?.subCategoryName }}</option
+          >
+        </select>
 
-        <footer class="text-center">
-          <div class="mb-2">
-            <small>
-              © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
-              Rights Reserved
-            </small>
-          </div>
-        </footer>
-      </div>
-    </main>
-    <!-- page-content" -->
-  </div>
-  <!-- page-wrapper -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"
-  ></script>
-  
+        <div class="">
+          <button class="btn btn-dark mr-2" (click)="resetForm()" type="button">
+            Cancel
+          </button>
+          <button class="btn btn-info" type="submit">Save and Finish</button>
+        </div>
+      </form>
+
+      <footer class="text-center">
+        <div class="mb-2">
+          <small>
+            © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+            Rights Reserved
+          </small>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"
+></script>
