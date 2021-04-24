@@ -73,7 +73,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(reqData).subscribe(
       (data: any) => {
         console.log(data);
-        if (data.code === 200) {
+        if (data.code === 400) {
           this.toastService.openSnackbar(data.message);
         } else {
           this.router.navigateByUrl("/auth/login");
