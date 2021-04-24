@@ -49,19 +49,20 @@ export class ProductImagesComponent implements OnInit {
       formData.append("productImage", item);
     });
     formData.append("id", this.id);
-    this.productService.addProductImages(formData).subscribe(
-      data => {
-        console.log(data);
-        this.toastService.openSnackbar("Product image added successfully!!");
-        this.router.navigate([
-          "/product/product-selling-info",
-          data["data"]["_id"]
-        ]);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    // if (formData['productImage']) {
+      this.productService.addProductImages(formData).subscribe(
+        data => {
+          this.toastService.openSnackbar("Product image added successfully!!");
+          this.router.navigate([
+            "/product/product-selling-info",
+            data["data"]["_id"]
+          ]);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    // }
   }
 
   resetForm() {
