@@ -21,7 +21,7 @@
                             Please provide a mobile number!
                         </p>
                        <p *ngIf="verifyMobileNumberForm.submitted && verifyMobileNumberForm.invalid" class="deep-orange-text small m-0">
-                            Please enter upto                                                                                                                                                                                                                                                                                                                                                                                            10 digits
+                            Please enter upto 10 digits
                        </p>
                         <!-- <p *ngIf="verifyMobileNumberForm.submitted && mobile.minLength">MINLENGTH</p> -->
                         <!-- <p class="m-0 small mt-3">We'll send you verification code on this number</p> -->
@@ -69,7 +69,18 @@
                         </p>
                         <!-- Password -->
                         <label for="" class="m-0 small mt-3">Password</label>
-                        <input type="password" formControlName="password" id="defaultSignupFormPassword" class="form-control" placeholder="Password">
+                        <span style="display:flex">
+                                <input type="password" 
+                                formControlName="password" 
+                                id="defaultSignupFormPassword" 
+                                class="form-control" 
+                                placeholder="Password"
+                                [type]="password">
+                                <button class="btn border" (click)="togglePassword()" type="button"> 
+                                    <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+                                    <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+                                </button>
+                        </span>
                         <p *ngIf="!registerForm.get('password').valid && submitFormAttempt && registerForm.get('password').hasError('required')" class="deep-orange-text small m-0">
                             Please provide a password!
                         </p>
@@ -77,9 +88,19 @@
                             Please provide a password with atleast 6 characters!
                         </p>
                         <!-- Repeat Password -->
-                        <label for="" class="m-0 small mt-3">Repeat Password</label>
-                        <input type="password" formControlName="confirmPassword" id="defaultSignupFormPassword" class="form-control" placeholder="Repeat Password">
-                        <p class="m-0 small">Passwords must be at least 6 characters.</p>
+                        <label for="" class="m-0 small mt-3">Confirm Password</label>
+                        <span style="display: flex">
+                        <input type="password"
+                         formControlName="confirmPassword" 
+                         id="defaultSignupFormPassword" 
+                         class="form-control" 
+                         placeholder="Confirm Password"
+                         [type]="cfPassword">
+                                <button class="btn border" (click)="toggelConfirmPassword()" type="button"> 
+                                        <i class="fa fa-eye" aria-hidden="true" *ngIf="!cpShow"></i>
+                                        <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="cpShow"></i>
+                                    </button>
+                        </span>
                         <p *ngIf="!registerForm.get('confirmPassword').valid && submitFormAttempt && registerForm.get('confirmPassword').hasError('required')" class="deep-orange-text small m-0">
                             Please provide a confirm password!
                         </p>
