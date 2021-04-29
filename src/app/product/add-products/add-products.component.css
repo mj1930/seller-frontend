@@ -1,3 +1,15 @@
 .active {
     /* background-color: red; */
 }
+.text-light th{ color: #fff !important;}
+.upload_frame 
+{ width:180px; border:4px dotted #ddd; margin:0 auto;}		
+#wizard>ul{ padding: 0px;}
+#wizard>ul>li
+{width: 170px;display: inline-block;font-size: inherit;background: #f2f2f2;padding: 6px 15px;text-align: left;margin-right: 10px; margin-bottom: 10px; border-radius: 3px; color:#aaa; font-weight: 100;}
+#wizard>ul>li:hover{cursor: pointer;}
+
+#wizard>ul>li.active{ background: #007bff; color: #fff;}
+/* ul.table{ border: 0px solid; padding: 10px 12px; list-style: none;}
+ul.table>li.header>div{background: #ccc; color: #fff;}
+ul.table>li>div{width: 500px;border-bottom: 1px solid #ccc;} */

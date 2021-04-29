@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from '@angular/common'; 
 import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -24,6 +25,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
