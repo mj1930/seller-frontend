@@ -5,9 +5,6 @@
     <div class="container-fluid">
       <h2>Find Your Products</h2>
       <hr />
-      <h1 *ngIf ="true"> Hello</h1>
-      <div *ngIf ="false"> Hello1</div>
-
       <form class="border rounded border-light p-sm-5 p-3">
         <label for="" class="">Search Product</label>
         <div class="input-group">
@@ -54,7 +51,8 @@
     </div>
   </section>
 
-  <main class="page-content">
+  <main class="page-content" *ngIf="showAddProductSection">
+    
     <div class="row">
       <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '10px' }"></ngx-loading> -->
       <div class="col-md-12 grid-margin stretch-card">
@@ -187,8 +185,6 @@
                   </div>
 
                   <button class="btn mb-4 btn-sm btn-dark" (click)="addSize()" type="button">Add Size</button>
-
-
               </section>
 
 
