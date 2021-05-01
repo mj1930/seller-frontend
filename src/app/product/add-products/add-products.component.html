@@ -60,11 +60,11 @@
           <div class="card-body">
             <div id="wizard">
               <ul class="row">
-                <li [ngClass]="step==0?'active':''" disabled="true" (click)="step = 0">Product Information</li>
-                <li [ngClass]="step==1?'active':''" disabled="true" (click)="step = 1">Description</li>
-                <li [ngClass]="step==2?'active':''" disabled="true" (click)="step = 2">Images</li>
-                <li [ngClass]="step==3?'active':''" disabled="true" (click)="step = 3">Selling Info</li>
-                <li [ngClass]="step==4?'active':''" disabled="true" (click)="step = 4">Product Variations</li>
+                <li [ngClass]="step==0?'active':''" disabled="true">Product Information</li>
+                <li [ngClass]="step==1?'active':''" disabled="true">Description</li>
+                <li [ngClass]="step==2?'active':''" disabled="true">Images</li>
+                <li [ngClass]="step==3?'active':''" disabled="true">Selling Info</li>
+                <li [ngClass]="step==4?'active':''" disabled="true">Product Variations</li>
                 <!-- <li [ngClass]="step==4?'active':''" disabled="true">5. Fifth Step</li> -->
               </ul>
               <!-- <form [formGroup]="addProductForm"> -->
@@ -74,12 +74,20 @@
                   <input type="text" class="form-control mb-4" placeholder="Item Name" formControlName="itemName" 
                   [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.itemName?.errors}"/>
 
+                  <label for="" class="small">Model Number</label>
+                  <input type="text" class="form-control mb-4" placeholder="Model Name" formControlName="model" 
+                  [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.model?.errors}"/>
+
                   <label for="" class="small">Barcode</label>
                   <input type="text" class="form-control mb-4" placeholder="Barcode" formControlName="barcode" 
                   [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.barcode?.errors}"/>
 
+                  <label for="" class="small">HSN Number</label>
+                  <input type="text" class="form-control mb-4" placeholder="HSN Number" formControlName="hsn" 
+                  [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.hsn?.errors}"/>
+
                   <label for="" class="small">Country Of Origin</label>
-                  <input type="text" class="form-control mb-4" placeholder="India" formControlName="countryOfOrigin" 
+                  <input type="text" class="form-control mb-4" placeholder="" formControlName="countryOfOrigin" 
                   [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.countryOfOrigin?.errors}"/>
 
                   <label for="" class="small">City</label>
@@ -94,7 +102,7 @@
                   <input type="" class="form-control mb-4" placeholder="Available Units"
                     formControlName="availableUnits" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.availableUnits?.errors}"/>
 
-                  <label for="" class="small">Product Dimensions</label>
+                  <label for="" class="small">Product Dimensions(inch/cm)</label>
                   <div class="row d-flex justify-content-between col-12" formGroupName="dimensions">
                     <input type="text" class="form-control mb-4 col-md-4" placeholder="Length"
                       formControlName="length" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.dimensions?.controls?.length?.errors}"/>
@@ -102,7 +110,7 @@
                     <input type="text" class="form-control mb-4 col-md-4" placeholder="Height"
                       formControlName="height" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.dimensions?.controls?.height?.errors}"/>
                   </div>
-                  <label for="" class="small">Product Weight</label>
+                  <label for="" class="small">Product Weight(inch/gm)</label>
                   <input type="text" class="form-control mb-4" placeholder="180 gm" formControlName="weight" 
                   [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.weight?.errors}"/>
 

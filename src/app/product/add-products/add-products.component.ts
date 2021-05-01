@@ -56,6 +56,8 @@ export class AddProductsComponent implements OnInit {
     this.productInformationForm = this.fb.group({
       barcode: ['', Validators.required],
       itemName: ['', Validators.required],
+      model: ['', Validators.required],
+      hsn: ['', Validators.required],
       city: ['', Validators.required],
       countryOfOrigin: ['', Validators.required],
       brand: ['', Validators.required],
@@ -133,17 +135,39 @@ export class AddProductsComponent implements OnInit {
     if (!this.productVariationForm.valid) {
       return;
     }
-    const formGroupValues = Object.assign(this.productDescriptionForm.value, this.productInformationForm.value,
+    let formGroupValues = Object.assign(this.productDescriptionForm.value, this.productInformationForm.value,
     this.productVariationForm.value, this.sellingInfoForm.value)
     // formGroupValues.productImg = this.imageAttachemts;
+    let colours = [];
+    let sizes = [];
+    formGroupValues.color.forEach(element => {
+      colours.push(element.color);
+    });
+    formGroupValues.color = colours;
+    formGroupValues.size.forEach(element => {
+      sizes.push(element.size);
+    });
+    formGroupValues.size = sizes;
+    formGroupValues.productPrice = formGroupValues.productPrice.toString();
+    formGroupValues.mrp = formGroupValues.mrp.toString();
+    formGroupValues.availableUnits = Number(formGroupValues.availableUnits)
     this.productService.addProduct(formGroupValues).subscribe(
       data => {
         this.toastService.openSnackbar("Product added succeefully!!");
         this.productId = data["data"]["_id"];
-        this.router.navigate([
-          "/product/product-description",
-          data["data"]["_id"]
-        ]);
+        this.showAddProductSection = false;
+        this.step = 0;
+        this.productInformationForm.reset();
+        this.productDescriptionForm.reset();
+        this.imageAttachemts = [];
+        this.sellingInfoForm.reset();
+        this.productVariationForm.reset();
+        this.isProductInformationFormSubmitted = false;
+        this.isProductDescriptionFormSubmitted = false;
+        this.isSellingInfoFormSubmitted = false;
+        this.isproductVariationFormSubmitted = false;
+        this.isFormSubmitted = false;
+        this.isImageUploadFormSubmitted = false;
       },
       error => {
         console.log(error);
@@ -280,7 +304,7 @@ export class AddProductsComponent implements OnInit {
       );
   }
   addColor() {
-    this.colors = this.productVariationForm.get("colors") as FormArray;
+    this.colors = this.productVariationForm.get("color") as FormArray;
     this.colors.push(
       this.fb.group({
         color: ['', Validators.required]
@@ -289,7 +313,7 @@ export class AddProductsComponent implements OnInit {
   }
 
   addSize() {
-    this.sizes = this.productVariationForm.get("sizes") as FormArray;
+    this.sizes = this.productVariationForm.get("size") as FormArray;
     this.sizes.push(
       this.fb.group({
         size: ['', Validators.required]

@@ -15,7 +15,7 @@ export class ToastService {
     const verticalPosition: MatSnackBarVerticalPosition = "top";
 
     this.matSnackbar.open(msg, "End Now", {
-      duration: 1000,
+      duration: 5000,
       horizontalPosition: horizontalPosition,
       verticalPosition: verticalPosition
     });
