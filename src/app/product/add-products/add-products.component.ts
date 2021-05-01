@@ -33,7 +33,18 @@ export class AddProductsComponent implements OnInit {
 
   colors: FormArray;
   sizes: FormArray;
-
+  productVariationForm: FormGroup;
+  sellingInfoForm: FormGroup;
+  productDescriptionForm: FormGroup;
+  productInformationForm: FormGroup;
+  
+  isProductInformationFormSubmitted = false;
+  isProductDescriptionFormSubmitted = false;
+  isSellingInfoFormSubmitted = false;
+  isproductVariationFormSubmitted = false;
+  isFormSubmitted = false;
+  isImageUploadFormSubmitted = false;
+  imageAttachemts = [];
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
@@ -42,27 +53,43 @@ export class AddProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.addProductForm = this.fb.group({
-      barcode: [],
-      itemName: [],
-      city: [],
-      countryOfOrigin: [],
-      brand: [],
-      availableUnits: [],
+    this.productInformationForm = this.fb.group({
+      barcode: ['', Validators.required],
+      itemName: ['', Validators.required],
+      city: ['', Validators.required],
+      countryOfOrigin: ['', Validators.required],
+      brand: ['', Validators.required],
+      availableUnits: ['', Validators.required],
       dimensions: this.fb.group({
-        length: "",
-        width: "",
-        height: ""
+        length: ['', Validators.required],
+        width: ['', Validators.required],
+        height: ['', Validators.required],
       }),
-      weight: [],
-      categoryId: [],
-      subCategoryId: [],
-      description: [],
-      heading: [],
-      productPrice: [],
-      mrp: [],
-      color: [],
-      size: [],
+      weight: ['', Validators.required],
+      categoryId: ['', Validators.required],
+      subCategoryId: ['', Validators.required]
+    })
+    this.productDescriptionForm = this.fb.group({
+      description: ['', Validators.required],
+      heading: ['', Validators.required],
+    });
+    this.sellingInfoForm = this.fb.group({
+      productPrice: ['', Validators.required],
+      mrp: ['', Validators.required],
+    });
+    this.productVariationForm = this.fb.group({
+      // color: ['', Validators.required],
+      // size: ['', Validators.required],
+      color: this.fb.array([
+        this.fb.group({
+          color: ['', Validators.required]
+        })
+      ]),
+      size: this.fb.array([
+        this.fb.group({
+          size: ['', Validators.required]
+        })
+      ])
     });
     this.userName = JSON.parse(localStorage.getItem("user")).name;
     this.getCategories();
@@ -89,7 +116,7 @@ export class AddProductsComponent implements OnInit {
     let reqBody = {
       skip: 0,
       limit: 10000,
-      categoryId: this.addProductForm.controls["categoryId"].value
+      categoryId: this.productInformationForm.controls["categoryId"].value
     };
     this.productService.getSubCategories(reqBody).subscribe(
       data => {
@@ -101,11 +128,15 @@ export class AddProductsComponent implements OnInit {
     );
   }
 
-  addProduct(valid) {
-    if (!valid) {
+  addProduct() {
+    this.isFormSubmitted = true;
+    if (!this.productVariationForm.valid) {
       return;
     }
-    this.productService.addProduct(this.x).subscribe(
+    const formGroupValues = Object.assign(this.productDescriptionForm.value, this.productInformationForm.value,
+    this.productVariationForm.value, this.sellingInfoForm.value)
+    // formGroupValues.productImg = this.imageAttachemts;
+    this.productService.addProduct(formGroupValues).subscribe(
       data => {
         this.toastService.openSnackbar("Product added succeefully!!");
         this.productId = data["data"]["_id"];
@@ -163,15 +194,31 @@ export class AddProductsComponent implements OnInit {
 
   
   uploadFiles(event) {
+    if(this.imageAttachemts.length < 5) {
     this.files = event.target.files;
     this.tempFiles = event.target.files[0];
-    let reader = new FileReader();
-    if (event.target.files && event.target.files[0]) {
-      reader.readAsDataURL(this.tempFiles);
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-      };
+    const fileName = event.target.files[0].name;
+    const fileFormat = fileName.slice(fileName.lastIndexOf('.') + 1, fileName.length);
+    if (fileFormat == 'jpg' || fileFormat == 'jpeg' || fileFormat == 'png') {
+      if (this.tempFiles && this.tempFiles.size / 1000 / 1000 < 2) {
+        let reader = new FileReader();
+        if (event.target.files && event.target.files[0]) {
+          reader.readAsDataURL(this.tempFiles);
+          reader.onload = () => {
+            this.imageUrl = reader.result;
+            this.imageAttachemts.push(this.imageUrl);
+          };
+        }
+        console.log(this.imageAttachemts);
+      } else {
+        this.toastService.openSnackbar('Invalid File Format. Valid Format are jpg, jpeg & png');
+      }
+    } else {
+      this.toastService.openSnackbar(this.tempFiles.name + ' cannot be uploaded because it exceeds max size limit of 2 MB.');
     }
+  } else {
+    this.toastService.openSnackbar('More than 5 images are not allowed.');
+  }
   }
 
   addProductDescription() {
@@ -233,20 +280,44 @@ export class AddProductsComponent implements OnInit {
       );
   }
   addColor() {
-    this.colors = this.x.get("colors") as FormArray;
+    this.colors = this.productVariationForm.get("colors") as FormArray;
     this.colors.push(
       this.fb.group({
-        color: ""
+        color: ['', Validators.required]
       })
     );
   }
 
   addSize() {
-    this.sizes = this.x.get("sizes") as FormArray;
+    this.sizes = this.productVariationForm.get("sizes") as FormArray;
     this.sizes.push(
       this.fb.group({
-        size: ""
+        size: ['', Validators.required]
       })
     );
+  }
+
+  moveToNextStep(step) {
+    console.log(this.productInformationForm.controls.dimensions);
+    if (step == 0) {
+      this.isProductInformationFormSubmitted = true;
+      if (this.productInformationForm.valid)
+        this.step = step + 1;
+    }
+    if (step == 1) {
+      this.isProductDescriptionFormSubmitted = true;
+      if (this.productDescriptionForm.valid)
+        this.step = step + 1;
+    }
+    if (step == 2) {
+      this.isImageUploadFormSubmitted = true;
+      if (this.imageAttachemts.length)
+        this.step = step + 1;
+    }
+    if (step == 3) {
+      this.isSellingInfoFormSubmitted = true;
+      if (this.sellingInfoForm.valid)
+        this.step = step + 1;
+    }
   }
 }

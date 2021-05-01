@@ -9,7 +9,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   addProduct(req) {
-    return this.http.post('products/add-product-info', req);
+    return this.http.post('products/v2/add-product', req);
   }
 
   addProductVariation(req) {

@@ -13,3 +13,22 @@
 /* ul.table{ border: 0px solid; padding: 10px 12px; list-style: none;}
 ul.table>li.header>div{background: #ccc; color: #fff;}
 ul.table>li>div{width: 500px;border-bottom: 1px solid #ccc;} */
+
+.form-controlError {
+    border: 1px solid red !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.erroMessage {
+    color: red;
+}
