@@ -5,6 +5,8 @@
       <div class="container-fluid">
         <h2>Profile</h2>
         <hr />
+
+        
         <div [ngClass]="mailVerified ? 'bg-success' : sentMail ? 'bg-info' : 'bg-danger'" class="rounded">
           <p class="py-2 px-3 text-white d-flex align-items-center justify-content-between">
             <span class="m-0 p-0" *ngIf="!sentMail && !mailVerified">
@@ -23,6 +25,24 @@
   
             </button>
           </p>
+        </div>
+
+        <div class="row text-center">
+          <div class="col my-3">
+            <img class="rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" width="100px">
+            <div class="row">
+              <div class="col">
+                <div class="custom-file mx-auto col-md-3 my-2 input-group">
+                  <input type="file" class="custom-file-input" id="customFile" accept="image/x-png,image/gif,image/jpeg">
+                  <label class="custom-file-label text-left" for="customFile">Choose Image</label>
+                  <button class="btn btn-dark btn-sm my-2">Upload Image</button>
+                </div>
+              </div>
+              
+              
+            </div>
+            
+          </div>
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-xl-3 col-lg-4 my-2">
