@@ -45,6 +45,7 @@ export class AddProductsComponent implements OnInit {
   isFormSubmitted = false;
   isImageUploadFormSubmitted = false;
   imageAttachemts = [];
+  productData: any = {};
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
@@ -56,7 +57,7 @@ export class AddProductsComponent implements OnInit {
     this.productInformationForm = this.fb.group({
       barcode: ['', Validators.required],
       itemName: ['', Validators.required],
-      model: ['', Validators.required],
+      model: [''],
       hsn: ['', Validators.required],
       city: ['', Validators.required],
       countryOfOrigin: ['', Validators.required],
@@ -72,29 +73,33 @@ export class AddProductsComponent implements OnInit {
       subCategoryId: ['', Validators.required]
     })
     this.productDescriptionForm = this.fb.group({
-      description: ['', Validators.required],
-      heading: ['', Validators.required],
+      description: [''],
+      heading: [''],
     });
     this.sellingInfoForm = this.fb.group({
-      productPrice: ['', Validators.required],
-      mrp: ['', Validators.required],
+      productPrice: [''],
+      mrp: [''],
     });
     this.productVariationForm = this.fb.group({
       // color: ['', Validators.required],
       // size: ['', Validators.required],
       color: this.fb.array([
         this.fb.group({
-          color: ['', Validators.required]
+          color: ['']
         })
       ]),
       size: this.fb.array([
         this.fb.group({
-          size: ['', Validators.required]
+          size: ['']
         })
       ])
     });
-    this.userName = JSON.parse(localStorage.getItem("user")).name;
     this.getCategories();
+    this.userName = JSON.parse(localStorage.getItem("user")).name;
+    let productData: any = localStorage.getItem('product') ? JSON.parse(localStorage.getItem('product')) : {};
+    if (productData && Object.keys(productData).length) {
+      this.setProductValues(productData);
+    }
   }
 
   getCategories() {
@@ -104,9 +109,7 @@ export class AddProductsComponent implements OnInit {
     };
     this.productService.getCategories(reqBody).subscribe(
       data => {
-        console.log(data);
         this.categories = data["data"];
-        console.log(this.categories);
       },
       error => {
         console.log(error);
@@ -137,7 +140,7 @@ export class AddProductsComponent implements OnInit {
     }
     let formGroupValues = Object.assign(this.productDescriptionForm.value, this.productInformationForm.value,
     this.productVariationForm.value, this.sellingInfoForm.value)
-    // formGroupValues.productImg = this.imageAttachemts;
+    formGroupValues.productImage = this.imageAttachemts;
     let colours = [];
     let sizes = [];
     formGroupValues.color.forEach(element => {
@@ -231,8 +234,6 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
-
-  
   uploadFiles(event) {
     if(this.imageAttachemts.length < 5) {
     this.files = event.target.files;
@@ -320,6 +321,7 @@ export class AddProductsComponent implements OnInit {
         }
       );
   }
+
   addColor() {
     this.colors = this.productVariationForm.get("color") as FormArray;
     this.colors.push(
@@ -352,7 +354,7 @@ export class AddProductsComponent implements OnInit {
     }
     if (step == 2) {
       this.isImageUploadFormSubmitted = true;
-      if (this.imageAttachemts.length)
+      // if (this.imageAttachemts.length)
         this.step = step + 1;
     }
     if (step == 3) {

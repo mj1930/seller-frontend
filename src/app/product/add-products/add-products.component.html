@@ -59,7 +59,7 @@
         <div class="card">
           <div class="card-body">
             <div id="wizard">
-              <ul class="row">
+              <ul class="nav nav-justified nav-pills">
                 <li [ngClass]="step==0?'active':''" disabled="true">Product Information</li>
                 <li [ngClass]="step==1?'active':''" disabled="true">Description</li>
                 <li [ngClass]="step==2?'active':''" disabled="true">Images</li>
@@ -102,16 +102,22 @@
                   <input type="" class="form-control mb-4" placeholder="Available Units"
                     formControlName="availableUnits" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.availableUnits?.errors}"/>
 
-                  <label for="" class="small">Product Dimensions(inch/cm)</label>
+                  <label for="" class="small">Product Dimensions (inch/cm)</label>
                   <div class="row d-flex justify-content-between col-12" formGroupName="dimensions">
-                    <input type="text" class="form-control mb-4 col-md-4" placeholder="Length"
-                      formControlName="length" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.dimensions?.controls?.length?.errors}"/>
-                    <input type="text" class="form-control mb-4 col-md-4" placeholder="Width" formControlName="width" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.dimensions?.controls?.width?.errors}"/>
-                    <input type="text" class="form-control mb-4 col-md-4" placeholder="Height"
+                    <div class=" col-md-4">
+                      <input type="text" class="form-control mb-4" placeholder="Length"
+                        formControlName="length" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.dimensions?.controls?.length?.errors}"/>
+                    </div>
+                    <div class=" col-md-4">
+                      <input type="text" class="form-control mb-4" placeholder="Width" formControlName="width" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.dimensions?.controls?.width?.errors}"/>
+                    </div>
+                    <div class=" col-md-4">
+                      <input type="text" class="form-control mb-4" placeholder="Height"
                       formControlName="height" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.dimensions?.controls?.height?.errors}"/>
+                    </div>
                   </div>
-                  <label for="" class="small">Product Weight(inch/gm)</label>
-                  <input type="text" class="form-control mb-4" placeholder="180 gm" formControlName="weight" 
+                  <label for="" class="small">Product Weight(kg/gm)</label>
+                  <input type="text" class="form-control mb-4" placeholder="" formControlName="weight" 
                   [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.weight?.errors}"/>
 
                   <label for="" class="small">Category</label>
@@ -132,7 +138,7 @@
 
               </section>
 
-              <section class="border rounded border-light p-sm-5 p-3" [ngStyle]="step==1?{'display': 'block'}:{'display': 'none'}">
+              <section class="border rounded border-light p-sm-5 p-3" [ngStyle]="step==1 ? {'display': 'block'}:{'display': 'none'}">
                 <form [formGroup]="productDescriptionForm">
                   <label for="" class="small">Product Description</label>
                   <textarea class="form-control mb-4"
@@ -147,19 +153,19 @@
 
               </section>
 
-              <section class="border rounded border-light p-sm-5 p-3" [ngStyle]="step==2?{'display': 'block'}:{'display': 'none'}">
+              <section class="border rounded border-light p-sm-5 p-3" [ngStyle]="step==2 ? {'display': 'block'}:{'display': 'none'}">
                   <div class="row">
                     <div class="col-lg-2 col-md-3 col-sm-6 my-2">
                       <label for="file-input1">
                         <img src="https://toppng.com/uploads/preview/file-upload-image-icon-115632290507ftgixivqp.png"
                           style="width: 100%; cursor: pointer;" />
                       </label>
-                      <input #fileInput id="file-input1" type="file" (click)="fileInput.value = null" (change)="uploadFiles($event)" class="d-none"  accept=".png, .jpeg,.jpg"/>
+                      <input #fileInput id="file-input1" type="file" (click)="fileInput.value = null" (change)="uploadFiles($event)" class="d-none"  accept=".png, .jpeg, .jpg"/>
                     </div>
                     <div class="col-lg-4 col-md-8 col-sm-6 my-2" *ngFor="let image of imageAttachemts">
                       <img [src]="image" alt="" width="100%" />
                     </div>
-                    <p class="erroMessage" *ngIf="isImageUploadFormSubmitted && !imageAttachemts.length">Please upload an image</p>
+                    <!-- <p class="erroMessage" *ngIf="isImageUploadFormSubmitted && !imageAttachemts.length">Please upload an image</p> -->
                   </div>
 
               </section>
