@@ -98,8 +98,7 @@ export class AddProductsComponent implements OnInit {
     this.userName = JSON.parse(localStorage.getItem("user")).name;
     let productData: any = localStorage.getItem('product') ? JSON.parse(localStorage.getItem('product')) : {};
     if (productData && Object.keys(productData).length) {
-      this.productData = productData;
-      this.setProductData();
+      this.setProductValues(productData);
     }
   }
 
@@ -159,6 +158,7 @@ export class AddProductsComponent implements OnInit {
       data => {
         this.toastService.openSnackbar("Product added succeefully!!");
         this.productId = data["data"]["_id"];
+        this.addProductImages();
         this.showAddProductSection = false;
         this.step = 0;
         this.productInformationForm.reset();
@@ -172,6 +172,12 @@ export class AddProductsComponent implements OnInit {
         this.isproductVariationFormSubmitted = false;
         this.isFormSubmitted = false;
         this.isImageUploadFormSubmitted = false;
+        const colorFormArray: FormArray = this.productVariationForm['controls']['color'] as FormArray;
+        colorFormArray.clear();
+        colorFormArray.push(this.colorForm())
+        const sizeFormArray: FormArray = this.productVariationForm['controls']['size'] as FormArray;
+        sizeFormArray.clear();
+        sizeFormArray.push(this.sizeForm());
       },
       error => {
         console.log(error);
@@ -206,17 +212,26 @@ export class AddProductsComponent implements OnInit {
   }
 
   setProductValues(product) {
-    // this.addProductForm['controls'].barcode.setValue(product.barcode);
-    // this.addProductForm['controls'].itemName.setValue(product.itemName);
-    // this.addProductForm['controls'].city.setValue(product.city);
-    // this.addProductForm['controls'].countryOfOrigin.setValue(product.countryOfOrigin);
-    // this.addProductForm['controls'].brand.setValue(product.brand);
-    // this.addProductForm['controls'].availableUnits.setValue(product.availableUnits)
-    // this.addProductForm['controls'].dimensions.setValue(product.dimensions);
-    // this.addProductForm['controls'].weight.setValue(product.weight);
-    // this.addProductForm['controls'].categoryId.setValue(product.categoryId);
-    // this.addProductForm['controls'].subCategoryId.setValue(product.subCategoryId);
-    // this.showAddProductSection = true;
+    this.showAddProductSection = true;
+    this.step = 0;
+    this.productVariationForm.patchValue(product);
+    this.productInformationForm.patchValue(product);
+    this.productDescriptionForm.patchValue(product);
+    this.sellingInfoForm.patchValue(product);
+    this.getSubCategories();
+    const colorFormArray: FormArray = this.productVariationForm['controls']['color'] as FormArray;
+    colorFormArray.clear();
+    for(let i = 0; i < product.color.length; i++) {
+      colorFormArray.push(this.colorForm());
+      (this.productVariationForm['controls']['color'] as FormArray).at(i).get('color').setValue(product.color[i])
+    }
+
+    const sizeFormArray: FormArray = this.productVariationForm['controls']['size'] as FormArray;
+    sizeFormArray.clear();
+    for(let i = 0; i < product.size.length; i++) {
+      sizeFormArray.push(this.sizeForm());
+      (this.productVariationForm['controls']['size'] as FormArray).at(i).get('size').setValue(product.size[i])
+    }
   }
 
   uploadFiles(event) {
@@ -268,18 +283,19 @@ export class AddProductsComponent implements OnInit {
 
   addProductImages() {
     let formData = new FormData();
-    Array.from(this.files).forEach(item => {
+    Array.from(this.imageAttachemts).forEach(item => {
       formData.append("productImage", item);
     });
-    formData.append("id", this.id);
+    formData.append("id", this.productId);
     // if (formData['productImage']) {
       this.productService.addProductImages(formData).subscribe(
         data => {
+          console.log(data);
           this.toastService.openSnackbar("Product image added successfully!!");
-          this.router.navigate([
-            "/product/product-selling-info",
-            data["data"]["_id"]
-          ]);
+          // this.router.navigate([
+          //   "/product/product-selling-info",
+          //   data["data"]["_id"]
+          // ]);
         },
         error => {
           console.log(error);
@@ -348,41 +364,15 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
-  setProductData() {
-    this.showAddProductSection = !this.showAddProductSection;
-    this.productInformationForm.setValue({
-      barcode: this.productData.barcode,
-      itemName: this.productData.itemName,
-      model: this.productData.model,
-      hsn: this.productData.hsn,
-      city: this.productData.city,
-      countryOfOrigin: this.productData.countryOfOrigin,
-      brand: this.productData.brand,
-      availableUnits: this.productData.availableUnits,
-      weight: this.productData.weight,
-      categoryId: this.productData.categoryId,
-      subCategoryId:this.productData.subCategoryId,
-      dimensions: this.productData.dimensions
-    });
-    this.productDescriptionForm.setValue({
-      description: this.productData.description,
-      heading: this.productData.heading
-    });
-    this.sellingInfoForm.setValue({
-      productPrice: this.productData.productPrice,
-      mrp: this.productData.mrp
-    });
-    this.productVariationForm.setValue({
-      color: this.productData.color,
-      size: this.productData.size
-    });
-    this.imageAttachemts = this.productData.productImg;
-    this.getSubCategories();
-
+  colorForm() {
+    return this.fb.group({
+      color: [null, Validators.required]
+    })
   }
 
-  ngOnDestroy() {
-    this.productData = {};
-    localStorage.removeItem('product');
+  sizeForm() {
+    return this.fb.group({
+      size: [null, Validators.required]
+    })
   }
 }
