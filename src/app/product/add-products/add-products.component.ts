@@ -45,7 +45,7 @@ export class AddProductsComponent implements OnInit {
   isFormSubmitted = false;
   isImageUploadFormSubmitted = false;
   imageAttachemts = [];
-  productData: any = {};
+  isFromEdit: boolean = false;
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
@@ -98,6 +98,8 @@ export class AddProductsComponent implements OnInit {
     this.userName = JSON.parse(localStorage.getItem("user")).name;
     let productData: any = localStorage.getItem('product') ? JSON.parse(localStorage.getItem('product')) : {};
     if (productData && Object.keys(productData).length) {
+      this.isFromEdit = true;
+      this.productId = productData._id;
       this.setProductValues(productData);
     }
   }
@@ -139,8 +141,9 @@ export class AddProductsComponent implements OnInit {
       return;
     }
     let formGroupValues = Object.assign(this.productDescriptionForm.value, this.productInformationForm.value,
-    this.productVariationForm.value, this.sellingInfoForm.value)
-    formGroupValues.productImage = this.imageAttachemts;
+      this.productVariationForm.value, this.sellingInfoForm.value);
+    // formGroupValues.productImage = this.imageAttachemts;
+    formGroupValues.productId = this.productId;
     let colours = [];
     let sizes = [];
     formGroupValues.color.forEach(element => {
@@ -153,36 +156,69 @@ export class AddProductsComponent implements OnInit {
     formGroupValues.size = sizes;
     formGroupValues.productPrice = formGroupValues.productPrice.toString();
     formGroupValues.mrp = formGroupValues.mrp.toString();
-    formGroupValues.availableUnits = Number(formGroupValues.availableUnits)
-    this.productService.addProduct(formGroupValues).subscribe(
-      data => {
-        this.toastService.openSnackbar("Product added succeefully!!");
-        this.productId = data["data"]["_id"];
-        this.addProductImages();
-        this.showAddProductSection = false;
-        this.step = 0;
-        this.productInformationForm.reset();
-        this.productDescriptionForm.reset();
-        this.imageAttachemts = [];
-        this.sellingInfoForm.reset();
-        this.productVariationForm.reset();
-        this.isProductInformationFormSubmitted = false;
-        this.isProductDescriptionFormSubmitted = false;
-        this.isSellingInfoFormSubmitted = false;
-        this.isproductVariationFormSubmitted = false;
-        this.isFormSubmitted = false;
-        this.isImageUploadFormSubmitted = false;
-        const colorFormArray: FormArray = this.productVariationForm['controls']['color'] as FormArray;
-        colorFormArray.clear();
-        colorFormArray.push(this.colorForm())
-        const sizeFormArray: FormArray = this.productVariationForm['controls']['size'] as FormArray;
-        sizeFormArray.clear();
-        sizeFormArray.push(this.sizeForm());
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    formGroupValues.availableUnits = Number(formGroupValues.availableUnits);
+    if (this.isFromEdit) {
+      this.productService.editProduct(formGroupValues).subscribe(
+        data => {
+          this.toastService.openSnackbar("Product updated succeefully!!");
+          this.productId = data["data"]["_id"];
+          this.addProductImages();
+          this.showAddProductSection = false;
+          this.step = 0;
+          this.productInformationForm.reset();
+          this.productDescriptionForm.reset();
+          this.imageAttachemts = [];
+          this.sellingInfoForm.reset();
+          this.productVariationForm.reset();
+          this.isProductInformationFormSubmitted = false;
+          this.isProductDescriptionFormSubmitted = false;
+          this.isSellingInfoFormSubmitted = false;
+          this.isproductVariationFormSubmitted = false;
+          this.isFormSubmitted = false;
+          this.isImageUploadFormSubmitted = false;
+          const colorFormArray: FormArray = this.productVariationForm['controls']['color'] as FormArray;
+          colorFormArray.clear();
+          colorFormArray.push(this.colorForm())
+          const sizeFormArray: FormArray = this.productVariationForm['controls']['size'] as FormArray;
+          sizeFormArray.clear();
+          sizeFormArray.push(this.sizeForm());
+          this.isFromEdit = false;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.productService.addProduct(formGroupValues).subscribe(
+        data => {
+          this.toastService.openSnackbar("Product added succeefully!!");
+          this.productId = data["data"]["_id"];
+          this.addProductImages();
+          this.showAddProductSection = false;
+          this.step = 0;
+          this.productInformationForm.reset();
+          this.productDescriptionForm.reset();
+          this.imageAttachemts = [];
+          this.sellingInfoForm.reset();
+          this.productVariationForm.reset();
+          this.isProductInformationFormSubmitted = false;
+          this.isProductDescriptionFormSubmitted = false;
+          this.isSellingInfoFormSubmitted = false;
+          this.isproductVariationFormSubmitted = false;
+          this.isFormSubmitted = false;
+          this.isImageUploadFormSubmitted = false;
+          const colorFormArray: FormArray = this.productVariationForm['controls']['color'] as FormArray;
+          colorFormArray.clear();
+          colorFormArray.push(this.colorForm())
+          const sizeFormArray: FormArray = this.productVariationForm['controls']['size'] as FormArray;
+          sizeFormArray.clear();
+          sizeFormArray.push(this.sizeForm());
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   resetForm() {
@@ -219,6 +255,7 @@ export class AddProductsComponent implements OnInit {
     this.productDescriptionForm.patchValue(product);
     this.sellingInfoForm.patchValue(product);
     this.getSubCategories();
+    this.imageAttachemts = product.productImg;
     const colorFormArray: FormArray = this.productVariationForm['controls']['color'] as FormArray;
     colorFormArray.clear();
     for(let i = 0; i < product.color.length; i++) {
@@ -287,21 +324,14 @@ export class AddProductsComponent implements OnInit {
       formData.append("productImage", item);
     });
     formData.append("id", this.productId);
-    // if (formData['productImage']) {
-      this.productService.addProductImages(formData).subscribe(
-        data => {
-          console.log(data);
-          this.toastService.openSnackbar("Product image added successfully!!");
-          // this.router.navigate([
-          //   "/product/product-selling-info",
-          //   data["data"]["_id"]
-          // ]);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    // }
+    this.productService.addProductImages(formData).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   
   addProductSellingInfo() {
