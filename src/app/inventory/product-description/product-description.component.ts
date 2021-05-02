@@ -35,5 +35,9 @@ export class ProductDescriptionComponent implements OnInit {
     this.router.navigateByUrl('/inventory');
   }
 
+  editProduct() {
+    localStorage.setItem('product', JSON.stringify(this.product));
+    this.router.navigate(['/product/add-products'])
+  }
 
 }
