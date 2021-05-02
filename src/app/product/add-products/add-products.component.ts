@@ -374,12 +374,15 @@ export class AddProductsComponent implements OnInit {
     console.log(this.productInformationForm.controls.dimensions);
     if (step == 0) {
       this.isProductInformationFormSubmitted = true;
-      if (this.productInformationForm.valid)
+      if (this.productInformationForm.valid){
         this.step = step + 1;
+      } else {
+        this.toastService.openSnackbar("Please input first all the red bordered fields.")
+      }
     }
     if (step == 1) {
       this.isProductDescriptionFormSubmitted = true;
-      if (this.productDescriptionForm.valid)
+      if (this.productDescriptionForm.valid) 
         this.step = step + 1;
     }
     if (step == 2) {
@@ -389,7 +392,7 @@ export class AddProductsComponent implements OnInit {
     }
     if (step == 3) {
       this.isSellingInfoFormSubmitted = true;
-      if (this.sellingInfoForm.valid)
+      if (this.sellingInfoForm.valid) 
         this.step = step + 1;
     }
   }

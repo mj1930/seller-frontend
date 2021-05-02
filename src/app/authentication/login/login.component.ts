@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
           let userData = JSON.parse(localStorage.getItem("user"));
           if (userData && userData.accountNumber)
             this.router.navigateByUrl("/seller/active-dashboard");
-          else this.router.navigateByUrl("/seller/active-dashboard");
+          else this.router.navigateByUrl("/seller");
         } else {
           this.loginError = data["messgae"];
         }
