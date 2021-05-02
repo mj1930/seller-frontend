@@ -133,7 +133,6 @@ export class AddProductsComponent implements OnInit {
   addProduct() {
     this.isFormSubmitted = true;
     if (!this.productVariationForm.valid) {
-      this.toastService.openSnackbar("Please input first all the red bordered fields.");
       return;
     }
     let formGroupValues = Object.assign(this.productDescriptionForm.value, this.productInformationForm.value,
@@ -331,15 +330,11 @@ export class AddProductsComponent implements OnInit {
       } else {
         this.toastService.openSnackbar("Please input first all the red bordered fields.")
       }
-
     }
     if (step == 1) {
       this.isProductDescriptionFormSubmitted = true;
-      if (this.productDescriptionForm.valid) {
+      if (this.productDescriptionForm.valid) 
         this.step = step + 1;
-      } else {
-        this.toastService.openSnackbar("Please input first all the red bordered fields.")
-      }
     }
     if (step == 2) {
       this.isImageUploadFormSubmitted = true;
@@ -348,11 +343,8 @@ export class AddProductsComponent implements OnInit {
     }
     if (step == 3) {
       this.isSellingInfoFormSubmitted = true;
-      if (this.sellingInfoForm.valid) {
+      if (this.sellingInfoForm.valid) 
         this.step = step + 1;
-      } else {
-        this.toastService.openSnackbar("Please input first all the red bordered fields.")
-      }
     }
   }
 }
