@@ -321,9 +321,9 @@ export class AddProductsComponent implements OnInit {
   addProductImages() {
     let formData = new FormData();
     Array.from(this.imageAttachemts).forEach(item => {
-      formData.append("productImage", item);
+      formData.append("files", item);
     });
-    formData.append("id", this.productId);
+    formData.append("productId", this.productId);
     this.productService.addProductImages(formData).subscribe(
       data => {
         console.log(data);
@@ -407,5 +407,9 @@ export class AddProductsComponent implements OnInit {
     return this.fb.group({
       size: [null, Validators.required]
     })
+  }
+
+  ngOnDestroy() {
+    localStorage.removeItem('productData');
   }
 }
