@@ -72,33 +72,35 @@
           <table class="table">
             <thead class="grey lighten-2 small text-uppercase">
               <tr class="text-nowrap">
-                <th scope="col">Barcode</th>
-                <th scope="col">Item Name</th>
-                <th scope="col">Country of Origin</th>
-                <th scope="col">Manufacturer</th>
-                <th scope="col">Color</th>
-                <th scope="col">Product Dimensions</th>
-                <th scope="col">Unit Count</th>
-                <th scope="col">Available Units</th>
-                <th scope="col">Pricing</th>
                 <th scope="col">Status</th>
-                <th scope="col">Feedback</th>
+                <th scope="col">Image</th>
+                <th scope="col">SKU condition</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Date Created/Updated</th>
+                <th scope="col">Available</th>
+                <th scope="col">Reserved</th>
+                <th scope="col">Fee Preview</th>
+                <th scope="col">Price + Shipping</th>
+                <th scope="col">Lowest Price + Shipping</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
               <tr style="cursor: pointer" *ngFor="let product of products; let i=index;">
-                <td>{{product?.barcode}}</td>
-                <td (click)="goToProdDescPage(product._id)">{{product?.itemName}}</td>
-                <td>{{product?.countryOfOrigin}}</td>
-                <td>{{product?.brand}}</td>
-                <td>{{product?.color}}</td>
-                <td>Length: {{product?.dimensions?.length || 'NA'}}, Width: {{product?.dimensions?.width || 'NA'}}, Height: {{product?.dimensions?.height || 'NA'}}</td>
-                <td>{{product?.unitCount}}</td>
-                <td>{{product?.availableUnits}}</td>
-                <td>{{product?.productPrice}}</td>
                 <td>{{product?.isApproved ? 'Approved' : 'Disapproved'}}</td>
-                <td *ngIf="!product?.isApproved">{{product?.feedback || 'NA'}}</td>
-                <td *ngIf="product?.isApproved">NA</td>
+                <td >{{product?.productImg[0]}}</td>
+                <td>{{product?.sku}}</td>
+                <td>{{product?.itemName}}</td>
+                <td>{{product?.updatedAt | date:'medium'}}</td>
+                <td> {{product?.availableUnits - (product?.soldUnit >= 0 ? product?.soldUnit : 0)}}</td>
+                <td>{{product?.soldUnit}}</td>
+                <td>{{product?.commission}}</td>
+                <td> <i class="fa fa-rupee"></i> <input style="width: 60px; margin-left: 10px;" type="text" [(ngModel)]="product.productPrice" (blur)="updatePrice(product)"></td>
+                <td> NA</td>
+                <td class= "action-btn">
+                  <span  (click)="editProduct(product)"> <i  class="fa fa-pencil"></i></span>
+                  <span (click)="goToProdDescPage(product._id)"><i class="fa fa-eye"></i></span>
+                </td>
                 <!-- <td *ngIf="!product?.isApproved">{{product?.feedback ? product?.feedback : 'No feedback'}}</td> -->
 
                 <!-- <td>
