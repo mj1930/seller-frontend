@@ -269,6 +269,7 @@ export class AddProductsComponent implements OnInit {
       sizeFormArray.push(this.sizeForm());
       (this.productVariationForm['controls']['size'] as FormArray).at(i).get('size').setValue(product.size[i])
     }
+    this.searchResult = [];
   }
 
   uploadFiles(event) {
