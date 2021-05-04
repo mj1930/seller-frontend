@@ -49,18 +49,11 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
   }
 
   updatePrice(product_dtl) {
-    product_dtl.productId = product_dtl._id;
-    delete product_dtl._id;
-    delete product_dtl.userId;
-    delete product_dtl.productImg;
-    delete product_dtl.unitCount;
-    delete product_dtl.isApproved;
-    delete product_dtl.feedback;
-    delete product_dtl.isDeleted;
-    delete product_dtl.createdAt;
-    delete product_dtl.updatedAt;
-    delete product_dtl.__v;
-    this.productService.editProduct(product_dtl).subscribe(
+    let obj = {
+      productPrice: product_dtl.productPrice,
+      id: product_dtl._id
+    }
+    this.productService.updateProductPrice(obj).subscribe(
       data => {
         this.toastService.openSnackbar("Price Updated succeefully!!");
       },

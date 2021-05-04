@@ -18,8 +18,9 @@
         </div>
         <!-- <button type="button" class="mt-2 btn mb-4 btn-sm btn-dark" (click)="showAddProductSection = !showAddProductSection">I'm adding a product not sold here</button> -->
 
-        <a class="text-primary" (click)="showAddProductSection = !showAddProductSection">I'm adding a product not sold
+        <a class="text-primary" *ngIf="!isFromEdit" (click)="showAddProductSection = !showAddProductSection">I'm adding a product not sold
           here</a>
+        <a class="text-primary" *ngIf="isFromEdit" (click)="resetCompleteForm()">Add new product</a>
       </form>
     </div>
   </section>

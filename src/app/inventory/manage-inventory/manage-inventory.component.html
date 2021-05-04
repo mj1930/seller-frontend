@@ -95,7 +95,9 @@
                 <td> {{product?.availableUnits - (product?.soldUnit >= 0 ? product?.soldUnit : 0)}}</td>
                 <td>{{product?.soldUnit}}</td>
                 <td>{{product?.commission}}</td>
-                <td> <i class="fa fa-rupee"></i> <input style="width: 60px; margin-left: 10px;" type="text" [(ngModel)]="product.productPrice" (blur)="updatePrice(product)"></td>
+                <td class="d-flex"> 
+                  <i class="fa fa-rupee my-2 py-1"></i> 
+                  <input class="form-control" style="width: 60px; margin-left: 10px;" type="text" [(ngModel)]="product.productPrice" (blur)="updatePrice(product)"></td>
                 <td> NA</td>
                 <td class= "action-btn">
                   <span  (click)="editProduct(product)"> <i  class="fa fa-pencil"></i></span>

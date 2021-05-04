@@ -104,6 +104,15 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
+  resetCompleteForm() {
+    this.productDescriptionForm.reset();
+    this.productInformationForm.reset();
+    this.sellingInfoForm.reset();
+    this.productVariationForm.reset();
+    this.imageAttachemts = [];
+    this.isFromEdit = false;
+  }
+
   getCategories() {
     let reqBody = {
       skip: 0,
@@ -143,7 +152,8 @@ export class AddProductsComponent implements OnInit {
     let formGroupValues = Object.assign(this.productDescriptionForm.value, this.productInformationForm.value,
       this.productVariationForm.value, this.sellingInfoForm.value);
     // formGroupValues.productImage = this.imageAttachemts;
-    formGroupValues.productId = this.productId;
+    if (this.isFromEdit)
+      formGroupValues.productId = this.productId;
     let colours = [];
     let sizes = [];
     formGroupValues.color.forEach(element => {
@@ -411,6 +421,7 @@ export class AddProductsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    localStorage.removeItem('productData');
+    this.isFromEdit = false;
+    localStorage.removeItem('product');
   }
 }

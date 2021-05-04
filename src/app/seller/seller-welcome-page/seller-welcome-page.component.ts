@@ -26,7 +26,7 @@ export class SellerWelcomePageComponent implements OnInit {
       address: this.fb.group({
         pincode: [''],
         address1: ['', [Validators.required]],
-        address2: ['', [Validators.required]],
+        address2: ['', ],
         city: [''],
         state: [''],
         country: ['India']

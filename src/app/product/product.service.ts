@@ -16,6 +16,10 @@ export class ProductService {
     return this.http.post('products/edit-product', req);
   }
 
+  updateProductPrice(req) {
+    return this.http.post('products/update-product-price', req);
+  }
+
   addProductVariation(req) {
     return this.http.post('products/add-product-variation', req);
   }
