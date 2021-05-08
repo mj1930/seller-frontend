@@ -88,16 +88,27 @@
             <tbody>
               <tr style="cursor: pointer" *ngFor="let product of products; let i=index;">
                 <td>{{product?.isApproved ? 'Approved' : 'Disapproved'}}</td>
-                <td >{{product?.productImg[0]}}</td>
+                <td >
+                  <img
+                  [src]="product?.productImg.length > 0 ? product?.productImg[0] : 'https://images-na.ssl-images-amazon.com/images/I/61pZoOB87SL.jpg'"
+                    alt=""
+                    width="50px"
+                    height="50px"
+                  />
+                </td>
                 <td>{{product?.sku}}</td>
                 <td>{{product?.itemName}}</td>
                 <td>{{product?.updatedAt | date:'medium'}}</td>
-                <td> {{product?.availableUnits - (product?.soldUnit >= 0 ? product?.soldUnit : 0)}}</td>
+                <td class="d-flex"> 
+                  <i class="fa fa-rupee my-2 py-1"></i> 
+                  <input class="form-control" style="width: 60px; margin-left: 10px;" type="text" [(ngModel)]="product.availableUnits" (blur)="updatePrice(product)">
+                </td>
                 <td>{{product?.soldUnit}}</td>
                 <td>{{product?.commission}}</td>
                 <td class="d-flex"> 
                   <i class="fa fa-rupee my-2 py-1"></i> 
-                  <input class="form-control" style="width: 60px; margin-left: 10px;" type="text" [(ngModel)]="product.productPrice" (blur)="updatePrice(product)"></td>
+                  <input class="form-control" style="width: 60px; margin-left: 10px;" type="text" [(ngModel)]="product.productPrice" (blur)="updatePrice(product)">
+                </td>
                 <td> NA</td>
                 <td class= "action-btn">
                   <span  (click)="editProduct(product)"> <i  class="fa fa-pencil"></i></span>

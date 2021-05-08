@@ -51,7 +51,8 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
   updatePrice(product_dtl) {
     let obj = {
       productPrice: product_dtl.productPrice,
-      id: product_dtl._id
+      id: product_dtl._id,
+      availUnits: product_dtl.availableUnits
     }
     this.productService.updateProductPrice(obj).subscribe(
       data => {
