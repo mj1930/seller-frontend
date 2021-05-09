@@ -202,6 +202,7 @@
                   <div class="row d-flex col-12">
                   <div formArrayName="color"
                     *ngFor="let color of productVariationForm.get('color')['controls']; let i = index;">
+                    <i class="fa fa-times" aria-hidden="true" (click)="removeColor(i)"></i>
                     <div [formGroupName]="i">
                       <input type="text" class="form-control mb-2 mr-2" placeholder="Color" formControlName="color"
                       [ngClass]="{'form-controlError': isFormSubmitted && productVariationForm.get('color')['controls'][i]['controls']['color'].errors}">
@@ -216,6 +217,7 @@
                   <div class="row d-flex col-12">
                     <div formArrayName="size"
                       *ngFor="let size of productVariationForm.get('size')['controls']; let i = index;">
+                      <i class="fa fa-times" aria-hidden="true" (click)="removeSize(i)"></i>
                       <div [formGroupName]="i">
                         <input type="text" class="form-control mb-2 mr-2" placeholder="Size" formControlName="size"
                         [ngClass]="{'form-controlError': isFormSubmitted && productVariationForm.get('size')['controls'][i]['controls']['size'].errors}">
