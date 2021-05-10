@@ -14,7 +14,7 @@ export class AddProductsComponent implements OnInit {
   x:any;
 
   step: number = 0;
-
+  isFromAnotherPage = false;
   addProductForm: FormGroup;
   showSubMenu = false;
   userName = "";
@@ -101,6 +101,7 @@ export class AddProductsComponent implements OnInit {
       this.isFromEdit = true;
       this.productId = productData._id;
       this.setProductValues(productData);
+      this.isFromAnotherPage = true;
     }
   }
 
@@ -258,6 +259,10 @@ export class AddProductsComponent implements OnInit {
   }
 
   setProductValues(product) {
+    if (!this.isFromAnotherPage) {
+      this.productId = product._id;
+    }
+    this.isFromEdit = true;
     this.showAddProductSection = true;
     this.step = 0;
     this.productVariationForm.patchValue(product);
@@ -379,6 +384,15 @@ export class AddProductsComponent implements OnInit {
         size: ['', Validators.required]
       })
     );
+  }
+  removeSize(i) {
+    this.sizes = this.productVariationForm.get("size") as FormArray;
+    this.sizes.removeAt(i);
+  }
+  removeColor(i) {
+    this.colors = this.productVariationForm.get("color") as FormArray;
+    this.colors.removeAt(i)
+
   }
 
   moveToNextStep(step) {
