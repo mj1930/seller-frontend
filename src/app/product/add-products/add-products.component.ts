@@ -79,6 +79,7 @@ export class AddProductsComponent implements OnInit {
     this.sellingInfoForm = this.fb.group({
       productPrice: [''],
       mrp: [''],
+      sku: ['']
     });
     this.productVariationForm = this.fb.group({
       // color: ['', Validators.required],

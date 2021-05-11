@@ -182,6 +182,10 @@
                   <label for="" class="small">Maximum Retail Price</label>
                   <input type="number" class="form-control mb-4" placeholder="Ex. 50.00" formControlName="mrp"
                   [ngClass]="{'form-controlError': isSellingInfoFormSubmitted && sellingInfoForm?.controls?.mrp?.errors}">
+
+                  <label for="" class="small">SKU</label>
+                  <input type="text" class="form-control mb-4" placeholder="" formControlName="sku"
+                  [ngClass]="{'form-controlError': isSellingInfoFormSubmitted && sellingInfoForm?.controls?.sku?.errors}">
                 </form>
               </section>
 
