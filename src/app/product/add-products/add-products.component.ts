@@ -45,6 +45,7 @@ export class AddProductsComponent implements OnInit {
   isFormSubmitted = false;
   isImageUploadFormSubmitted = false;
   imageAttachemts = [];
+  imageAttachemtsToSend = [];
   isFromEdit: boolean = false;
   constructor(
     private fb: FormBuilder,
@@ -298,6 +299,7 @@ export class AddProductsComponent implements OnInit {
     const fileFormat = fileName.slice(fileName.lastIndexOf('.') + 1, fileName.length);
     if (fileFormat == 'jpg' || fileFormat == 'jpeg' || fileFormat == 'png') {
       if (this.tempFiles && this.tempFiles.size / 1000 / 1000 < 2) {
+        this.imageAttachemtsToSend.push(event.target.files[0])
         let reader = new FileReader();
         if (event.target.files && event.target.files[0]) {
           reader.readAsDataURL(this.tempFiles);
@@ -339,7 +341,7 @@ export class AddProductsComponent implements OnInit {
 
   addProductImages() {
     let formData = new FormData();
-    Array.from(this.imageAttachemts).forEach(item => {
+    Array.from(this.imageAttachemtsToSend).forEach(item => {
       formData.append("files", item);
     });
     formData.append("productId", this.productId);
