@@ -262,8 +262,10 @@ export class AddProductsComponent implements OnInit {
   setProductValues(product) {
     if (!this.isFromAnotherPage) {
       this.productId = product._id;
+      this.isFromEdit = true;
+    } else {
+      this.isFromEdit = false;
     }
-    this.isFromEdit = true;
     this.showAddProductSection = true;
     this.step = 0;
     this.productVariationForm.patchValue(product);
