@@ -30,6 +30,7 @@
           <!-- <li class="header-menu"><span>General</span></li> -->
           <li class="sidebar-dropdown">
             <a routerLink="/seller/active-dashboard">
+              <i class="fa fa-list-ul"></i>
               <span>Dashboard</span>
             </a>
             <a (click)="showSubMenu=!showSubMenu">
@@ -51,7 +52,10 @@
             </div>
             
           </li>
-          <li class="header-menu"><a routerLink="/seller/order-listing"> Order Listing </a></li>
+          <li class="sidebar-dropdown">
+            <a routerLink="/seller/order-listing">
+              <i class="fa fa-shopping-cart"></i>
+              <span> Order Listing </span></a></li>
           <!-- <li class="sidebar-dropdown">
             <a (click)="showSubMenu=!showSubMenu">
               <i class="fa fa-tachometer" aria-hidden="true"></i>

@@ -8,11 +8,12 @@ import { SellerService } from '../seller.service';
 })
 export class OrderListingComponent implements OnInit {
 
-  orders: any;
+  orders: any = [];
 
   orderStatuses = [
     {text: 'Pending', value: 'P'},
     {text: 'Dispatched', value: 'D'},
+    {text: 'Delivered', value: 'DL'},
     {text: 'Refunded', value: 'RF'},
     {text: 'Cancelled', value: 'C'},
     {text: 'Returned', value: 'RT'}
@@ -30,7 +31,6 @@ export class OrderListingComponent implements OnInit {
       limit: "100"
     };
     this.sellerService.getOrder(reqBody).subscribe(data => {
-      console.log(data);
       this.orders = data['data'];
       this.setOrderStaus();
     }, error => {
@@ -44,7 +44,6 @@ export class OrderListingComponent implements OnInit {
       status: event.target.value
     }
     this.sellerService.updateStatus(reqBody).subscribe(data => {
-      console.log(data);
      this.getOrder();
 
     }, error => {
@@ -66,6 +65,9 @@ export class OrderListingComponent implements OnInit {
           break;
           case 'RT' :
           item['status'] = "Returned";
+          break;
+          case 'DL' :
+          item['status'] = "Delivered";
           break;
       }
       

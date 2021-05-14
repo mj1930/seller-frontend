@@ -173,7 +173,7 @@ export class AddProductsComponent implements OnInit {
     if (this.isFromEdit) {
       this.productService.editProduct(formGroupValues).subscribe(
         data => {
-          this.toastService.openSnackbar("Product updated succeefully!!");
+          this.toastService.openSnackbar("Product updated successfully!!");
           this.productId = data["data"]["_id"];
           this.addProductImages();
           this.showAddProductSection = false;
@@ -340,19 +340,21 @@ export class AddProductsComponent implements OnInit {
   }
 
   addProductImages() {
-    let formData = new FormData();
-    Array.from(this.imageAttachemtsToSend).forEach(item => {
-      formData.append("files", item);
-    });
-    formData.append("productId", this.productId);
-    this.productService.addProductImages(formData).subscribe(
-      data => {
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    if (this.imageAttachemtsToSend?.length) {
+      let formData = new FormData();
+      Array.from(this.imageAttachemtsToSend).forEach(item => {
+        formData.append("files", item);
+      });
+      formData.append("productId", this.productId);
+      this.productService.addProductImages(formData).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
   
   addProductSellingInfo() {

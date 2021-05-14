@@ -10,9 +10,6 @@
               <table class="table">
                 <thead class="grey lighten-2 small text-uppercase">
                   <tr class="text-nowrap">
-                    <th scope="col">
-                      <input type="checkbox" style="cursor: pointer" />
-                    </th>
                     <th scope="col">SR NO.</th>
                     <th scope="col">Order Date/Time</th>
                     <th scope="col">Mode</th>
@@ -36,9 +33,6 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let order of orders; let i=index;">
-                    <td scope="row">
-                      <input type="checkbox" style="cursor: pointer" />
-                    </td>
                     <td>
                         <p>{{i+1}}</p>
                     </td>
@@ -51,14 +45,14 @@
                     <td>
                         <p>{{order?._id}}</p>
                     </td>
-                    <td *ngFor="let prod of order?.products">
-                      <p>{{prod?.name}}</p>
+                    <td>
+                      <p *ngFor="let prod of order?.products">{{prod?.name}}</p>
                     </td>
-                    <td *ngFor="let prod of order?.products">
-                      <p>{{prod?.quantity}}</p>
+                    <td>
+                      <p *ngFor="let prod of order?.products">{{prod?.quantity}}</p>
                   </td>
-                  <td *ngFor="let prod of order?.products">
-                      <p>{{prod?.sellerName}}</p>
+                  <td>
+                      <p *ngFor="let prod of order?.products">{{prod?.sellerName}}</p>
                 </td>
                     <td>
                         <p>{{order?.totalAmnt}}</p>
@@ -79,22 +73,9 @@
                         <p>On Delivery</p>
                     </td> -->
                     <td>
-                        <p>{{order?.address}}</p>
+                        <p *ngIf="order?.mode != website" >{{order?.address}}</p>
+                        <p *ngIf="order?.mode == website" >{{order?.address?.city}}</p>
                     </td>
-                    <!-- <td>
-                        <p>NA</p>
-                    </td>
-                    <td>
-                        <p>NA</p>
-                    </td>
-                    <td>
-                        <p>NA</p>
-                    </td> -->
-                    <!-- <td>
-                      <div class="btn-group" role="group">
-                          <button type="button" class="btn btn-sm btn-dark">Print</button>
-                        </div>
-                    </td> -->
                     <td>
                       <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus" (change)="updateStatus(order._id, $event)">
                         <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
