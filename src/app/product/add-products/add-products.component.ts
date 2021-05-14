@@ -14,7 +14,6 @@ export class AddProductsComponent implements OnInit {
   x:any;
 
   step: number = 0;
-  isFromAnotherPage = false;
   addProductForm: FormGroup;
   showSubMenu = false;
   userName = "";
@@ -103,7 +102,6 @@ export class AddProductsComponent implements OnInit {
       this.isFromEdit = true;
       this.productId = productData._id;
       this.setProductValues(productData);
-      this.isFromAnotherPage = true;
     }
   }
 
@@ -166,6 +164,9 @@ export class AddProductsComponent implements OnInit {
     formGroupValues.size.forEach(element => {
       sizes.push(element.size);
     });
+    if (this.imageAttachemts?.length) {
+      formGroupValues.productImg = this.imageAttachemts
+    }
     formGroupValues.size = sizes;
     formGroupValues.productPrice = formGroupValues.productPrice.toString();
     formGroupValues.mrp = formGroupValues.mrp.toString();
@@ -261,12 +262,6 @@ export class AddProductsComponent implements OnInit {
   }
 
   setProductValues(product) {
-    if (!this.isFromAnotherPage) {
-      this.productId = product._id;
-      this.isFromEdit = true;
-    } else {
-      this.isFromEdit = false;
-    }
     this.showAddProductSection = true;
     this.step = 0;
     this.productVariationForm.patchValue(product);
@@ -289,6 +284,7 @@ export class AddProductsComponent implements OnInit {
       (this.productVariationForm['controls']['size'] as FormArray).at(i).get('size').setValue(product.size[i])
     }
     this.searchResult = [];
+    this.searchText = '';
   }
 
   uploadFiles(event) {
