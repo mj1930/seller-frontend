@@ -100,7 +100,7 @@
                 <td>{{product?.itemName}}</td>
                 <td>{{product?.updatedAt | date:'medium'}}</td>
                 <td class="d-flex"> 
-                  <i class="fa fa-rupee my-2 py-1"></i> 
+                  <!-- <i class="fa fa-rupee my-2 py-1"></i>  -->
                   <input class="form-control" style="width: 60px; margin-left: 10px;" type="text" [(ngModel)]="product.availableUnits" (blur)="updatePrice(product)">
                 </td>
                 <td>{{product?.soldUnit}}</td>
