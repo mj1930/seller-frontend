@@ -179,8 +179,8 @@ export class AddProductsComponent implements OnInit {
     formGroupValues.availableUnits = Number(formGroupValues.availableUnits);
     if (this.isFromEdit) {
       this.productService.editProduct(formGroupValues).subscribe(
-        data => {
-          this.toastService.openSnackbar("Product updated successfully!!");
+        (data: any) => {
+          this.toastService.openSnackbar(data.message);
           this.productId = data["data"]["_id"];
           this.addProductImages();
           this.showAddProductSection = false;
@@ -210,8 +210,8 @@ export class AddProductsComponent implements OnInit {
       );
     } else {
       this.productService.addProduct(formGroupValues).subscribe(
-        data => {
-          this.toastService.openSnackbar("Product added succeefully!!");
+        (data: any) => {
+          this.toastService.openSnackbar(data.message);
           this.productId = data["data"]["_id"];
           this.addProductImages();
           this.showAddProductSection = false;

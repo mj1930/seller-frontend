@@ -1,147 +1,152 @@
 <div class="page-wrapper chiller-theme toggled">
   <app-side-navigation></app-side-navigation>
-      <!-- sidebar-wrapper  -->
-      <main class="page-content">
-        <div class="container-fluid">
-          <h2>Order Listing</h2>
-          <hr />
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+      <h2>Order Listing</h2>
+      <hr />
+      <div class="row">
+        <div class="filer col p-3 rounded my-2 elegant-color text-white">
           <div class="row">
-            <div class="filer col p-3 rounded my-2 elegant-color text-white">
-              <div class="row">
-                <div class="col-sm-12 col-md-2">
-                  Sort By Date/Time
-                  <select class="form-control" (change)="sortData($event)">
-                    <option value="">Default</option>
-                    <option value="createdAt-asc">Order Date/Time (A - Z) </option>
-                    <option value="createdAt-desc">Order Date/Time (Z - A) </option>
-                </select>
-                </div>
+            <div class="col-sm-12 col-md-2">
+              Sort By Date/Time
+              <select class="form-control" (change)="sortData($event)">
+                <option value="">Default</option>
+                <option value="createdAt-asc">Order Date/Time (A - Z) </option>
+                <option value="createdAt-desc">Order Date/Time (Z - A) </option>
+              </select>
+            </div>
 
-                <div class="col-sm-12 col-md-2">
-                  Sort By Status
-                  <select class="form-control select-style" name="status-sort" [(ngModel)]="orderStatus" (change)="sortByStatus($event)">
-                    <option value="">Default</option>
-                    <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
-                  </select>
-                </div>
+            <div class="col-sm-12 col-md-2">
+              Sort By Status
+              <select class="form-control select-style" name="status-sort" [(ngModel)]="orderStatus"
+                (change)="sortByStatus($event)">
+                <option value="">Default</option>
+                <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
+              </select>
+            </div>
 
-                <div class="col-sm-12 col-md-3">
-                  Search Orders by payment mode
-                  <div class="input-group">
-                    <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search Orders by payment mode" />
-                    <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrder()">
-                      <i class="fa fa-search"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                  Search Orders by order id
-                  <div class="input-group">
-                    <input type="search" class="form-control rounded" [(ngModel)]="searchId" placeholder="Search Orders by id" />
-                    <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrderById()">
-                      <i class="fa fa-search"></i>
-                    </span>
-                  </div>
-                </div>
+            <div class="col-sm-12 col-md-3">
+              Search Orders by payment mode
+              <div class="input-group">
+                <input type="search" class="form-control rounded" [(ngModel)]="searchTerm"
+                  placeholder="Search Orders by payment mode" />
+                <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;"
+                  (click)="searchOrder()">
+                  <i class="fa fa-search"></i>
+                </span>
               </div>
             </div>
-            <div class="table-responsive rounded table-striped table-bordered">
-              <table class="table">
-                <thead class="grey lighten-2 small text-uppercase">
-                  <tr class="text-nowrap">
-                    <th scope="col">SR NO.</th>
-                    <th scope="col">Order Date/Time</th>
-                    <th scope="col">Mode</th>
-                    <th scope="col">Order ID</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Seller</th>
-                    <th scope="col">Order Total (INR)</th>
-                    <!-- <th scope="col">GSTIN Number</th>
-                    <th scope="col">GSTIN Name</th> -->
-                    <th scope="col">Status</th>
-                    <th scope="col">Payment Mode</th>
-                    <!-- <th scope="col">Payment Status</th> -->
-                    <th scope="col">Address Details</th>
-                    <!-- <th scope="col">Expected Time</th>
-                    <th scope="col">Delay</th>
-                    <th scope="col">Delivery Man</th> -->
-                    <!-- <th scope="col">Print Invoice & Label</th> -->
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <ng-container>
-                    <tr *ngFor="let order of orders; let i=index;">
-                      <td>
-                          <p>{{i+1}}</p>
-                      </td>
-                      <td>
-                        <p>{{order?.createdAt | date:'medium'}}</p>
-                      </td>
-                      <td>
-                          <p>{{order?.mode}}</p>
-                      </td>
-                      <td>
-                          <p>{{order?._id}}</p>
-                      </td>
-                      <td>
-                        <p *ngFor="let prod of order?.products">{{prod?.name}}</p>
-                      </td>
-                      <td>
-                        <p *ngFor="let prod of order?.products">{{prod?.quantity}}</p>
-                    </td>
-                    <td>
-                        <p *ngFor="let prod of order?.products">{{prod?.sellerName}}</p>
-                  </td>
-                      <td>
-                          <p>{{order?.totalAmnt}}</p>
-                      </td>
-                      <td>
-                          <p>{{order?.status}}</p>
-                      </td>
-                      <td>
-                          <p>{{order?.paymentMode}}</p>
-                      </td>
-                      <td>
-                          <p *ngIf="order?.mode != website" >{{order?.address}}</p>
-                          <p *ngIf="order?.mode == website" >{{order?.address?.city}}</p>
-                      </td>
-                      <td>
-                        <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus" (change)="updateStatus(order._id, $event)">
-                          <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
-                        </select>
-                      </td>
-                    </tr>
-                  </ng-container>
-                </tbody>
-              </table>
+            <div class="col-sm-12 col-md-3">
+              Search Orders by order id
+              <div class="input-group">
+                <input type="search" class="form-control rounded" [(ngModel)]="searchId"
+                  placeholder="Search Orders by id" />
+                <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;"
+                  (click)="searchOrderById()">
+                  <i class="fa fa-search"></i>
+                </span>
+              </div>
             </div>
           </div>
-    
-          <footer class="text-center">
-            <div class="mb-2">
-              <small>
-                © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
-                Rights Reserved
-              </small>
-            </div>
-          </footer>
         </div>
-      </main>
-  
-      <!-- page-content" -->
+        <div class="table-responsive rounded table-striped table-bordered">
+          <table class="table">
+            <thead class="grey lighten-2 small text-uppercase">
+              <tr class="text-nowrap">
+                <th scope="col">SR NO.</th>
+                <th scope="col">Order Date/Time</th>
+                <th scope="col">Mode</th>
+                <th scope="col">Order ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Seller</th>
+                <th scope="col">Order Total (INR)</th>
+                <!-- <th scope="col">GSTIN Number</th>
+                    <th scope="col">GSTIN Name</th> -->
+                <th scope="col">Status</th>
+                <th scope="col">Payment Mode</th>
+                <!-- <th scope="col">Payment Status</th> -->
+                <th scope="col">Address Details</th>
+                <!-- <th scope="col">Expected Time</th>
+                    <th scope="col">Delay</th>
+                    <th scope="col">Delivery Man</th> -->
+                <!-- <th scope="col">Print Invoice & Label</th> -->
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr *ngFor="let order of orders; let i=index;">
+                  <td>
+                    <p>{{i+1}}</p>
+                  </td>
+                  <td>
+                    <p>{{order?.createdAt | date:'medium'}}</p>
+                  </td>
+                  <td>
+                    <p>{{order?.mode}}</p>
+                  </td>
+                  <td>
+                    <p>{{order?._id}}</p>
+                  </td>
+                  <td *ngIf="order?.mode != 'website'">
+                    <p *ngFor="let prod of order?.products">{{prod?.name}}</p>
+                  </td>
+                  <td *ngIf="order?.mode == 'website'">
+                    <p *ngFor="let prod of order?.products">{{prod?.productName}}</p>
+                  </td>
+                  <td>
+                    <p *ngFor="let prod of order?.products">{{prod?.quantity}}</p>
+                  </td>
+                  <td *ngIf="order?.mode != 'website'">
+                    <p *ngFor="let prod of order?.products">{{prod?.sellerName}}</p>
+                  </td>
+                  <td *ngIf="order?.mode == 'website'">
+                    <p *ngFor="let prod of order?.products">{{sellerName}}</p>
+                  </td>
+                  <td>
+                    <p>{{getProductTotal(order)}}</p>
+                  </td>
+                  <td>
+                    <p>{{order?.status}}</p>
+                  </td>
+                  <td>
+                    <p>{{order?.paymentMode}}</p>
+                  </td>
+                  <td>
+                    <p *ngIf="order?.mode != 'website'">{{order?.address}}</p>
+                    <p *ngIf="order?.mode == 'website'">{{order?.address?.city || 'NA'}}</p>
+                  </td>
+                  <td>
+                    <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus"
+                      (change)="updateStatus(order._id, $event)">
+                      <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
+                    </select>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <footer class="text-center">
+        <div class="mb-2">
+          <small>
+            © 2021 made with <i class="fa fa-heart" style="color: red"></i> All
+            Rights Reserved
+          </small>
+        </div>
+      </footer>
     </div>
-    <!-- page-wrapper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    
+  </main>
+
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

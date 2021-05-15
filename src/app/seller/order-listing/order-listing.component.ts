@@ -14,6 +14,7 @@ export class OrderListingComponent implements OnInit {
   searchId: string = '';
   orderId: string = '';
   orders: any = [];
+  sellerName: any = '';
 
   orderStatuses = [
     {text: 'Pending', value: 'P'},
@@ -28,6 +29,7 @@ export class OrderListingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOrder();
+    this.sellerName = JSON.parse(localStorage.getItem('user')).name;
   }
 
   getOrder() {
@@ -41,6 +43,17 @@ export class OrderListingComponent implements OnInit {
     }, error => {
       console.log(error);
     })
+  }
+
+  getProductTotal(order) {
+    let total = 0;
+    order.products.forEach(pr => {
+      if (order.mode === 'website')
+        total += parseInt(pr.orderPrice) * pr.quantity
+      else
+        total += pr.price * parseInt(pr.quantity)
+    });
+    return total;
   }
 
   updateStatus(id, event) {
