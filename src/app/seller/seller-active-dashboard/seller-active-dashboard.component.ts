@@ -94,7 +94,15 @@ export class SellerActiveDashboardComponent implements OnInit {
     })
   }
 
-  getWeekData() {
+  callChart(event) {
+    if (event.target.value.includes('week')) {
+      this.getWeekData(event.target.value);
+    } else {
+      this.getMonthData(event.target.value);
+    }
+  }
+
+  getWeekData(param?) {
     let obj = {
       startDate: moment().startOf('week'),
       endDate: moment().endOf('week')
@@ -106,14 +114,16 @@ export class SellerActiveDashboardComponent implements OnInit {
         this.orders = "Week's Orders";
         if (this.orderData?.length) {
           this.calculateTotal();
-          this.createChart();
-          this.createChartOrders();
+          if (param === 'week-order')
+            this.createChartOrders();
+          else 
+            this.createChart()
         }
       }
     })
   }
 
-  getMonthData() {
+  getMonthData(param?) {
     let obj = {
       startDate: moment().startOf('month'),
       endDate: moment().endOf('month')
@@ -125,8 +135,15 @@ export class SellerActiveDashboardComponent implements OnInit {
         this.orders = "Monthly Orders";
         if (this.orderData?.length) {
           this.calculateTotal();
-          this.createChart();
-          this.createChartOrders();
+          if (param) {
+            if (param === 'month-order')
+              this.createChartOrders();
+            else 
+              this.createChart();
+          } else {
+            this.createChart();
+            this.createChartOrders();
+          }
         }
       }
     })
