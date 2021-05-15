@@ -55,4 +55,8 @@ export class ProductService {
   getProductDetails(id) {
     return this.http.get(`products/get-product-details/${id}`);
   }
+
+  filterProducts(reqObj) {
+    return this.http.post(`products/filter-products`, reqObj);
+  }
 }

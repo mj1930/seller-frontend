@@ -16,6 +16,7 @@
                   class="custom-control-input"
                   id="defaultInline1"
                   name="inlineDefaultRadiosExample"
+                  (change)="getFilterProducts('all')"
                 />
                 <label class="custom-control-label" for="defaultInline1"
                   >All</label
@@ -28,6 +29,7 @@
                   class="custom-control-input"
                   id="defaultInline2"
                   name="inlineDefaultRadiosExample"
+                  (change)="getFilterProducts('active')"
                 />
                 <label class="custom-control-label" for="defaultInline2"
                   >Active</label
@@ -40,6 +42,7 @@
                   class="custom-control-input"
                   id="defaultInline3"
                   name="inlineDefaultRadiosExample"
+                  (change)="getFilterProducts('inactive')"
                 />
                 <label class="custom-control-label" for="defaultInline3"
                   >Inactive</label
@@ -52,6 +55,7 @@
                   class="custom-control-input"
                   id="defaultInline4"
                   name="inlineDefaultRadiosExample"
+                  (change)="getFilterProducts('blocked')"
                 />
                 <label class="custom-control-label" for="defaultInline4"
                   >Blocked</label
@@ -81,7 +85,7 @@
                 <th scope="col">Reserved</th>
                 <th scope="col">Fee Preview</th>
                 <th scope="col">Price + Shipping</th>
-                <th scope="col">Lowest Price + Shipping</th>
+                <th scope="col">VIN</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -109,7 +113,7 @@
                   <i class="fa fa-rupee my-2 py-1"></i> 
                   <input class="form-control" style="width: 60px; margin-left: 10px;" type="text" [(ngModel)]="product.productPrice" (blur)="updatePrice(product)">
                 </td>
-                <td> NA</td>
+                <td> {{ product?.vin}}</td>
                 <td class= "action-btn">
                   <span  (click)="editProduct(product)"> <i  class="fa fa-pencil"></i></span>
                   <span (click)="goToProdDescPage(product._id)"><i class="fa fa-eye"></i></span>

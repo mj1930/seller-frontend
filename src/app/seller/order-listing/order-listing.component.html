@@ -6,6 +6,45 @@
           <h2>Order Listing</h2>
           <hr />
           <div class="row">
+            <div class="filer col p-3 rounded my-2 elegant-color text-white">
+              <div class="row">
+                <div class="col-sm-12 col-md-2">
+                  Sort By Date/Time
+                  <select class="form-control" (change)="sortData($event)">
+                    <option value="">Default</option>
+                    <option value="createdAt-asc">Order Date/Time (A - Z) </option>
+                    <option value="createdAt-desc">Order Date/Time (Z - A) </option>
+                </select>
+                </div>
+
+                <div class="col-sm-12 col-md-2">
+                  Sort By Status
+                  <select class="form-control select-style" name="status-sort" [(ngModel)]="orderStatus" (change)="sortByStatus($event)">
+                    <option value="">Default</option>
+                    <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
+                  </select>
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                  Search Orders by payment mode
+                  <div class="input-group">
+                    <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" placeholder="Search Orders by payment mode" />
+                    <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrder()">
+                      <i class="fa fa-search"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                  Search Orders by order id
+                  <div class="input-group">
+                    <input type="search" class="form-control rounded" [(ngModel)]="searchId" placeholder="Search Orders by id" />
+                    <span class="input-group-text border-0" id="search-addon" style="cursor: pointer;" (click)="searchOrderById()">
+                      <i class="fa fa-search"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="table-responsive rounded table-striped table-bordered">
               <table class="table">
                 <thead class="grey lighten-2 small text-uppercase">

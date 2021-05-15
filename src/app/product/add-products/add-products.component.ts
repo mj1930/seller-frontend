@@ -14,6 +14,7 @@ export class AddProductsComponent implements OnInit {
   x:any;
 
   step: number = 0;
+  productStatus: boolean = false;
   addProductForm: FormGroup;
   showSubMenu = false;
   userName = "";
@@ -45,6 +46,7 @@ export class AddProductsComponent implements OnInit {
   isImageUploadFormSubmitted = false;
   imageAttachemts = [];
   imageAttachemtsToSend = [];
+  addedimageAttachemts = [];
   isFromEdit: boolean = false;
   constructor(
     private fb: FormBuilder,
@@ -54,10 +56,12 @@ export class AddProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    let vin = Math.random().toString(36).slice(2);
     this.productInformationForm = this.fb.group({
       barcode: ['', Validators.required],
       itemName: ['', Validators.required],
       model: [''],
+      vin: [vin],
       hsn: ['', Validators.required],
       city: ['', Validators.required],
       countryOfOrigin: ['', Validators.required],
@@ -164,10 +168,12 @@ export class AddProductsComponent implements OnInit {
     formGroupValues.size.forEach(element => {
       sizes.push(element.size);
     });
-    if (this.imageAttachemts?.length) {
-      formGroupValues.productImg = this.imageAttachemts
+    if (this.addedimageAttachemts?.length) {
+      formGroupValues.productImg = this.addedimageAttachemts
     }
     formGroupValues.size = sizes;
+    if (!this.isFromEdit)
+      formGroupValues.isApproved = this.productStatus;
     formGroupValues.productPrice = formGroupValues.productPrice.toString();
     formGroupValues.mrp = formGroupValues.mrp.toString();
     formGroupValues.availableUnits = Number(formGroupValues.availableUnits);
@@ -264,11 +270,13 @@ export class AddProductsComponent implements OnInit {
   setProductValues(product) {
     this.showAddProductSection = true;
     this.step = 0;
+    this.productStatus = product.isApproved;
     this.productVariationForm.patchValue(product);
     this.productInformationForm.patchValue(product);
     this.productDescriptionForm.patchValue(product);
     this.sellingInfoForm.patchValue(product);
     this.getSubCategories();
+    this.addedimageAttachemts = product.productImg;
     this.imageAttachemts = product.productImg;
     const colorFormArray: FormArray = this.productVariationForm['controls']['color'] as FormArray;
     colorFormArray.clear();

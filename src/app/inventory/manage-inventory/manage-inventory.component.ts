@@ -22,8 +22,7 @@ export class ManageInventoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-this.userName = JSON.parse(localStorage.getItem('user')).name;
-
+    this.userName = JSON.parse(localStorage.getItem('user')).name;
   }
 
   getProducts() {
@@ -56,10 +55,21 @@ this.userName = JSON.parse(localStorage.getItem('user')).name;
     }
     this.productService.updateProductPrice(obj).subscribe(
       data => {
-        this.toastService.openSnackbar("Price Updated succeefully!!");
+        this.toastService.openSnackbar("Updated successfully!!");
       },
       error => {
         console.log(error);
       });
+  }
+
+  getFilterProducts(type) {
+    let obj ={
+      skip: 0,
+      limit: 100,
+      status: type
+    };
+    this.productService.filterProducts(obj).subscribe((resp: any) => {
+      this.products = resp['data']
+    })
   }
 }

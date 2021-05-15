@@ -99,6 +99,9 @@
                   <input type="text" class="form-control mb-4" placeholder="Manufacturer" formControlName="brand" 
                   [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.brand?.errors}"/>
 
+                  <label for="" class="small">VIN</label>
+                  <input type="text" class="form-control mb-4" placeholder="VIN" formControlName="vin" disabled/>
+
                   <label for="" class="small">Available Units</label>
                   <input type="" class="form-control mb-4" placeholder="Available Units"
                     formControlName="availableUnits" [ngClass]="{'form-controlError': isProductInformationFormSubmitted && productInformationForm?.controls?.availableUnits?.errors}"/>
@@ -176,7 +179,7 @@
                   <label for="" class="small">Your Price</label>
                   <input type="number" class="form-control" placeholder="Ex. 50.00" formControlName="productPrice"
                   [ngClass]="{'form-controlError': isSellingInfoFormSubmitted && sellingInfoForm?.controls?.productPrice?.errors}">
-                  <p class="mb-4 text-success small">Note: Match the lowest price INR 2859</p>
+                  <p class="mb-4 text-success small">Note: Match the lowest price</p>
 
 
                   <label for="" class="small">Maximum Retail Price</label>

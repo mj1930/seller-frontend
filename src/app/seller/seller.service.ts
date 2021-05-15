@@ -30,4 +30,20 @@ export class SellerService {
     return this.http.post('orders/update-order', reqBody);
   }
 
+  getSortOrders(reqBody) {
+    return this.http.post('orders/sort-order', reqBody);
+  }
+  
+  getOrdersByStatus(reqBody) {
+    return this.http.post('orders/filter-orders', reqBody);
+  }
+
+  searchProducts(reqBody) {
+    return this.http.post('orders/search-product', reqBody);
+  }
+
+  searchProductsById(reqBody) {
+    return this.http.post('orders/search-product-id', reqBody);
+  }
+
 }
