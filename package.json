@@ -24,9 +24,11 @@
     "@angular/router": "~10.2.0",
     "angular-bootstrap-md": "^10.1.1",
     "bootstrap": "^4.6.0",
+    "chart.js": "2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
     "mdbootstrap": "^4.19.2",
+    "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

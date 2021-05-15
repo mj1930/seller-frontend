@@ -46,4 +46,8 @@ export class SellerService {
     return this.http.post('orders/search-product-id', reqBody);
   }
 
+  getDataByDate(reqBody) {
+    return this.http.post('orders/get-orders-by-date', reqBody);
+  }
+
 }

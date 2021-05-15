@@ -42,7 +42,7 @@
             <div class="card rounded default-color-dark p-0 shadow-sm">
                 <div class="card-body text-center text-white">
                   <h6 class="card-title">Today's Sale</h6>
-                  <p>Rs. 47,000</p>
+                  <p>Rs. {{ totalAmnt }}</p>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
             <div class="card rounded p-0 special-color-dark shadow-sm">
                 <div class="card-body text-white text-center">
                   <h6 class="card-title">Today's Order</h6>
-                  <p>Rs. 47,000</p>
+                  <p>{{ totalOrders }}</p>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
             <div class="card rounded p-0 shadow-sm primary-color-dark">
                 <div class="card-body text-center text-white">
                   <h6 class="card-title">Next Payment</h6>
-                  <p>Rs. 47,000</p>
+                  <p>Rs. {{ totalAmnt }}</p>
                 </div>
             </div>
         </div>
@@ -73,20 +73,20 @@
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 my-2">
             <div class="card rounded p-0 shadow-sm">
-                <img src="https://miro.medium.com/max/902/1*CPSTzfUTCCpUbllyiPvl_A.jpeg" class="card-img-top rounded" alt="Angular pro sidebar">
+                <canvas id="saleChart" width="800" height="400"></canvas>
                 <div class="card-body text-center">
-                  <h6 class="card-title">Today's Sale</h6>
-                  <p>Rs. 47,000</p>
+                  <h6 class="card-title">{{ sales}}</h6>
+                  <p>Rs. {{ totalAmnt }}</p>
                 </div>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 my-2">
             <div class="card rounded p-0 shadow-sm">
-                <img src="https://miro.medium.com/max/902/1*CPSTzfUTCCpUbllyiPvl_A.jpeg" class="card-img-top rounded" alt="Angular pro sidebar">
+                <canvas id="orderChart" width="800" height="400"></canvas>
                 <div class="card-body text-center">
-                  <h6 class="card-title">Today's Sale</h6>
-                  <p>Rs. 47,000</p>
+                  <h6 class="card-title">{{ orders }}</h6>
+                  <p> {{ totalOrders}}</p>
                 </div>
             </div>
         </div>
