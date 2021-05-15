@@ -71,56 +71,49 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let order of orders; let i=index;">
-                    <td>
-                        <p>{{i+1}}</p>
+                  <ng-container>
+                    <tr *ngFor="let order of orders; let i=index;">
+                      <td>
+                          <p>{{i+1}}</p>
+                      </td>
+                      <td>
+                        <p>{{order?.createdAt | date:'medium'}}</p>
+                      </td>
+                      <td>
+                          <p>{{order?.mode}}</p>
+                      </td>
+                      <td>
+                          <p>{{order?._id}}</p>
+                      </td>
+                      <td>
+                        <p *ngFor="let prod of order?.products">{{prod?.name}}</p>
+                      </td>
+                      <td>
+                        <p *ngFor="let prod of order?.products">{{prod?.quantity}}</p>
                     </td>
                     <td>
-                      <p>{{order?.createdAt | date:'medium'}}</p>
-                    </td>
-                    <td>
-                        <p>{{order?.mode}}</p>
-                    </td>
-                    <td>
-                        <p>{{order?._id}}</p>
-                    </td>
-                    <td>
-                      <p *ngFor="let prod of order?.products">{{prod?.name}}</p>
-                    </td>
-                    <td>
-                      <p *ngFor="let prod of order?.products">{{prod?.quantity}}</p>
+                        <p *ngFor="let prod of order?.products">{{prod?.sellerName}}</p>
                   </td>
-                  <td>
-                      <p *ngFor="let prod of order?.products">{{prod?.sellerName}}</p>
-                </td>
-                    <td>
-                        <p>{{order?.totalAmnt}}</p>
-                    </td>
-                    <!-- <td>
-                        <p>{{order?.userGstin}}</p>
-                    </td> -->
-                    <!-- <td>
-                        <p>NA</p>
-                    </td> -->
-                    <td>
-                        <p>{{order?.status}}</p>
-                    </td>
-                    <td>
-                        <p>{{order?.paymentMode}}</p>
-                    </td>
-                    <!-- <td>
-                        <p>On Delivery</p>
-                    </td> -->
-                    <td>
-                        <p *ngIf="order?.mode != website" >{{order?.address}}</p>
-                        <p *ngIf="order?.mode == website" >{{order?.address?.city}}</p>
-                    </td>
-                    <td>
-                      <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus" (change)="updateStatus(order._id, $event)">
-                        <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
-                      </select>
-                    </td>
-                  </tr>
+                      <td>
+                          <p>{{order?.totalAmnt}}</p>
+                      </td>
+                      <td>
+                          <p>{{order?.status}}</p>
+                      </td>
+                      <td>
+                          <p>{{order?.paymentMode}}</p>
+                      </td>
+                      <td>
+                          <p *ngIf="order?.mode != website" >{{order?.address}}</p>
+                          <p *ngIf="order?.mode == website" >{{order?.address?.city}}</p>
+                      </td>
+                      <td>
+                        <select class="form-control select-style" name="status" [(ngModel)]="order.orderStatus" (change)="updateStatus(order._id, $event)">
+                          <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </ng-container>
                 </tbody>
               </table>
             </div>
