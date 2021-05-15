@@ -78,13 +78,16 @@ export class SellerActiveDashboardComponent implements OnInit {
     this.sellerService.getDataByDate(obj).subscribe((resp: any) => {
       if (resp.code === 200) {
         this.orderData = resp.data;
-        this.calculateTotal();
-        this.createChart();
+        if (this.orderData?.length) {
+          this.calculateTotal();
+        }
       }
     })
   }
 
   calculateTotal() {
+    this.totalAmnt = 0;
+    this.totalOrders = 0;
     this.orderData.forEach((data: any) => {
       this.totalAmnt += parseInt(data.totalAmnt);
       this.totalOrders += data.products.length
@@ -101,8 +104,11 @@ export class SellerActiveDashboardComponent implements OnInit {
         this.orderData = resp.data;
         this.sales = "Week's Sales";
         this.orders = "Week's Orders";
-        this.calculateTotal();
-        this.createChart();
+        if (this.orderData?.length) {
+          this.calculateTotal();
+          this.createChart();
+          this.createChartOrders();
+        }
       }
     })
   }
@@ -117,9 +123,11 @@ export class SellerActiveDashboardComponent implements OnInit {
         this.orderData = resp.data;
         this.sales = "Monthly Sales";
         this.orders = "Monthly Orders";
-        this.calculateTotal();
-        this.createChart();
-        this.createChartOrders();
+        if (this.orderData?.length) {
+          this.calculateTotal();
+          this.createChart();
+          this.createChartOrders();
+        }
       }
     })
   }
@@ -129,8 +137,14 @@ export class SellerActiveDashboardComponent implements OnInit {
     let dates = [];
     let orders = [];
     this.orderData.forEach(data => {
-      dates.push(moment(data.createdAt).format("DD/MM/YYYY"));
-      orders.push(data.totalAmnt);
+      let date = moment(data.createdAt).format("DD/MM/YYYY");
+      if (dates.includes(date)) {
+        let index = dates.indexOf(date);
+        orders[index] += parseInt(data.totalAmnt);
+      } else {
+        dates.push(date);
+        orders.push(parseInt(data.totalAmnt));
+      }
     });
     var myChart = new Chart(ctx, {
       type: 'bar',
@@ -178,8 +192,14 @@ export class SellerActiveDashboardComponent implements OnInit {
     let dates = [];
     let orders = [];
     this.orderData.forEach(data => {
-      dates.push(moment(data.createdAt).format("DD/MM/YYYY"));
-      orders.push(data.products.length);
+      let date = moment(data.createdAt).format("DD/MM/YYYY");
+      if (dates.includes(date)) {
+        let index = dates.indexOf(date);
+        orders[index] += data.products.length;
+      } else {
+        dates.push(date);
+        orders.push(data.products.length)
+      }
     });
     var myChart = new Chart(ctx, {
       type: 'bar',
