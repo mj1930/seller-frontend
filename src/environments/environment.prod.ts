@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://6arhtir1m7.execute-api.ap-south-1.amazonaws.com/',
-  adminApiUrl: 'https://rgr3szfd44.execute-api.ap-south-1.amazonaws.com/'
+  apiUrl: 'http://65.2.73.90:3003/',
+  adminApiUrl: 'http://65.2.31.91:3002/'
 };
