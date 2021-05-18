@@ -78,13 +78,14 @@
                 <select class="form-control col-md-3 my-3" name="" id="" (change)="callChart($event)">
                   <option value="week">Weekly</option>
                   <option value="month">Monthly</option>
+                  <option value="year">Yearly</option>
                 </select>
               </div>
               
                 <canvas id="saleChart" width="800" height="400"></canvas>
                 <div class="card-body text-center">
                   <h6 class="card-title">{{ sales}}</h6>
-                  <p>Rs. {{ totalAmnt }}</p>
+                  <p>Rs. {{ totalAmntChart }}</p>
                 </div>
             </div>
         </div>
@@ -96,12 +97,13 @@
                 <select class="form-control col-md-3 my-3" name="" id="" (change)="callChart($event)">
                   <option value="week-order">Weekly</option>
                   <option value="month-order">Monthly</option>
+                  <option value="year-order">Yearly</option>
                 </select>
               </div>
                 <canvas id="orderChart" width="800" height="400"></canvas>
                 <div class="card-body text-center">
                   <h6 class="card-title">{{ orders }}</h6>
-                  <p> {{ totalOrders}}</p>
+                  <p> {{ totalOrdersChart }}</p>
                 </div>
             </div>
         </div>

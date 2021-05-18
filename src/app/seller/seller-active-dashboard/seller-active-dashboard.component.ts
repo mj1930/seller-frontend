@@ -17,7 +17,9 @@ export class SellerActiveDashboardComponent implements OnInit {
   sales = "Today's sale";
   orders = "Today's orders";
   totalAmnt = 0;
+  totalAmntChart = 0;
   totalOrders = 0;
+  totalOrdersChart = 0;
   orderData = [];
   constructor(
     private verificationService: VerificationService,
@@ -28,7 +30,7 @@ export class SellerActiveDashboardComponent implements OnInit {
     this.mailVerified = localStorage.getItem('verified') ? Boolean(localStorage.getItem('verified')) : false;
     this.sellerService.getUserDetails().subscribe((data: any) => {
       this.getTodaysData();
-      this.getMonthData();
+      this.getWeekData();
       this.mailVerified = data['data'].isEmailVerified;
       this.userName = data['data'].name;
     });
@@ -97,8 +99,12 @@ export class SellerActiveDashboardComponent implements OnInit {
   callChart(event) {
     if (event.target.value.includes('week')) {
       this.getWeekData(event.target.value);
-    } else {
+    } 
+    if (event.target.value.includes('month')) {
       this.getMonthData(event.target.value);
+    }
+    if (event.target.value.includes('year')) {
+      this.getYearData(event.target.value);
     }
   }
 
@@ -113,11 +119,15 @@ export class SellerActiveDashboardComponent implements OnInit {
         this.sales = "Week's Sales";
         this.orders = "Week's Orders";
         if (this.orderData?.length) {
-          this.calculateTotal();
-          if (param === 'week-order')
+          if (param) {
+            if (param === 'week-order')
+              this.createChartOrders();
+            else 
+              this.createChart();
+          } else {
+            this.createChart();
             this.createChartOrders();
-          else 
-            this.createChart()
+          }
         }
       }
     })
@@ -134,7 +144,6 @@ export class SellerActiveDashboardComponent implements OnInit {
         this.sales = "Monthly Sales";
         this.orders = "Monthly Orders";
         if (this.orderData?.length) {
-          this.calculateTotal();
           if (param) {
             if (param === 'month-order')
               this.createChartOrders();
@@ -149,12 +158,39 @@ export class SellerActiveDashboardComponent implements OnInit {
     })
   }
 
+  getYearData(param?) {
+    let obj = {
+      startDate: moment().startOf('year'),
+      endDate: moment().endOf('year')
+    }
+    this.sellerService.getDataByDate(obj).subscribe((resp: any) => {
+      if (resp.code === 200) {
+        this.orderData = resp.data;
+        this.sales = "Yearly Sales";
+        this.orders = "Yearly Orders";
+        if (this.orderData?.length) {
+          if (param) {
+            if (param === 'year-order')
+              this.createChartOrders();
+            else 
+              this.createChart();
+          } else {
+            this.createChart();
+            this.createChartOrders();
+          }
+        }
+      }
+    })
+  }
+
   createChart() {
+    this.totalAmntChart = 0;
     var ctx = document.getElementById("saleChart") as HTMLCanvasElement;
     let dates = [];
     let orders = [];
     this.orderData.forEach(data => {
       let date = moment(data.createdAt).format("DD/MM/YYYY");
+      this.totalAmntChart +=  parseInt(data.totalAmnt);
       if (dates.includes(date)) {
         let index = dates.indexOf(date);
         orders[index] += parseInt(data.totalAmnt);
@@ -163,7 +199,7 @@ export class SellerActiveDashboardComponent implements OnInit {
         orders.push(parseInt(data.totalAmnt));
       }
     });
-    var myChart = new Chart(ctx, {
+    new Chart(ctx, {
       type: 'bar',
       data: {
         labels: dates,
@@ -205,11 +241,13 @@ export class SellerActiveDashboardComponent implements OnInit {
   }
 
   createChartOrders() {
+    this.totalOrdersChart = 0;
     var ctx = document.getElementById("orderChart") as HTMLCanvasElement;
     let dates = [];
     let orders = [];
     this.orderData.forEach(data => {
       let date = moment(data.createdAt).format("DD/MM/YYYY");
+      this.totalOrdersChart = data.products.length;
       if (dates.includes(date)) {
         let index = dates.indexOf(date);
         orders[index] += data.products.length;
@@ -218,7 +256,7 @@ export class SellerActiveDashboardComponent implements OnInit {
         orders.push(data.products.length)
       }
     });
-    var myChart = new Chart(ctx, {
+    new Chart(ctx, {
       type: 'bar',
       data: {
         labels: dates,
