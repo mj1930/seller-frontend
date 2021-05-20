@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnverifiedSellerComponent implements OnInit {
 
+  userName: string = '';
+  isSellerVerified: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+    let user = JSON.parse(localStorage.getItem('user'));
+    this.userName = user.name;
+    this.isSellerVerified = user.isSellerVerified;
   }
 
 }

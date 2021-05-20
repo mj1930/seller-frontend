@@ -166,8 +166,13 @@
                       </label>
                       <input #fileInput id="file-input1" type="file" (click)="fileInput.value = null" (change)="uploadFiles($event)" class="d-none"  accept=".png, .jpeg, .jpg"/>
                     </div>
-                    <div class="col-lg-4 col-md-8 col-sm-6 my-2" *ngFor="let image of imageAttachemts">
+                    <div class="col-lg-4 col-md-8 col-sm-6 my-2" *ngFor="let image of imageAttachemts; let i = index">
                       <img [src]="image" alt="" width="100%" />
+                      <span style="
+                          position: absolute;
+                          font-size: 20px;
+                          cursor: pointer;
+                      " (click)="removeImg(i)">&times;</span>
                     </div>
                     <!-- <p class="erroMessage" *ngIf="isImageUploadFormSubmitted && !imageAttachemts.length">Please upload an image</p> -->
                   </div>

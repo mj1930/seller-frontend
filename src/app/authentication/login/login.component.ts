@@ -11,6 +11,7 @@ import { ToastService } from "src/app/services/shared/toast.service";
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginAttempt: boolean;
+  isSellerVerified: boolean = false;
   loginError = null;
 
   constructor(
@@ -56,7 +57,6 @@ export class LoginComponent implements OnInit {
           return;
         }
         if (data.code === 200) {
-          console.log(data);
           sessionStorage.setItem("token", data["accessToken"]);
           localStorage.setItem("user", JSON.stringify(data["data"]));
           if (this.loginForm.controls["rememberMe"].value) {
@@ -75,8 +75,13 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("password", "");
           }
           let userData = JSON.parse(localStorage.getItem("user"));
-          if (userData && userData.accountNumber)
-            this.router.navigateByUrl("/seller/active-dashboard");
+          this.isSellerVerified = userData.isVerified;
+          if (userData) {
+            if (this.isSellerVerified  && userData.accountNumber)
+              this.router.navigateByUrl("/seller/active-dashboard");
+            else
+              this.router.navigateByUrl("/seller/unverified-seller");
+          }
           else this.router.navigateByUrl("/seller");
         } else {
           this.loginError = data["messgae"];

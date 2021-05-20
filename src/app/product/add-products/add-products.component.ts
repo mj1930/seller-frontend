@@ -242,6 +242,9 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
+  removeImg(i) {
+    this.imageAttachemts.splice(i, 1);
+  }
   resetForm() {
     this.addProductForm.reset();
     this.router.navigateByUrl("/seller/active-dashboard");

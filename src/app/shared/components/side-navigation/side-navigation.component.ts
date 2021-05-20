@@ -9,13 +9,16 @@ import * as $ from 'jquery';
 })
 export class SideNavigationComponent implements OnInit {
 
+  isSellerVerified: boolean = false;
   userName: string;
   showSubMenu = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.userName = JSON.parse(localStorage.getItem('user')).name;
+    let userData =JSON.parse(localStorage.getItem('user'));
+    this.userName = userData.name;
+    this.isSellerVerified = userData.isVerified;
   }
 
   closeSidebar() {
@@ -26,7 +29,10 @@ export class SideNavigationComponent implements OnInit {
   }
 
   logout() {
-    sessionStorage.setItem('token', '');
+    sessionStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
     this.router.navigateByUrl('/auth/login');
   }
 
