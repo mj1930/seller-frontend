@@ -161,6 +161,7 @@ export class AddProductsComponent implements OnInit {
       formGroupValues.productId = this.productId;
     let colours = [];
     let sizes = [];
+    formGroupValues.sellerName = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).name : "";
     formGroupValues.color.forEach(element => {
       colours.push(element.color);
     });
