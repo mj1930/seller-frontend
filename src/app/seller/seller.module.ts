@@ -18,6 +18,7 @@ import { SellerProductListingComponent } from './seller-product-listing/seller-p
 import { SellerProfilePageComponent } from './seller-profile-page/seller-profile-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { OrderListingComponent } from './order-listing/order-listing.component';
+import { UnverifiedSellerComponent } from './unverified-seller/unverified-seller.component';
 // import { AgmCoreModule }s from '@agm/core';
 
 @NgModule({
@@ -31,7 +32,8 @@ import { OrderListingComponent } from './order-listing/order-listing.component';
     SellerListingComponent,
     SellerProductListingComponent,
     SellerProfilePageComponent,
-    OrderListingComponent
+    OrderListingComponent,
+    UnverifiedSellerComponent
   ],
   imports: [
     CommonModule,

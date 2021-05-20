@@ -11,6 +11,7 @@ import { SellerListingComponent } from './seller-listing/seller-listing.componen
 import { SellerProductListingComponent } from './seller-product-listing/seller-product-listing.component';
 import { SellerProfilePageComponent } from './seller-profile-page/seller-profile-page.component';
 import { SellerWelcomePageComponent } from './seller-welcome-page/seller-welcome-page.component';
+import { UnverifiedSellerComponent } from './unverified-seller/unverified-seller.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'profile', component: SellerProfilePageComponent, canActivate: [AuthGuardService]},
   {path: 'product-listing', component: SellerProductListingComponent, canActivate: [AuthGuardService]},
   {path: 'order-listing', component: OrderListingComponent, canActivate: [AuthGuardService]},
+  {path: 'unverified-seller', component: UnverifiedSellerComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({
