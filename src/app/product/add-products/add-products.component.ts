@@ -244,6 +244,7 @@ export class AddProductsComponent implements OnInit {
 
   removeImg(i) {
     this.imageAttachemts.splice(i, 1);
+    this.imageAttachemtsToSend.splice(i, 1);
   }
   resetForm() {
     this.addProductForm.reset();
@@ -281,7 +282,7 @@ export class AddProductsComponent implements OnInit {
     this.sellingInfoForm.patchValue(product);
     this.getSubCategories();
     this.addedimageAttachemts = product.productImg;
-    this.imageAttachemts = product.productImg;
+    // this.imageAttachemts = product.productImg;
     const colorFormArray: FormArray = this.productVariationForm['controls']['color'] as FormArray;
     colorFormArray.clear();
     for(let i = 0; i < product.color.length; i++) {
@@ -316,7 +317,6 @@ export class AddProductsComponent implements OnInit {
             this.imageAttachemts.push(this.imageUrl);
           };
         }
-        console.log(this.imageAttachemts);
       } else {
         this.toastService.openSnackbar('Invalid File Format. Valid Format are jpg, jpeg & png');
       }
@@ -400,10 +400,12 @@ export class AddProductsComponent implements OnInit {
       })
     );
   }
+
   removeSize(i) {
     this.sizes = this.productVariationForm.get("size") as FormArray;
     this.sizes.removeAt(i);
   }
+
   removeColor(i) {
     this.colors = this.productVariationForm.get("color") as FormArray;
     this.colors.removeAt(i)
