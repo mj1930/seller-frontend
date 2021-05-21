@@ -76,9 +76,6 @@
 
                         <label for="" class="small">Upload GST Document</label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="GSTDoc">Upload</span>
-                            </div>
                             <div class="custom-file">
                                 <input [disabled]="sellerGstForm.controls['hasGST'].value != 'true'" type="file" (change)="gstFileUpload($event)" class="custom-file-input" id="GSTDoc" aria-describedby="inputGroupFileAddon01" accept="application/pdf">
                                 <label class="custom-file-label" for="GSTDoc">Choose file</label>
@@ -95,11 +92,8 @@
 
                         <label for="" class="small">Upload PAN Card</label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="PANCard">Upload</span>
-                            </div>
                             <div class="custom-file">
-                                <input type="file" (change)="panFileUpload($event)" class="custom-file-input" id="PANCard" aria-describedby="inputGroupFileAddon01" accept="image/jpeg">
+                                <input [disabled]="sellerGstForm.controls['hasGST'].value != 'true'" type="file" (change)="panFileUpload($event)" class="custom-file-input" id="PANCard" aria-describedby="inputGroupFileAddon01" accept="application/pdf">
                                 <label class="custom-file-label" for="PANCard">Choose file</label>
                             </div>
                         </div>

@@ -49,5 +49,16 @@ export class SellerService {
   getDataByDate(reqBody) {
     return this.http.post('orders/get-orders-by-date', reqBody);
   }
+  
+  verifyStorename(reqBody) {
+    return this.http.post('store/verify-storename', reqBody);
+  }
 
+  addProductImages(req) {
+    return this.http.post('store/add-gst-images', req);
+  }
+  
+  addBankImage(req) {
+    return this.http.post('store/add-bank-image', req);
+  }
 }

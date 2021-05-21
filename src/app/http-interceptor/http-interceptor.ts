@@ -33,7 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
             requestObject['responseType'] = 'blob';
         }
 
-        if(request.url.includes('products/add-product-images')) {
+        if(request.url.includes('products/add-product-images') || request.url.includes('store/add-gst-images') || request.url.includes('store/add-bank-image')) {
             delete requestObject['setHeaders']['Content-Type'];
             delete requestObject['setHeaders']['Accept']; 
         }

@@ -9,22 +9,25 @@ import { Router } from "@angular/router";
 })
 export class SellerGstinDetailsComponent implements OnInit {
 
-  sellerGstForm:FormGroup;
+  sellerGstForm: FormGroup;
   sellerFormAttempt: boolean;
+  imageAttachemtsToSend: any = [];
+  sellerId: any;
 
   constructor(private fb: FormBuilder, private sellerService: SellerService, private router: Router) { }
 
   ngOnInit(): void {
     this.sellerGstForm = this.fb.group({
       name: JSON.parse(localStorage.getItem('user')).name,
-      hasGST: [null, [Validators.required]],
-        taxState: ['', [Validators.required]],
-        gstin: ['', [Validators.required]],
-        pan: ['', [Validators.required]]
+      hasGST: ['true', [Validators.required]],
+      taxState: ['', [Validators.required]],
+      gstin: ['', [Validators.required]],
+      pan: ['', [Validators.required]]
     });
-if(localStorage.getItem('seller-gst-details')) {
-this.sellerGstForm.setValue(JSON.parse(localStorage.getItem('seller-gst-details')));
-}
+    this.sellerId = JSON.parse(localStorage.getItem('user'))._id;
+    if (localStorage.getItem('seller-gst-details')) {
+      this.sellerGstForm.setValue(JSON.parse(localStorage.getItem('seller-gst-details')));
+    }
     //localStorage.setItem('seller-gst-details', JSON.stringify(this.sellerGstForm.value));
   }
 
@@ -33,82 +36,78 @@ this.sellerGstForm.setValue(JSON.parse(localStorage.getItem('seller-gst-details'
     if (!valid) {
       return;
     }
-
     const files = [];
     files.push(this.gstFile, this.panFile)
-console.log('fielssss', files)
     localStorage.setItem('seller-gst-details', JSON.stringify(this.sellerGstForm.value));
     localStorage.setItem('seller-uploaded-file', JSON.stringify(files));
     this.sellerService.addSellerGstDetails(this.sellerGstForm.value).subscribe(data => {
-      console.log(data);
+      this.addImages();
       this.router.navigateByUrl('/seller/bank-details');
     }, error => {
       console.log(error);
     })
 
-   // this.router.navigateByUrl('/seller/bank-details');
+    // this.router.navigateByUrl('/seller/bank-details');
   }
 
   gstFile;
   panFile: any;
 
   gstFileUpload(event) {
-console.log('gstststs', event.target.files)
-console.log('asdasd',this.getBase64(event.target.files[0]));
-
-this.getBase64(event.target.files[0]).then(data => {
-  console.log('dddddddddddd',data)
-  this.gstFile = data;
-});
-//this.gstFile = JSON.stringify(event.target.files[0]);
-console.log('gstFile', this.gstFile)
-// this.sellerGstForm.get('gstFile').setValue(event.target.files[0]);
+    this.imageAttachemtsToSend.push(event.target.files[0])
+    this.getBase64(event.target.files[0]).then(data => {
+      this.gstFile = data;
+    });
   }
 
   panFileUpload(event) {
-    console.log('pannn', event.target.files)
+    this.imageAttachemtsToSend.push(event.target.files[0])
     this.getBase64(event.target.files[0]).then(data => {
-      console.log('dddddddddddd',data)
       this.panFile = data;
     });
-// this.panFile = event.target.files[0];
-    
-    // this.sellerGstForm.get('panFile').setValue(event.target.files[0]);
+  }
 
-      }
-
-//  getBase64(file) {
-//         var reader = new FileReader();
-//         reader.readAsDataURL(file);
-//         reader.onload = function () {
-//           console.log(reader.result);
-//           return JSON.stringify(reader.result);
-//         };
-//         reader.onerror = function (error) {
-//           console.log('Error: ', error);
-//         };
-//      }
-
-     getBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
+  addImages() {
+    if (this.imageAttachemtsToSend?.length) {
+      let formData = new FormData();
+      Array.from(this.imageAttachemtsToSend).forEach((item: any) => {
+        formData.append("files", item);
       });
+      this.sellerService.addProductImages(formData).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
-    
-    // var file = document.querySelector('#files > input[type="file"]').files[0];
-    // getBase64(file).then(
-    //   data => console.log(data)
-    // );
+  }
 
-    ngDoCheck() {
-      if(this.sellerGstForm.controls['hasGST'].value == 'true') {
-        this.sellerGstForm.controls['gstin'].enable()
-      } else {
-        this.sellerGstForm.controls['gstin'].disable()
-      }
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
+  // var file = document.querySelector('#files > input[type="file"]').files[0];
+  // getBase64(file).then(
+  //   data => console.log(data)
+  // );
+
+  ngDoCheck() {
+    if (this.sellerGstForm.controls['hasGST'].value == 'true') {
+      this.sellerGstForm.controls['gstin'].enable()
+      this.sellerGstForm.controls['taxState'].enable()
+      this.sellerGstForm.controls['pan'].enable()
+    } else {
+      this.sellerGstForm.controls['gstin'].disable()
+      this.sellerGstForm.controls['taxState'].disable()
+      this.sellerGstForm.controls['pan'].disable()
     }
+  }
 
 }

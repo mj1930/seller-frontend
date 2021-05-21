@@ -11,16 +11,19 @@
 
                     <!-- Title -->
                     <h4 class="card-title"><b>Tell us about your business</b></h4>
-                    <input [(ngModel)]="code" name="picncode"/>
-<button (click)="searchCode()">search</button>
+                    <!-- <input [(ngModel)]="code" name="picncode"/>
+<button (click)="searchCode()">search</button> -->
                     <!-- Text -->
                     <form class="text-left" [formGroup]="sellerForm" (ngSubmit)="addSeller(sellerForm.valid)">
 
                         <!-- Store Name -->
-                        <label for="" class="m-0 small">Store Name</label>
-                        <input formControlName="storename" type="text" id="defaultSignupFormEmail" class="form-control" placeholder="Store Name">
+                        <label for="" class="m-0 small">Store Name *</label>
+                        <input formControlName="storename" type="text" class="form-control" placeholder="Store Name" (blur)="checkStoreName()">
                         <p *ngIf="!sellerForm.get('storename').valid && sellerFormAttempt && sellerForm.get('storename').hasError('required')" class="deep-orange-text small m-0">
                             Please provide a store name!
+                        </p>
+                        <p *ngIf="hasStoreName">
+                            Store name already exists!!
                         </p>
 
                         <hr class="my-4">
@@ -31,27 +34,27 @@
                             <!-- Pincode -->
                             
 
-                            <label for="" class="m-0 small">Pincode</label>
-                            <input type="text" formControlName="pincode" id="defaultSignupFormEmail" class="form-control" placeholder="" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="6" autocomplete="off">
+                            <label for="" class="m-0 small">Pincode *</label>
+                            <input type="text" formControlName="pincode"  class="form-control" placeholder="" oninput="this.value=this.value.replace(/[^\d]/,'')" maxlength="6" autocomplete="off">
                             
 
                             <!-- Address Line 1 -->
-                            <label for="" class="m-0 small">Address Line 1 (Required)</label>
-                            <input formControlName="address1" type="text" id="defaultSignupFormEmail" class="form-control mb-3" placeholder="">
+                            <label for="" class="m-0 small">Address Line 1 *</label>
+                            <input formControlName="address1" type="text"  class="form-control mb-3" placeholder="">
                             <span *ngIf="!sellerForm.get('address.address1').valid && sellerFormAttempt && sellerForm.get('address.address1').hasError('required')">
                                 Please provide a address!
                             </span>
 
                             <!-- Address Line 2 -->
                             <label for="" class="m-0 small">Address Line 2</label>
-                            <input formControlName="address2" type="text" id="defaultSignupFormEmail" class="form-control mb-3">
+                            <input formControlName="address2" type="text"  class="form-control mb-3">
     
                             <!-- City -->
-                            <label for="" class="m-0 small">City</label>
-                            <input formControlName="city" type="text" id="defaultSignupFormEmail" class="form-control mb-3">
+                            <label for="" class="m-0 small">City *</label>
+                            <input formControlName="city" type="text"  class="form-control mb-3">
     
                             <!-- State -->
-                            <label for="" class="m-0 small">State</label>
+                            <label for="" class="m-0 small">State *</label>
                             <select class="browser-default custom-select mb-3" formControlName="state">
                                 <option selected>Select State</option>
                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -94,7 +97,7 @@
     
                             <!-- Address Line 2 -->
                             <label for="" class="m-0 small">Country</label>
-                            <input formControlName="country" type="text" id="defaultSignupFormEmail" class="form-control" value="India" disabled readonly>
+                            <input formControlName="country" type="text"  class="form-control" value="India" disabled readonly>
     
                             <!-- Generate OTP -->
                             <button class="btn elegant-color text-white btn-sm btn-block my-4 rounded" type="submit">Save Store Details</button>

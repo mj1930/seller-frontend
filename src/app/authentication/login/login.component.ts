@@ -77,7 +77,9 @@ export class LoginComponent implements OnInit {
           let userData = JSON.parse(localStorage.getItem("user"));
           this.isSellerVerified = userData.isVerified;
           if (userData) {
-            if (this.isSellerVerified  && userData.accountNumber)
+            if (this.isSellerVerified && !userData.accountNumber)
+              this.router.navigateByUrl("/seller");
+            else if (this.isSellerVerified && userData.accountNumber)
               this.router.navigateByUrl("/seller/active-dashboard");
             else
               this.router.navigateByUrl("/seller/unverified-seller");
