@@ -4,6 +4,7 @@ import { LoginComponent } from './authentication/login/login.component';
 // import { AddProductsComponent } from './add-products/add-products.component';
 // import { LoginComponent } from './auth1/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
+import { OrderInvoiceComponent } from './order-invoice/order-invoice.component';
 // import { ManageInventoryComponent } from './inventory/manage-inventory/manage-inventory.component';
 // import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller-active-dashboard.component';
 // import { SellerEmailVerifiedComponent } from './seller1/seller-email-verified/seller-email-verified.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/auth/register'},
   // {path: 'login', component: LoginComponent},
   // {path: 'register', component: RegisterComponent},
+  {path: 'order-invoice', component: OrderInvoiceComponent},
    {path: 'auth', loadChildren: () => import('./authentication/authentication.module').then(module => module.AuthenticationModule)},
    {path: 'product', loadChildren: () => import('./product/product.module').then(module => module.ProductModule)},
    {path: 'inventory', loadChildren: () => import('./inventory/inventory.module').then(module => module.InventoryModule)},

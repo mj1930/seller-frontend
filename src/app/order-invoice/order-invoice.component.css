@@ -1,0 +1,17 @@
+.detailTable {
+    border-collapse: separate;
+    border-spacing: 10px 20px;
+}
+
+.th-no-wrap{
+    white-space: nowrap;
+}
+
+@media print {
+    .downloadPDF {
+      display: none;
+    }
+  }
+h3{
+    font-size: 1.17em !important;
+}
