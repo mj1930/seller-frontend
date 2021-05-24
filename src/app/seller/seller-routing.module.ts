@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from '../shared/services/auth-guard/auth-guard.service';
+import { OrderInvoiceComponent } from './order-invoice/order-invoice.component';
 import { OrderListingComponent } from './order-listing/order-listing.component';
 import { SellerActiveDashboardComponent } from './seller-active-dashboard/seller-active-dashboard.component';
 import { SellerBankDetailsComponent } from './seller-bank-details/seller-bank-details.component';
@@ -16,6 +17,7 @@ import { UnverifiedSellerComponent } from './unverified-seller/unverified-seller
 
 const routes: Routes = [
   {path: '', component: SellerWelcomePageComponent},
+  { path: 'print-invoice/:id', component: OrderInvoiceComponent, canActivate: [AuthGuardService]},
   {path: 'gst', component: SellerGstinDetailsComponent},
   {path: 'bank-details', component: SellerBankDetailsComponent},
   {path: 'dashboard', component: SellerDashboardComponent, canActivate: [AuthGuardService]},

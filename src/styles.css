@@ -41,6 +41,12 @@
   body {
     font-size: 0.9rem;
   }
+
+  .inr::before{
+    font-family: "FontAwesome";
+      content: "\f156" " ";
+  }
+
   .page-wrapper .sidebar-wrapper,
   .sidebar-wrapper .sidebar-brand > a,
   .sidebar-wrapper .sidebar-dropdown > a:after,

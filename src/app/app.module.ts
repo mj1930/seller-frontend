@@ -18,11 +18,9 @@ import { SellerProductListingComponent } from "./seller/seller-product-listing/s
 import { SellerProfilePageComponent } from "./seller/seller-profile-page/seller-profile-page.component";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { OrderInvoiceComponent } from './order-invoice/order-invoice.component';
 @NgModule({
   declarations: [
     AppComponent,
-    OrderInvoiceComponent
     //RegisterComponent
   ],
   imports: [

@@ -61,4 +61,8 @@ export class SellerService {
   addBankImage(req) {
     return this.http.post('store/add-bank-image', req);
   }
+
+  getInvoiceDetails(id) {
+    return this.http.get(`orders/print-invoice/${id}`);
+  }
 }

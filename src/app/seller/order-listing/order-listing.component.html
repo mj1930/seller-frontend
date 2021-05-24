@@ -62,17 +62,11 @@
                 <th scope="col">Quantity</th>
                 <th scope="col">Seller</th>
                 <th scope="col">Order Total (INR)</th>
-                <!-- <th scope="col">GSTIN Number</th>
-                    <th scope="col">GSTIN Name</th> -->
                 <th scope="col">Status</th>
                 <th scope="col">Payment Mode</th>
-                <!-- <th scope="col">Payment Status</th> -->
                 <th scope="col">Address Details</th>
-                <!-- <th scope="col">Expected Time</th>
-                    <th scope="col">Delay</th>
-                    <th scope="col">Delivery Man</th> -->
-                <!-- <th scope="col">Print Invoice & Label</th> -->
                 <th scope="col">Action</th>
+                <th scope="col">Print Invoice</th>
               </tr>
             </thead>
             <tbody>
@@ -123,6 +117,9 @@
                       (change)="updateStatus(order._id, $event)">
                       <option [value]="status.value" *ngFor="let status of orderStatuses">{{status.text}}</option>
                     </select>
+                  </td>
+                  <td>
+                    <button class="btn btn-primary" routerLink="/seller/print-invoice/{{ order?._id}}">Print Invoice</button>
                   </td>
                 </tr>
               </ng-container>
