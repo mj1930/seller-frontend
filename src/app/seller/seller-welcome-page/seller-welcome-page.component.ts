@@ -44,6 +44,9 @@ export class SellerWelcomePageComponent implements OnInit {
     if (!valid) {
       return;
     }
+    if (this.hasStoreName) {
+      return;
+    }
     localStorage.setItem('seller-welcome-details', JSON.stringify(this.sellerForm.value))
     this.sellerService.addSellerAddressDetails(this.sellerForm.value).subscribe(data => {
       this.router.navigateByUrl('/seller/gst');
