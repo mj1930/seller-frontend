@@ -48,6 +48,10 @@ export class ManageInventoryComponent implements OnInit {
   }
 
   updatePrice(product_dtl) {
+    if (!product_dtl.productPrice || !product_dtl.availableUnits) {
+      this.toastService.openSnackbar("Feild can not be empty!!");
+      return;
+    }
     let obj = {
       productPrice: product_dtl.productPrice,
       id: product_dtl._id,
